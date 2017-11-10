@@ -1,25 +1,9 @@
-/**
- * 
- * Copyright 1999-2012 Carnegie Mellon University.  
- * Portions Copyright 2002 Sun Microsystems, Inc.  
- * Portions Copyright 2002 Mitsubishi Electric Research Laboratories.
- * All Rights Reserved.  Use is subject to license terms.
- * 
- * See the file "license.terms" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL 
- * WARRANTIES.
- *
- */
-
 package com.javafst.semiring;
 
 import java.io.Serializable;
 
 /**
  * Abstract semiring class.
- * 
- * @author "John Salatas"
- * 
  */
 public abstract class Semiring implements Serializable {
 
@@ -28,13 +12,11 @@ public abstract class Semiring implements Serializable {
   // significant decimal digits in floating point numbers
   protected static final int accuracy = 5;
 
-
   public abstract float plus(float w1, float w2);
 
   public abstract float reverse(float w1);
 
   public abstract float times(float w1, float w2);
-
 
   public abstract float divide(float w1, float w2);
 

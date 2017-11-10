@@ -2,7 +2,6 @@ package com.javafst.app;
 
 /**
  * Hello world!
- *
  */
 public class App 
 {

@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 import com.javafst.operations.Determinize;
 import com.javafst.semiring.TropicalSemiring;
 
-
+  
 public class DeterminizeTest {
 
   @Test

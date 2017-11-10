@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.javafst;
 
 import java.util.Arrays;
@@ -11,8 +8,6 @@ import java.util.Comparator;
  * 
  * holds its outgoing {@link com.javafst.Arc} objects in a fixed size
  * array not allowing additions/deletions.
- * 
- * @author John Salatas
  */
 public class ImmutableState extends State {
 

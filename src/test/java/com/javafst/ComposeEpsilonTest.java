@@ -14,7 +14,6 @@ import org.testng.annotations.Test;
 
 import com.javafst.semiring.TropicalSemiring;
 
-
 public class ComposeEpsilonTest {
 
   @Test

@@ -1,15 +1,3 @@
-/**
- * 
- * Copyright 1999-2012 Carnegie Mellon University.  
- * Portions Copyright 2002 Sun Microsystems, Inc.  
- * Portions Copyright 2002 Mitsubishi Electric Research Laboratories.
- * All Rights Reserved.  Use is subject to license terms.
- * 
- * See the file "license.terms" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL 
- * WARRANTIES.
- *
- */
 package com.javafst.utils;
 
 /**
@@ -18,8 +6,6 @@ package com.javafst.utils;
  * Original code obtained by
  * http://stackoverflow.com/questions/521171/a-java-collection-of-value
  * -pairs-tuples
- * 
- * @author John Salatas
  * 
  */
 public class Pair<L, R> {

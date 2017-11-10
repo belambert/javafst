@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.javafst.operations;
 
 import com.javafst.Arc;
@@ -10,14 +7,9 @@ import com.javafst.State;
 
 /**
  * Project operation. 
- * 
- * @author John Salatas
- * 
  */
 public class Project {
-  /**
-   * Default Constructor
-   */
+
   private Project() {
   }
 

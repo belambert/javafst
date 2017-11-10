@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.javafst;
 
 import java.io.BufferedInputStream;
@@ -18,8 +15,6 @@ import com.javafst.semiring.Semiring;
  * 
  * Holds a fixed size array of {@link com.javafst.ImmutableState} objects
  * not allowing additions/deletions
- * 
- * @author John Salatas
  */
 public class ImmutableFst extends Fst {
 

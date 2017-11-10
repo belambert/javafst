@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.javafst.operations;
 
 import java.util.ArrayList;
@@ -19,9 +16,6 @@ import com.javafst.utils.Pair;
  * 
  * See: M. Mohri, "Finite-State Transducers in Language and Speech Processing",
  * Computational Linguistics, 23:2, 1997.
- * 
- * @author John Salatas
- * 
  */
 public class Determinize {
 

@@ -1,16 +1,3 @@
-/**
- * 
- * Copyright 1999-2012 Carnegie Mellon University.  
- * Portions Copyright 2002 Sun Microsystems, Inc.  
- * Portions Copyright 2002 Mitsubishi Electric Research Laboratories.
- * All Rights Reserved.  Use is subject to license terms.
- * 
- * See the file "license.terms" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL 
- * WARRANTIES.
- *
- */
-
 package com.javafst.operations;
 
 import java.util.Arrays;
@@ -35,8 +22,6 @@ import com.javafst.utils.Pair;
  * See: M. Mohri,
  * "Semiring Framework and Algorithms for Shortest-Distance Problems", Journal
  * of Automata, Languages and Combinatorics, 7(3), pp. 321-350, 2002.
- * 
- * @author John Salatas
  * 
  */
 public class NShortestPaths {
