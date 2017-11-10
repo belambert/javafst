@@ -59,7 +59,7 @@ public class ImmutableFst extends Fst {
     /*
      * (non-Javadoc)
      * 
-     * @see edu.cmu.sphinx.fst.Fst#getNumStates()
+     * @see com.javafst.Fst#getNumStates()
      */
     @Override
     public int getNumStates() {
@@ -69,7 +69,7 @@ public class ImmutableFst extends Fst {
     /*
      * (non-Javadoc)
      * 
-     * @see edu.cmu.sphinx.fst.Fst#getState(int)
+     * @see com.javafst.Fst#getState(int)
      */
     @Override
     public ImmutableState getState(int index) {
@@ -79,7 +79,7 @@ public class ImmutableFst extends Fst {
     /*
      * (non-Javadoc)
      * 
-     * @see edu.cmu.sphinx.fst.Fst#addState(edu.cmu.sphinx.fst.State)
+     * @see com.javafst.Fst#addState(com.javafst.State)
      */
     @Override
     public void addState(State state) {
@@ -89,7 +89,7 @@ public class ImmutableFst extends Fst {
     /*
      * (non-Javadoc)
      * 
-     * @see edu.cmu.sphinx.fst.Fst#saveModel(java.lang.String)
+     * @see com.javafst.Fst#saveModel(java.lang.String)
      */
     @Override
     public void saveModel(String filename) throws IOException {
@@ -213,7 +213,7 @@ public class ImmutableFst extends Fst {
     /*
      * (non-Javadoc)
      * 
-     * @see edu.cmu.sphinx.fst.Fst#deleteState(edu.cmu.sphinx.fst.State)
+     * @see com.javafst.Fst#deleteState(com.javafst.State)
      */
     @Override
     public void deleteState(State state) {
@@ -223,7 +223,7 @@ public class ImmutableFst extends Fst {
     /*
      * (non-Javadoc)
      * 
-     * @see edu.cmu.sphinx.fst.Fst#toString()
+     * @see com.javafst.Fst#toString()
      */
     @Override
     public String toString() {

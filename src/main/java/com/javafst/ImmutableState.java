@@ -45,7 +45,7 @@ public class ImmutableState extends State {
     /*
      * (non-Javadoc)
      * 
-     * @see edu.cmu.sphinx.fst.State#arcSort(java.util.Comparator)
+     * @see com.javafst.State#arcSort(java.util.Comparator)
      */
     @Override
     public void arcSort(Comparator<Arc> cmp) {
@@ -55,7 +55,7 @@ public class ImmutableState extends State {
     /*
      * (non-Javadoc)
      * 
-     * @see edu.cmu.sphinx.fst.State#addArc(edu.cmu.sphinx.fst.Arc)
+     * @see com.javafst.State#addArc(com.javafst.Arc)
      */
     @Override
     public void addArc(Arc arc) {
@@ -77,7 +77,7 @@ public class ImmutableState extends State {
     /*
      * (non-Javadoc)
      * 
-     * @see edu.cmu.sphinx.fst.State#deleteArc(int)
+     * @see com.javafst.State#deleteArc(int)
      */
     @Override
     public Arc deleteArc(int index) {
@@ -97,7 +97,7 @@ public class ImmutableState extends State {
     /*
      * (non-Javadoc)
      * 
-     * @see edu.cmu.sphinx.fst.State#getNumArcs()
+     * @see com.javafst.State#getNumArcs()
      */
     @Override
     public int getNumArcs() {
@@ -107,7 +107,7 @@ public class ImmutableState extends State {
     /*
      * (non-Javadoc)
      * 
-     * @see edu.cmu.sphinx.fst.State#getArc(int)
+     * @see com.javafst.State#getArc(int)
      */
     @Override
     public Arc getArc(int index) {

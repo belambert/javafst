@@ -40,7 +40,7 @@ import com.javafst.semiring.TropicalSemiring;
  * provides easy-to-build G2P training facilities. Its binary models can be
  * converted to an XML FSA-format using fsa.py which is provided with Sequitur.
  * 
- * This program reads the XML and constructs a @link{edu.cmu.sphinx.fst.Fst},
+ * This program reads the XML and constructs a @link{com.javafst.Fst},
  * which is then serialized into the Sphinx binary OpenFst format (but could
  * also be used directly).
  * 
@@ -102,7 +102,7 @@ public class SequiturImport {
         /**
          * convert our object to the Sphinx OpenFst data structure
          * 
-         * @return an edu.cmu.sphinx.fst.Fst built from the XML
+         * @return an com.javafst.Fst built from the XML
          */
         public Fst toFst() {
             Fst openFst = new Fst(ring);

@@ -33,8 +33,8 @@ public class LogSemiring extends Semiring {
      * (non-Javadoc)
      * 
      * @see
-     * edu.cmu.sphinx.fst.weight.Semiring#plus(edu.cmu.sphinx.fst.weight.float,
-     * edu.cmu.sphinx.fst.weight.float)
+     * com.javafst.weight.Semiring#plus(com.javafst.weight.float,
+     * com.javafst.weight.float)
      */
     @Override
     public float plus(float w1, float w2) {
@@ -53,8 +53,8 @@ public class LogSemiring extends Semiring {
      * (non-Javadoc)
      * 
      * @see
-     * edu.cmu.sphinx.fst.weight.Semiring#times(edu.cmu.sphinx.fst.weight.float,
-     * edu.cmu.sphinx.fst.weight.float)
+     * com.javafst.weight.Semiring#times(com.javafst.weight.float,
+     * com.javafst.weight.float)
      */
     @Override
     public float times(float w1, float w2) {
@@ -69,8 +69,8 @@ public class LogSemiring extends Semiring {
      * (non-Javadoc)
      * 
      * @see
-     * edu.cmu.sphinx.fst.weight.Semiring#divide(edu.cmu.sphinx.fst.weight.float
-     * , edu.cmu.sphinx.fst.weight.float)
+     * com.javafst.weight.Semiring#divide(com.javafst.weight.float
+     * , com.javafst.weight.float)
      */
     @Override
     public float divide(float w1, float w2) {
@@ -90,7 +90,7 @@ public class LogSemiring extends Semiring {
     /*
      * (non-Javadoc)
      * 
-     * @see edu.cmu.sphinx.fst.weight.Semiring#zero()
+     * @see com.javafst.weight.Semiring#zero()
      */
     @Override
     public float zero() {
@@ -100,7 +100,7 @@ public class LogSemiring extends Semiring {
     /*
      * (non-Javadoc)
      * 
-     * @see edu.cmu.sphinx.fst.weight.Semiring#one()
+     * @see com.javafst.weight.Semiring#one()
      */
     @Override
     public float one() {
@@ -111,7 +111,7 @@ public class LogSemiring extends Semiring {
      * (non-Javadoc)
      * 
      * @see
-     * edu.cmu.sphinx.fst.weight.Semiring#isMember(edu.cmu.sphinx.fst.weight
+     * com.javafst.weight.Semiring#isMember(com.javafst.weight
      * .float)
      */
     @Override
@@ -123,7 +123,7 @@ public class LogSemiring extends Semiring {
     /*
      * (non-Javadoc)
      * 
-     * @see edu.cmu.sphinx.fst.semiring.Semiring#reverse(float)
+     * @see com.javafst.semiring.Semiring#reverse(float)
      */
     @Override
     public float reverse(float w1) {

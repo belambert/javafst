@@ -25,7 +25,7 @@ public class ComposeTest {
     @Test
     public void testCompose() throws NumberFormatException, IOException, ClassNotFoundException, URISyntaxException {
         String path = "algorithms/compose/fstcompose.fst.ser";
-        URL url = getClass().getResource(path);                      
+        URL url = getClass().getResource(path);
         File parent = new File(url.toURI()).getParentFile();
 
         path = new File(parent, "A").getPath();

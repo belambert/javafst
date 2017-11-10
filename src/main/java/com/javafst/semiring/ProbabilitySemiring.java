@@ -31,8 +31,8 @@ public class ProbabilitySemiring extends Semiring {
      * (non-Javadoc)
      * 
      * @see
-     * edu.cmu.sphinx.fst.weight.AbstractSemiring#Plus(edu.cmu.sphinx.fst.weight
-     * .float, edu.cmu.sphinx.fst.weight.float)
+     * com.javafst.weight.AbstractSemiring#Plus(com.javafst.weight
+     * .float, com.javafst.weight.float)
      */
     @Override
     public float plus(float w1, float w2) {
@@ -47,8 +47,8 @@ public class ProbabilitySemiring extends Semiring {
      * (non-Javadoc)
      * 
      * @see
-     * edu.cmu.sphinx.fst.weight.AbstractSemiring#Times(edu.cmu.sphinx.fst.weight
-     * .float, edu.cmu.sphinx.fst.weight.float)
+     * com.javafst.weight.AbstractSemiring#Times(com.javafst.weight
+     * .float, com.javafst.weight.float)
      */
     @Override
     public float times(float w1, float w2) {
@@ -63,8 +63,8 @@ public class ProbabilitySemiring extends Semiring {
      * (non-Javadoc)
      * 
      * @see
-     * edu.cmu.sphinx.fst.weight.AbstractSemiring#Divide(edu.cmu.sphinx.fst.
-     * weight.float, edu.cmu.sphinx.fst.weight.float)
+     * com.javafst.weight.AbstractSemiring#Divide(com.javafst.
+     * weight.float, com.javafst.weight.float)
      */
     @Override
     public float divide(float w1, float w2) {
@@ -75,7 +75,7 @@ public class ProbabilitySemiring extends Semiring {
     /*
      * (non-Javadoc)
      * 
-     * @see edu.cmu.sphinx.fst.weight.AbstractSemiring#zero()
+     * @see com.javafst.weight.AbstractSemiring#zero()
      */
     @Override
     public float zero() {
@@ -85,7 +85,7 @@ public class ProbabilitySemiring extends Semiring {
     /*
      * (non-Javadoc)
      * 
-     * @see edu.cmu.sphinx.fst.weight.AbstractSemiring#one()
+     * @see com.javafst.weight.AbstractSemiring#one()
      */
     @Override
     public float one() {
@@ -96,7 +96,7 @@ public class ProbabilitySemiring extends Semiring {
      * (non-Javadoc)
      * 
      * @see
-     * edu.cmu.sphinx.fst.weight.Semiring#isMember(edu.cmu.sphinx.fst.weight
+     * com.javafst.weight.Semiring#isMember(com.javafst.weight
      * .float)
      */
     @Override
@@ -108,7 +108,7 @@ public class ProbabilitySemiring extends Semiring {
     /*
      * (non-Javadoc)
      * 
-     * @see edu.cmu.sphinx.fst.semiring.Semiring#reverse(float)
+     * @see com.javafst.semiring.Semiring#reverse(float)
      */
     @Override
     public float reverse(float w1) {
