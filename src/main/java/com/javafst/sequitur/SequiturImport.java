@@ -92,7 +92,7 @@ public class SequiturImport {
             // sort the states (to ascertain that initialState is the first
             // element)
             Collections.<State> sort(states, new Comparator<State>() {
-                @Override
+                //@Override
 				public int compare(State s1, State s2) {
                     return s1.id - s2.id;
                 }

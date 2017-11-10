@@ -134,7 +134,7 @@ public class NShortestPaths {
         PriorityQueue<Pair<State, Float>> queue = new PriorityQueue<Pair<State, Float>>(
                 10, new Comparator<Pair<State, Float>>() {
 
-                    @Override
+                    //@Override
 					public int compare(Pair<State, Float> o1,
                             Pair<State, Float> o2) {
                         float previous = o1.getRight();
