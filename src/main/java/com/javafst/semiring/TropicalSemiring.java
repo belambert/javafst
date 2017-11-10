@@ -21,108 +21,108 @@ package com.javafst.semiring;
  */
 public class TropicalSemiring extends Semiring {
 
-    private static final long serialVersionUID = 2711172386738607866L;
+  private static final long serialVersionUID = 2711172386738607866L;
 
-    // zero value
-    private static float zero = Float.POSITIVE_INFINITY;
+  // zero value
+  private static float zero = Float.POSITIVE_INFINITY;
 
-    // one value
-    private static float one = 0.f;
+  // one value
+  private static float one = 0.f;
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * com.javafst.weight.AbstractSemiring#Plus(com.javafst.weight
-     * .float, com.javafst.weight.float)
-     */
-    @Override
-    public float plus(float w1, float w2) {
-        if (!isMember(w1) || !isMember(w2)) {
-            return Float.NEGATIVE_INFINITY;
-        }
-
-        return w1 < w2 ? w1 : w2;
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * com.javafst.weight.AbstractSemiring#Plus(com.javafst.weight
+   * .float, com.javafst.weight.float)
+   */
+  @Override
+  public float plus(float w1, float w2) {
+    if (!isMember(w1) || !isMember(w2)) {
+      return Float.NEGATIVE_INFINITY;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * com.javafst.weight.AbstractSemiring#Times(com.javafst.weight
-     * .float, com.javafst.weight.float)
-     */
-    @Override
-    public float times(float w1, float w2) {
-        if (!isMember(w1) || !isMember(w2)) {
-            return Float.NEGATIVE_INFINITY;
-        }
+    return w1 < w2 ? w1 : w2;
+  }
 
-        return w1 + w2;
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * com.javafst.weight.AbstractSemiring#Times(com.javafst.weight
+   * .float, com.javafst.weight.float)
+   */
+  @Override
+  public float times(float w1, float w2) {
+    if (!isMember(w1) || !isMember(w2)) {
+      return Float.NEGATIVE_INFINITY;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * com.javafst.weight.AbstractSemiring#Divide(com.javafst.
-     * weight.float, com.javafst.weight.float)
-     */
-    @Override
-    public float divide(float w1, float w2) {
-        if (!isMember(w1) || !isMember(w2)) {
-            return Float.NEGATIVE_INFINITY;
-        }
+    return w1 + w2;
+  }
 
-        if (w2 == zero) {
-            return Float.NEGATIVE_INFINITY;
-        } else if (w1 == zero) {
-            return zero;
-        }
-
-        return w1 - w2;
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * com.javafst.weight.AbstractSemiring#Divide(com.javafst.
+   * weight.float, com.javafst.weight.float)
+   */
+  @Override
+  public float divide(float w1, float w2) {
+    if (!isMember(w1) || !isMember(w2)) {
+      return Float.NEGATIVE_INFINITY;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.javafst.weight.AbstractSemiring#zero()
-     */
-    @Override
-    public float zero() {
-        return zero;
+    if (w2 == zero) {
+      return Float.NEGATIVE_INFINITY;
+    } else if (w1 == zero) {
+      return zero;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.javafst.weight.AbstractSemiring#one()
-     */
-    @Override
-    public float one() {
-        return one;
-    }
+    return w1 - w2;
+  }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * com.javafst.weight.AbstractSemiring#isMember(com.javafst
-     * .weight.float)
-     */
-    @Override
-    public boolean isMember(float w) {
-        return (!Float.isNaN(w)) // not a NaN
-                && (w != Float.NEGATIVE_INFINITY); // and different from -inf
-    }
+  /*
+   * (non-Javadoc)
+   * 
+   * @see com.javafst.weight.AbstractSemiring#zero()
+   */
+  @Override
+  public float zero() {
+    return zero;
+  }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.javafst.semiring.Semiring#reverse(float)
-     */
-    @Override
-    public float reverse(float w1) {
-        return w1;
-    }
+  /*
+   * (non-Javadoc)
+   * 
+   * @see com.javafst.weight.AbstractSemiring#one()
+   */
+  @Override
+  public float one() {
+    return one;
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * com.javafst.weight.AbstractSemiring#isMember(com.javafst
+   * .weight.float)
+   */
+  @Override
+  public boolean isMember(float w) {
+    return (!Float.isNaN(w)) // not a NaN
+        && (w != Float.NEGATIVE_INFINITY); // and different from -inf
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see com.javafst.semiring.Semiring#reverse(float)
+   */
+  @Override
+  public float reverse(float w1) {
+    return w1;
+  }
 }

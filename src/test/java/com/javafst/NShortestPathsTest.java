@@ -17,18 +17,18 @@ import com.javafst.semiring.TropicalSemiring;
 
 public class NShortestPathsTest {
 
-    @Test
-    public void testNShortestPaths() throws NumberFormatException, IOException, URISyntaxException {
-        String path = "algorithms/shortestpath/A.fst";
-        URL url = getClass().getResource(path);
-        File parent = new File(url.toURI()).getParentFile();
-        
-        path = new File(parent, "A").getPath();
-        Fst fst = importFst(path, new TropicalSemiring());
-        path = new File(parent, "nsp").getPath();
-        Fst nsp = importFst(path, new TropicalSemiring());
+  @Test
+  public void testNShortestPaths() throws NumberFormatException, IOException, URISyntaxException {
+    String path = "algorithms/shortestpath/A.fst";
+    URL url = getClass().getResource(path);
+    File parent = new File(url.toURI()).getParentFile();
 
-        Fst fstNsp = NShortestPaths.get(fst, 6, true);
-        assertThat(nsp, equalTo(fstNsp));
-    }
+    path = new File(parent, "A").getPath();
+    Fst fst = importFst(path, new TropicalSemiring());
+    path = new File(parent, "nsp").getPath();
+    Fst nsp = importFst(path, new TropicalSemiring());
+
+    Fst fstNsp = NShortestPaths.get(fst, 6, true);
+    assertThat(nsp, equalTo(fstNsp));
+  }
 }

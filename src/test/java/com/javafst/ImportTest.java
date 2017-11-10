@@ -15,18 +15,18 @@ import com.javafst.semiring.TropicalSemiring;
 
 public class ImportTest  {
 
-    @Test
-    public void testConvert() throws NumberFormatException, IOException, ClassNotFoundException, URISyntaxException {
-        URL url = getClass().getResource("openfst/basic.fst");
-        String dir = new File(url.toURI()).getParent();
-        
-        String path = new File(dir, "basic").getPath();
-        Fst fst1 = Convert.importFst(path, new TropicalSemiring());
+  @Test
+  public void testConvert() throws NumberFormatException, IOException, ClassNotFoundException, URISyntaxException {
+    URL url = getClass().getResource("openfst/basic.fst");
+    String dir = new File(url.toURI()).getParent();
 
-        path = new File(dir, "basic.fst.ser").getPath();
-        // Can't load the model because it's a serialized Java class with the wrong type
-        // Fst fst2 = Fst.loadModel(path);
-        // assertThat(fst1, equalTo(fst2));
-    }
+    String path = new File(dir, "basic").getPath();
+    Fst fst1 = Convert.importFst(path, new TropicalSemiring());
+
+    path = new File(dir, "basic.fst.ser").getPath();
+    // Can't load the model because it's a serialized Java class with the wrong type
+    // Fst fst2 = Fst.loadModel(path);
+    // assertThat(fst1, equalTo(fst2));
+  }
 
 }

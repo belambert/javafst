@@ -16,17 +16,17 @@ import com.javafst.semiring.ProbabilitySemiring;
 
 public class RmEpsilonTest {
 
-    @Test
-    public void testRmEpsilon() throws NumberFormatException, IOException, ClassNotFoundException, URISyntaxException {
-        URL url = getClass().getResource("algorithms/rmepsilon/A.fst.txt");
-        File parent = new File(url.toURI()).getParentFile();
+  @Test
+  public void testRmEpsilon() throws NumberFormatException, IOException, ClassNotFoundException, URISyntaxException {
+    URL url = getClass().getResource("algorithms/rmepsilon/A.fst.txt");
+    File parent = new File(url.toURI()).getParentFile();
 
-        String path = new File(parent, "A").getPath();
-        Fst fst = Convert.importFst(path, new ProbabilitySemiring());
-        path = new File(parent, "fstrmepsilon.fst.ser").getPath();
-        // Can't load the model because it's a serialized Java class with the wrong type
-        // Fst fstRmEps = Fst.loadModel(path);
-        // Fst rmEpsilon = RmEpsilon.get(fst);
-        // assertThat(fstRmEps, equalTo(rmEpsilon));
-    }
+    String path = new File(parent, "A").getPath();
+    Fst fst = Convert.importFst(path, new ProbabilitySemiring());
+    path = new File(parent, "fstrmepsilon.fst.ser").getPath();
+    // Can't load the model because it's a serialized Java class with the wrong type
+    // Fst fstRmEps = Fst.loadModel(path);
+    // Fst rmEpsilon = RmEpsilon.get(fst);
+    // assertThat(fstRmEps, equalTo(rmEpsilon));
+  }
 }

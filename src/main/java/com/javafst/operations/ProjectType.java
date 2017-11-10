@@ -22,5 +22,5 @@ package com.javafst.operations;
  * @author John Salatas
  */
 public enum ProjectType {
-    INPUT, OUTPUT
+  INPUT, OUTPUT
 }

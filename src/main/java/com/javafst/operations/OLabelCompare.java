@@ -25,21 +25,21 @@ import com.javafst.Arc;
  */
 public class OLabelCompare implements Comparator<Arc> {
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
-     */
-    //@Override
-	public int compare(Arc o1, Arc o2) {
-        if(o1 == null) {
-            return 1;
-        }
-        if(o2 == null) {
-            return -1;
-        }
-        return (o1.getOlabel() < o2.getOlabel()) ? -1 : ((o1.getOlabel() == o2
-                .getOlabel()) ? 0 : 1);
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
+   */
+  //@Override
+  public int compare(Arc o1, Arc o2) {
+    if(o1 == null) {
+      return 1;
     }
+    if(o2 == null) {
+      return -1;
+    }
+    return (o1.getOlabel() < o2.getOlabel()) ? -1 : ((o1.getOlabel() == o2
+        .getOlabel()) ? 0 : 1);
+  }
 
 }

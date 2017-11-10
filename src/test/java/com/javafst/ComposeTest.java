@@ -22,20 +22,20 @@ import com.javafst.semiring.TropicalSemiring;
  */
 public class ComposeTest {
 
-    @Test
-    public void testCompose() throws NumberFormatException, IOException, ClassNotFoundException, URISyntaxException {
-        String path = "algorithms/compose/fstcompose.fst.ser";
-        URL url = getClass().getResource(path);
-        File parent = new File(url.toURI()).getParentFile();
+  @Test
+  public void testCompose() throws NumberFormatException, IOException, ClassNotFoundException, URISyntaxException {
+    String path = "algorithms/compose/fstcompose.fst.ser";
+    URL url = getClass().getResource(path);
+    File parent = new File(url.toURI()).getParentFile();
 
-        path = new File(parent, "A").getPath();
-        Fst fstA = importFst(path, new TropicalSemiring());
-        path = new File(parent, "B").getPath();
-        Fst fstB = importFst(path, new TropicalSemiring());
-        path = new File(parent, "fstcompose.fst.ser").getPath();
-        // Can't load the model because it's a serialized Java class with the wrong type
-        // Fst composed = Fst.loadModel(path);
-        // Fst fstComposed = Compose.get(fstA, fstB, new TropicalSemiring());
-        // assertThat(composed, equalTo(fstComposed));
-    }
+    path = new File(parent, "A").getPath();
+    Fst fstA = importFst(path, new TropicalSemiring());
+    path = new File(parent, "B").getPath();
+    Fst fstB = importFst(path, new TropicalSemiring());
+    path = new File(parent, "fstcompose.fst.ser").getPath();
+    // Can't load the model because it's a serialized Java class with the wrong type
+    // Fst composed = Fst.loadModel(path);
+    // Fst fstComposed = Compose.get(fstA, fstB, new TropicalSemiring());
+    // assertThat(composed, equalTo(fstComposed));
+  }
 }

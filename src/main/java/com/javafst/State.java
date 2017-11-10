@@ -1,16 +1,3 @@
-/**
- * 
- * Copyright 1999-2012 Carnegie Mellon University.  
- * Portions Copyright 2002 Sun Microsystems, Inc.  
- * Portions Copyright 2002 Mitsubishi Electric Research Laboratories.
- * All Rights Reserved.  Use is subject to license terms.
- * 
- * See the file "license.terms" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL 
- * WARRANTIES.
- *
- */
-
 package com.javafst;
 
 import java.util.ArrayList;
@@ -22,191 +9,189 @@ import java.util.Comparator;
  * 
  * Holds its outgoing {@link com.javafst.Arc} objects in an ArrayList
  * allowing additions/deletions
- * 
- * @author John Salatas
  */
 public class State {
 
-    // State's Id
-    protected int id = -1;
+  // State's Id
+  protected int id = -1;
 
-    // Final weight
-    private float fnlWeight;
+  // Final weight
+  private float fnlWeight;
 
-    // Outgoing arcs
-    private ArrayList<Arc> arcs = null;
+  // Outgoing arcs
+  private ArrayList<Arc> arcs = null;
 
-    // initial number of arcs
-    protected int initialNumArcs = -1;
+  // initial number of arcs
+  protected int initialNumArcs = -1;
 
-    /**
-     * Default Constructor
-     */
-    protected State() {
-        arcs = new ArrayList<Arc>();
+  /**
+   * Default Constructor
+   */
+  protected State() {
+    arcs = new ArrayList<Arc>();
+  }
+
+  /**
+   * Constructor specifying the state's final weight
+   * 
+   * @param fnlWeight final weight
+   */
+  public State(float fnlWeight) {
+    this();
+    this.fnlWeight = fnlWeight;
+  }
+
+  /**
+   * Constructor specifying the initial capacity of the arc's ArrayList (this
+   * is an optimization used in various operations)
+   * 
+   * @param initialNumArcs number of arcs
+   */
+  public State(int initialNumArcs) {
+    this.initialNumArcs = initialNumArcs;
+    if (initialNumArcs > 0) {
+      arcs = new ArrayList<Arc>(initialNumArcs);
     }
+  }
 
-    /**
-     * Constructor specifying the state's final weight
-     * 
-     * @param fnlWeight final weight
-     */
-    public State(float fnlWeight) {
-        this();
-        this.fnlWeight = fnlWeight;
-    }
+  /**
+   * Shorts the arc's ArrayList based on the provided Comparator
+   * @param cmp comparator
+   */
+  public void arcSort(Comparator<Arc> cmp) {
+    Collections.sort(arcs, cmp);
+  }
 
-    /**
-     * Constructor specifying the initial capacity of the arc's ArrayList (this
-     * is an optimization used in various operations)
-     * 
-     * @param initialNumArcs number of arcs
-     */
-    public State(int initialNumArcs) {
-        this.initialNumArcs = initialNumArcs;
-        if (initialNumArcs > 0) {
-            arcs = new ArrayList<Arc>(initialNumArcs);
-        }
-    }
+  /**
+   * Get the state's final Weight
+   * @return final weight
+   */
+  public float getFinalWeight() {
+    return fnlWeight;
+  }
 
-    /**
-     * Shorts the arc's ArrayList based on the provided Comparator
-     * @param cmp comparator
-     */
-    public void arcSort(Comparator<Arc> cmp) {
-        Collections.sort(arcs, cmp);
-    }
+  /**
+   * Set the state's arcs ArrayList
+   * 
+   * @param arcs the arcs ArrayList to set
+   */
+  public void setArcs(ArrayList<Arc> arcs) {
+    this.arcs = arcs;
+  }
 
-    /**
-     * Get the state's final Weight
-     * @return final weight
-     */
-    public float getFinalWeight() {
-        return fnlWeight;
-    }
+  /**
+   * Set the state's final weight
+   * 
+   * @param fnlfloat the final weight to set
+   */
+  public void setFinalWeight(float fnlfloat) {
+    this.fnlWeight = fnlfloat;
+  }
 
-    /**
-     * Set the state's arcs ArrayList
-     * 
-     * @param arcs the arcs ArrayList to set
-     */
-    public void setArcs(ArrayList<Arc> arcs) {
-        this.arcs = arcs;
-    }
+  /**
+   * Get the state's id
+   * @return state id
+   */
+  public int getId() {
+    return id;
+  }
 
-    /**
-     * Set the state's final weight
-     * 
-     * @param fnlfloat the final weight to set
-     */
-    public void setFinalWeight(float fnlfloat) {
-        this.fnlWeight = fnlfloat;
-    }
+  /**
+   * Get the number of outgoing arcs
+   * @return number of arcs
+   */
+  public int getNumArcs() {
+    return this.arcs.size();
+  }
 
-    /**
-     * Get the state's id
-     * @return state id
-     */
-    public int getId() {
-        return id;
-    }
+  /**
+   * Add an outgoing arc to the state
+   * 
+   * @param arc the arc to add
+   */
+  public void addArc(Arc arc) {
+    this.arcs.add(arc);
+  }
 
-    /**
-     * Get the number of outgoing arcs
-     * @return number of arcs
-     */
-    public int getNumArcs() {
-        return this.arcs.size();
-    }
+  /**
+   * Get an arc based on it's index the arcs ArrayList
+   * 
+   * @param index the arc's index
+   * @return the arc
+   */
+  public Arc getArc(int index) {
+    return this.arcs.get(index);
+  }
 
-    /**
-     * Add an outgoing arc to the state
-     * 
-     * @param arc the arc to add
-     */
-    public void addArc(Arc arc) {
-        this.arcs.add(arc);
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.lang.Object#equals(java.lang.Object)
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    State other = (State) obj;
+    if (id != other.id)
+      return false;
+    if (!(fnlWeight == other.fnlWeight)) {
+      if (Float.floatToIntBits(fnlWeight) != Float
+          .floatToIntBits(other.fnlWeight))
+        return false;
     }
+    if (arcs == null) {
+      if (other.arcs != null)
+        return false;
+    } else if (!arcs.equals(other.arcs))
+      return false;
+    return true;
+  }
 
-    /**
-     * Get an arc based on it's index the arcs ArrayList
-     * 
-     * @param index the arc's index
-     * @return the arc
-     */
-    public Arc getArc(int index) {
-        return this.arcs.get(index);
-    }
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.lang.Object#toString()
+   */
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("(" + id + ", " + fnlWeight + ")");
+    return sb.toString();
+  }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        State other = (State) obj;
-        if (id != other.id)
-            return false;
-        if (!(fnlWeight == other.fnlWeight)) {
-            if (Float.floatToIntBits(fnlWeight) != Float
-                    .floatToIntBits(other.fnlWeight))
-                return false;
-        }
-        if (arcs == null) {
-            if (other.arcs != null)
-                return false;
-        } else if (!arcs.equals(other.arcs))
-            return false;
-        return true;
-    }
+  /**
+   * Delete an arc based on its index
+   * 
+   * @param index the arc's index
+   * @return the deleted arc
+   */
+  public Arc deleteArc(int index) {
+    return this.arcs.remove(index);
+  }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("(" + id + ", " + fnlWeight + ")");
-        return sb.toString();
-    }
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.lang.Object#hashCode()
+   */
+  @Override
+  public int hashCode() {
+    return id * 991;
+  }
 
-    /**
-     * Delete an arc based on its index
-     * 
-     * @param index the arc's index
-     * @return the deleted arc
-     */
-    public Arc deleteArc(int index) {
-        return this.arcs.remove(index);
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#hashCode()
-     */
-    @Override
-    public int hashCode() {
-        return id * 991;
-    }
-
-    /**
-     * Set an arc at the specified position in the arcs' ArrayList.
-     * 
-     * @param index the position to the arcs' array
-     * @param arc the arc value to set
-     */
-    public void setArc(int index, Arc arc) {
-        arcs.set(index, arc);
-    }
+  /**
+   * Set an arc at the specified position in the arcs' ArrayList.
+   * 
+   * @param index the position to the arcs' array
+   * @param arc the arc value to set
+   */
+  public void setArc(int index, Arc arc) {
+    arcs.set(index, arc);
+  }
 
 }

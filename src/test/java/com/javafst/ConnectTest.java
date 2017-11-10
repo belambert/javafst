@@ -17,19 +17,19 @@ import com.javafst.semiring.TropicalSemiring;
 
 public class ConnectTest {
 
-    @Test
-    public void testConnect() throws NumberFormatException, IOException, ClassNotFoundException, URISyntaxException {
-        String path = "algorithms/connect/fstconnect.fst.ser";
-        URL url = getClass().getResource(path);
-        File parent = new File(url.toURI()).getParentFile();
+  @Test
+  public void testConnect() throws NumberFormatException, IOException, ClassNotFoundException, URISyntaxException {
+    String path = "algorithms/connect/fstconnect.fst.ser";
+    URL url = getClass().getResource(path);
+    File parent = new File(url.toURI()).getParentFile();
 
-        path = new File(parent, "A").getPath();
-        Fst fst = importFst(path, new TropicalSemiring());
-        path = new File(parent, "fstconnect.fst.ser").getPath();
-        // Can't load the model because it's a serialized Java class with the wrong type
-//        Fst connectSaved = Fst.loadModel(path);
-//        apply(fst);
-//        assertThat(connectSaved, equalTo(fst));
-    }
+    path = new File(parent, "A").getPath();
+    Fst fst = importFst(path, new TropicalSemiring());
+    path = new File(parent, "fstconnect.fst.ser").getPath();
+    // Can't load the model because it's a serialized Java class with the wrong type
+    //        Fst connectSaved = Fst.loadModel(path);
+    //        apply(fst);
+    //        assertThat(connectSaved, equalTo(fst));
+  }
 
 }

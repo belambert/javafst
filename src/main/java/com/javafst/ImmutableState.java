@@ -16,133 +16,133 @@ import java.util.Comparator;
  */
 public class ImmutableState extends State {
 
-    // Outgoing arcs
-    private Arc[] arcs = null;
+  // Outgoing arcs
+  private Arc[] arcs = null;
 
-    /**
-     * Default protected constructor.
-     * 
-     * An ImmutableState cannot be created directly. It needs to be deserialized
-     * as part of an ImmutableFst.
-     * 
-     * @see com.javafst.ImmutableFst#loadModel(String)
-     * 
-     */
-    protected ImmutableState() {
-    }
+  /**
+   * Default protected constructor.
+   * 
+   * An ImmutableState cannot be created directly. It needs to be deserialized
+   * as part of an ImmutableFst.
+   * 
+   * @see com.javafst.ImmutableFst#loadModel(String)
+   * 
+   */
+  protected ImmutableState() {
+  }
 
-    /**
-     * Constructor specifying the capacity of the arcs array.
-     * 
-     * @param numArcs number of arcs
-     */
-    protected ImmutableState(int numArcs) {
-        super(0);
-        this.initialNumArcs = numArcs;
-        arcs = new Arc[numArcs];
-    }
+  /**
+   * Constructor specifying the capacity of the arcs array.
+   * 
+   * @param numArcs number of arcs
+   */
+  protected ImmutableState(int numArcs) {
+    super(0);
+    this.initialNumArcs = numArcs;
+    arcs = new Arc[numArcs];
+  }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.javafst.State#arcSort(java.util.Comparator)
-     */
-    @Override
-    public void arcSort(Comparator<Arc> cmp) {
-        Arrays.sort(arcs, cmp);
-    }
+  /*
+   * (non-Javadoc)
+   * 
+   * @see com.javafst.State#arcSort(java.util.Comparator)
+   */
+  @Override
+  public void arcSort(Comparator<Arc> cmp) {
+    Arrays.sort(arcs, cmp);
+  }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.javafst.State#addArc(com.javafst.Arc)
-     */
-    @Override
-    public void addArc(Arc arc) {
-        throw new IllegalArgumentException(
-                "You cannot modify an ImmutableState.");
-    }
+  /*
+   * (non-Javadoc)
+   * 
+   * @see com.javafst.State#addArc(com.javafst.Arc)
+   */
+  @Override
+  public void addArc(Arc arc) {
+    throw new IllegalArgumentException(
+        "You cannot modify an ImmutableState.");
+  }
 
-    /**
-     * Set an arc at the specified position in the arcs' array.
-     * 
-     * @param index the position to the arcs' array
-     * @param arc the arc value to set
-     */
-    @Override
-    public void setArc(int index, Arc arc) {
-        arcs[index] = arc;
-    }
+  /**
+   * Set an arc at the specified position in the arcs' array.
+   * 
+   * @param index the position to the arcs' array
+   * @param arc the arc value to set
+   */
+  @Override
+  public void setArc(int index, Arc arc) {
+    arcs[index] = arc;
+  }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.javafst.State#deleteArc(int)
-     */
-    @Override
-    public Arc deleteArc(int index) {
-        throw new IllegalArgumentException(
-                "You cannot modify an ImmutableState.");
-    }
+  /*
+   * (non-Javadoc)
+   * 
+   * @see com.javafst.State#deleteArc(int)
+   */
+  @Override
+  public Arc deleteArc(int index) {
+    throw new IllegalArgumentException(
+        "You cannot modify an ImmutableState.");
+  }
 
-    /**
-     * Set the state's arcs array
-     * 
-     * @param arcs the arcs array to set
-     */
-    public void setArcs(Arc[] arcs) {
-        this.arcs = arcs;
-    }
+  /**
+   * Set the state's arcs array
+   * 
+   * @param arcs the arcs array to set
+   */
+  public void setArcs(Arc[] arcs) {
+    this.arcs = arcs;
+  }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.javafst.State#getNumArcs()
-     */
-    @Override
-    public int getNumArcs() {
-        return initialNumArcs;
-    }
+  /*
+   * (non-Javadoc)
+   * 
+   * @see com.javafst.State#getNumArcs()
+   */
+  @Override
+  public int getNumArcs() {
+    return initialNumArcs;
+  }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.javafst.State#getArc(int)
-     */
-    @Override
-    public Arc getArc(int index) {
-        return this.arcs[index];
-    }
+  /*
+   * (non-Javadoc)
+   * 
+   * @see com.javafst.State#getArc(int)
+   */
+  @Override
+  public Arc getArc(int index) {
+    return this.arcs[index];
+  }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#hashCode()
-     */
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + id;
-        return result;
-    }
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.lang.Object#hashCode()
+   */
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + id;
+    return result;
+  }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (getClass() != obj.getClass())
-            return false;
-        ImmutableState other = (ImmutableState) obj;
-        if (!Arrays.equals(arcs, other.arcs))
-            return false;
-        if (!super.equals(obj))
-            return false;
-        return true;
-    }
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.lang.Object#equals(java.lang.Object)
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (getClass() != obj.getClass())
+      return false;
+    ImmutableState other = (ImmutableState) obj;
+    if (!Arrays.equals(arcs, other.arcs))
+      return false;
+    if (!super.equals(obj))
+      return false;
+    return true;
+  }
 }

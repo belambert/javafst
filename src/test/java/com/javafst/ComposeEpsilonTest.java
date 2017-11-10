@@ -17,20 +17,20 @@ import com.javafst.semiring.TropicalSemiring;
 
 public class ComposeEpsilonTest {
 
-    @Test
-    public void testCompose() throws NumberFormatException, IOException, URISyntaxException {
-        URL url = getClass().getResource("algorithms/composeeps/A.fst.txt");
-        File parent = new File(url.toURI()).getParentFile();
+  @Test
+  public void testCompose() throws NumberFormatException, IOException, URISyntaxException {
+    URL url = getClass().getResource("algorithms/composeeps/A.fst.txt");
+    File parent = new File(url.toURI()).getParentFile();
 
-        String path = new File(parent, "A").getPath();
-        Fst fstA = importFst(path, new TropicalSemiring());
-        path = new File(parent, "B").getPath();
-        Fst fstB = importFst(path, new TropicalSemiring());
-        path = new File(parent, "fstcomposeeps").getPath();
-        Fst fstC = importFst(path, new TropicalSemiring());
+    String path = new File(parent, "A").getPath();
+    Fst fstA = importFst(path, new TropicalSemiring());
+    path = new File(parent, "B").getPath();
+    Fst fstB = importFst(path, new TropicalSemiring());
+    path = new File(parent, "fstcomposeeps").getPath();
+    Fst fstC = importFst(path, new TropicalSemiring());
 
-        Fst fstComposed = get(fstA, fstB, new TropicalSemiring());
-        assertThat(fstC, equalTo(fstComposed));
-    }
+    Fst fstComposed = get(fstA, fstB, new TropicalSemiring());
+    assertThat(fstC, equalTo(fstComposed));
+  }
 
 }

@@ -16,19 +16,19 @@ import com.javafst.semiring.TropicalSemiring;
 
 public class DeterminizeTest {
 
-    @Test
-    public void testDeterminize() throws NumberFormatException, IOException, ClassNotFoundException, URISyntaxException {
-        String path = "algorithms/determinize/fstdeterminize.fst.ser";
-        URL url = getClass().getResource(path);
-        File parent = new File(url.toURI()).getParentFile();
+  @Test
+  public void testDeterminize() throws NumberFormatException, IOException, ClassNotFoundException, URISyntaxException {
+    String path = "algorithms/determinize/fstdeterminize.fst.ser";
+    URL url = getClass().getResource(path);
+    File parent = new File(url.toURI()).getParentFile();
 
-        path = new File(parent, "A").getPath();
-        Fst fstA = Convert.importFst(path, new TropicalSemiring());
-        path = new File(parent, "fstdeterminize.fst.ser").getPath();
-        
-        // Can't load the model because it's a serialized Java class with the wrong type        
-//        Fst determinized = Fst.loadModel(path);
-//        Fst fstDeterminized = Determinize.get(fstA);
-//        assertThat(determinized, equalTo(fstDeterminized));
-    }
+    path = new File(parent, "A").getPath();
+    Fst fstA = Convert.importFst(path, new TropicalSemiring());
+    path = new File(parent, "fstdeterminize.fst.ser").getPath();
+
+    // Can't load the model because it's a serialized Java class with the wrong type        
+    //        Fst determinized = Fst.loadModel(path);
+    //        Fst fstDeterminized = Determinize.get(fstA);
+    //        assertThat(determinized, equalTo(fstDeterminized));
+  }
 }
