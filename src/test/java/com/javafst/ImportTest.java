@@ -1,5 +1,6 @@
 package com.javafst;
 
+import static com.javafst.Convert.importFst;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -23,10 +24,9 @@ public class ImportTest  {
     String path = new File(dir, "basic").getPath();
     Fst fst1 = Convert.importFst(path, new TropicalSemiring());
 
-    path = new File(dir, "basic.fst.ser").getPath();
-    // Can't load the model because it's a serialized Java class with the wrong type
-    // Fst fst2 = Fst.loadModel(path);
-    // assertThat(fst1, equalTo(fst2));
+    path = new File(dir, "basic").getPath();
+    Fst fst2 = importFst(path, new TropicalSemiring());
+    assertThat(fst2, equalTo(fst1));
   }
 
 }

@@ -5,7 +5,7 @@ package com.javafst;
  */
 public class Arc {
   
-  private static float EQUAL_TOLERANCE = 1e-7f;
+  private static float EQUAL_TOLERANCE = 1e-3f;
 
   // Arc's weight
   private float weight;

@@ -1,5 +1,6 @@
 package com.javafst;
 
+import static com.javafst.Convert.importFst;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -12,6 +13,7 @@ import org.testng.annotations.Test;
 
 import com.javafst.operations.RmEpsilon;
 import com.javafst.semiring.ProbabilitySemiring;
+import com.javafst.semiring.TropicalSemiring;
 
 
 public class RmEpsilonTest {
@@ -23,10 +25,10 @@ public class RmEpsilonTest {
 
     String path = new File(parent, "A").getPath();
     Fst fst = Convert.importFst(path, new ProbabilitySemiring());
-    path = new File(parent, "fstrmepsilon.fst.ser").getPath();
-    // Can't load the model because it's a serialized Java class with the wrong type
-    // Fst fstRmEps = Fst.loadModel(path);
-    // Fst rmEpsilon = RmEpsilon.get(fst);
-    // assertThat(fstRmEps, equalTo(rmEpsilon));
+    path = new File(parent, "fstrmepsilon").getPath();
+    Fst fstRmEps = importFst(path, new TropicalSemiring());
+    Fst rmEpsilon = RmEpsilon.get(fst);
+    // Not quite working either...
+    //assertThat(fstRmEps, equalTo(rmEpsilon));
   }
 }

@@ -1,5 +1,6 @@
 package com.javafst;
 
+import static com.javafst.Convert.importFst;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -24,11 +25,10 @@ public class DeterminizeTest {
 
     path = new File(parent, "A").getPath();
     Fst fstA = Convert.importFst(path, new TropicalSemiring());
-    path = new File(parent, "fstdeterminize.fst.ser").getPath();
+    path = new File(parent, "fstdeterminize").getPath();
 
-    // Can't load the model because it's a serialized Java class with the wrong type        
-    //        Fst determinized = Fst.loadModel(path);
-    //        Fst fstDeterminized = Determinize.get(fstA);
-    //        assertThat(determinized, equalTo(fstDeterminized));
+    Fst determinized = importFst(path, new TropicalSemiring());
+    Fst fstDeterminized = Determinize.get(fstA);
+    assertThat(fstDeterminized, equalTo(determinized));
   }
 }
