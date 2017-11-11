@@ -1,11 +1,11 @@
 package com.javafst.operations;
 
-import java.util.HashMap;
-
 import com.javafst.Arc;
 import com.javafst.Fst;
 import com.javafst.State;
 import com.javafst.semiring.Semiring;
+
+import java.util.HashMap;
 
 /**
  * Remove epsilon operation.
@@ -13,11 +13,10 @@ import com.javafst.semiring.Semiring;
  */
 public class RmEpsilon {
 
-  private RmEpsilon() {
-  }
+  private RmEpsilon() { }
 
   /**
-   * Put a new state in the epsilon closure
+   * Put a new state in the epsilon closure.
    */
   private static void put(State fromState, State toState, float weight,
       HashMap<State, Float>[] cl) {
@@ -30,7 +29,7 @@ public class RmEpsilon {
   }
 
   /**
-   * Add a state in the epsilon closure
+   * Add a state in the epsilon closure.
    */
   private static void add(State fromState, State toState, float weight,
       HashMap<State, Float>[] cl, Semiring semiring) {
@@ -44,7 +43,7 @@ public class RmEpsilon {
   }
 
   /**
-   * Calculate the epsilon closure
+   * Calculate the epsilon closure.
    */
   private static void calcClosure(Fst fst, State state,
       HashMap<State, Float>[] cl, Semiring semiring) {
@@ -73,7 +72,7 @@ public class RmEpsilon {
   }
 
   /**
-   * Get an epsilon path's cost in epsilon closure
+   * Get an epsilon path's cost in epsilon closure.
    */
   private static Float getPathWeight(State in, State out,
       HashMap<State, Float>[] cl) {
@@ -87,7 +86,7 @@ public class RmEpsilon {
   /**
    * Removes epsilon transitions from an fst.
    * 
-   * It return a new epsilon-free fst and does not modify the original fst
+   * <p>It return a new epsilon-free fst and does not modify the original fst
    * 
    * @param fst the fst to remove epsilon transitions from
    * @return the epsilon-free fst

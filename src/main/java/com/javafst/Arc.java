@@ -9,10 +9,10 @@ public class Arc {
   private float weight;
 
   // input label
-  private int iLabel;
+  private int inputLabel;
 
   // output label
-  private int oLabel;
+  private int outputLabel;
 
   // next state's id
   private State nextState;
@@ -23,15 +23,15 @@ public class Arc {
   /**
    * Arc Constructor.
    * 
-   * @param iLabel the input label's id
-   * @param oLabel the output label's id
+   * @param inputLabel the input label's id
+   * @param outputLabel the output label's id
    * @param weight the arc's weight
    * @param nextState the arc's next state
    */
-  public Arc(int iLabel, int oLabel, float weight, State nextState) {
+  public Arc(int inputLabel, int outputLabel, float weight, State nextState) {
     this.weight = weight;
-    this.iLabel = iLabel;
-    this.oLabel = oLabel;
+    this.inputLabel = inputLabel;
+    this.outputLabel = outputLabel;
     this.nextState = nextState;
   }
 
@@ -56,16 +56,16 @@ public class Arc {
    * @return label id
    */
   public int getIlabel() {
-    return iLabel;
+    return inputLabel;
   }
 
   /**
    * Set the input label's id.
    * 
-   * @param iLabel the input label's id to set
+   * @param inputLabel the input label's id to set
    */
-  public void setIlabel(int iLabel) {
-    this.iLabel = iLabel;
+  public void setIlabel(int inputLabel) {
+    this.inputLabel = inputLabel;
   }
 
   /**
@@ -73,16 +73,16 @@ public class Arc {
    * @return output label id
    */
   public int getOlabel() {
-    return oLabel;
+    return outputLabel;
   }
 
   /**
    * Set the output label's id.
    * 
-   * @param oLabel the output label's id to set
+   * @param outputLabel the output label's id to set
    */
-  public void setOlabel(int oLabel) {
-    this.oLabel = oLabel;
+  public void setOlabel(int outputLabel) {
+    this.outputLabel = outputLabel;
   }
 
   /**
@@ -119,7 +119,7 @@ public class Arc {
       return false;
     }
     Arc other = (Arc) obj;
-    if (iLabel != other.iLabel) {
+    if (inputLabel != other.inputLabel) {
       return false;
     }
     if (nextState == null) {
@@ -129,7 +129,7 @@ public class Arc {
     } else if (nextState.getId() != other.nextState.getId()) {
       return false;
     }
-    if (oLabel != other.oLabel) {
+    if (outputLabel != other.outputLabel) {
       return false;
     }
     if (!(weight == other.weight)) {
@@ -143,8 +143,8 @@ public class Arc {
 
   @Override
   public int hashCode() {
-    return 31 * (iLabel 
-       + (31 * (oLabel 
+    return 31 * (inputLabel 
+       + (31 * (outputLabel 
            + (31 * (nextState == null ? 0 : nextState.getId())
                 + Float.floatToIntBits(weight)))));
   }
@@ -156,7 +156,7 @@ public class Arc {
    */
   @Override
   public String toString() {
-    return "(" + iLabel + ", " + oLabel + ", " + weight + ", " + nextState
+    return "(" + inputLabel + ", " + outputLabel + ", " + weight + ", " + nextState
         + ")";
   }
 }

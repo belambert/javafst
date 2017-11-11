@@ -31,7 +31,7 @@ public class Project {
     for (int i = 0; i < numStates; i++) {
       State s = fst.getState(i);
       // Immutable fsts hold an additional (null) arc
-      int numArcs = (fst instanceof ImmutableFst) ? s.getNumArcs() - 1: s
+      int numArcs = (fst instanceof ImmutableFst) ? s.getNumArcs() - 1 : s
           .getNumArcs();
       for (int j = 0; j < numArcs; j++) {
         Arc a = s.getArc(j);

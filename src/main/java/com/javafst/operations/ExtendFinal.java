@@ -1,11 +1,11 @@
 package com.javafst.operations;
 
-import java.util.ArrayList;
-
 import com.javafst.Arc;
 import com.javafst.Fst;
 import com.javafst.State;
 import com.javafst.semiring.Semiring;
+
+import java.util.ArrayList;
 
 /**
  * Extend an Fst to a single final state and undo operations.
@@ -18,7 +18,7 @@ public class ExtendFinal {
   /**
    * Extends an Fst to a single final state.
    * 
-   * It adds a new final state with a 0.0 (Semiring's 1) final wight and
+   * <p>It adds a new final state with a 0.0 (Semiring's 1) final wight and
    * connects the current final states to it using epsilon transitions with
    * weight equal to the original final state's weight.
    * 
@@ -48,7 +48,7 @@ public class ExtendFinal {
   }
 
   /**
-   * Undo of the extend operation
+   * Undo of the extend operation.
    * @param fst fst to work with
    */
   public static void undo(Fst fst) {

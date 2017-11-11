@@ -53,16 +53,20 @@ public class Pair<L, R> {
 
   @Override
   public boolean equals(Object obj) {
-    if (this == obj)
+    if (this == obj) {
       return true;
-    if (obj == null)
+    }
+    if (obj == null) {
       return false;
+    }
     @SuppressWarnings("unchecked")
     Pair<L,R> other = (Pair<L,R>) obj;
-    if (!left.equals(other.left))
+    if (!left.equals(other.left)) {
       return false;
-    if (!right.equals(other.right))
+    }
+    if (!right.equals(other.right)) {
       return false;
+    }
     return true;
   }
 

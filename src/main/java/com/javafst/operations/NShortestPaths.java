@@ -1,25 +1,26 @@
 package com.javafst.operations;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.PriorityQueue;
-
 import com.javafst.Arc;
 import com.javafst.Fst;
 import com.javafst.State;
 import com.javafst.semiring.Semiring;
 import com.javafst.utils.Pair;
 
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.PriorityQueue;
+
+
 /**
  * N-shortest paths operation.
  * 
- * See: M. Mohri, M. Riley,
+ * <p>See: M. Mohri, M. Riley,
  * "An Efficient Algorithm for the n-best-strings problem", Proceedings of the
  * International Conference on Spoken Language Processing 2002 (ICSLP '02).
  * 
- * See: M. Mohri,
+ * <p>See: M. Mohri,
  * "Semiring Framework and Algorithms for Shortest-Distance Problems", Journal
  * of Automata, Languages and Combinatorics, 7(3), pp. 321-350, 2002.
  * 
@@ -29,7 +30,7 @@ public class NShortestPaths {
   }
 
   /**
-   * Calculates the shortest distances from each state to the final
+   * Calculates the shortest distances from each state to the final.
    * 
    * @param fst
    *            the fst to calculate the shortest distances
@@ -69,9 +70,10 @@ public class NShortestPaths {
             semiring.times(rnew, a.getWeight()));
         if (dnext != dnextnew) {
           d[a.getNextState().getId()] = dnextnew;
-          r[a.getNextState().getId()] = semiring.plus(r[a
-                                                        .getNextState().getId()], semiring.times(rnew,
-                                                            a.getWeight()));
+          r[a.getNextState().getId()] = 
+              semiring.plus(r[a
+                              .getNextState().getId()],semiring.times(rnew,
+                                  a.getWeight()));
           if (!queue.contains(nextState)) {
             queue.add(nextState);
           }
@@ -131,18 +133,19 @@ public class NShortestPaths {
             float a1 = semiring.times(next, d2);
             float a2 = semiring.times(previous, d1);
 
-            if (semiring.naturalLess(a1, a2))
+            if (semiring.naturalLess(a1, a2)) {
               return 1;
+            }
 
-            if (a1 == a2)
+            if (a1 == a2) {
               return 0;
-
+            }
             return -1;
           }
         });
 
-    HashMap<Pair<State, Float>, Pair<State, Float>> previous = new HashMap<Pair<State, Float>, Pair<State, Float>>(
-        fst.getNumStates());
+    HashMap<Pair<State, Float>, Pair<State, Float>> previous = 
+        new HashMap<Pair<State, Float>, Pair<State, Float>>(fst.getNumStates());
     HashMap<Pair<State, Float>, State> stateMap = new HashMap<Pair<State, Float>, State>(
         fst.getNumStates());
 

@@ -14,7 +14,7 @@ public class Reverse {
   }
 
   /**
-   * Reverses an fst
+   * Reverses an fst.
    * 
    * @param fst the fst to reverse
    * @return the reversed fst
@@ -36,7 +36,7 @@ public class Reverse {
 
     State[] stateMap = new State[fst.getNumStates()];
     int numStates = fst.getNumStates();
-    for (int i=0; i<numStates; i++) {
+    for (int i = 0; i < numStates; i++) {
       State is = fst.getState(i);
       State s = new State(semiring.zero());
       res.addState(s);
@@ -48,7 +48,7 @@ public class Reverse {
 
     stateMap[fst.getStart().getId()].setFinalWeight(semiring.one());
 
-    for (int i=0; i<numStates; i++) {
+    for (int i = 0; i < numStates; i++) {
       State olds = fst.getState(i);
       State news = stateMap[olds.getId()];
       int numArcs = olds.getNumArcs();

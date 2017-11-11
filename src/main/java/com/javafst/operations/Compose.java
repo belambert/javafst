@@ -1,10 +1,5 @@
 package com.javafst.operations;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Queue;
-
 import com.javafst.Arc;
 import com.javafst.Fst;
 import com.javafst.ImmutableFst;
@@ -12,24 +7,26 @@ import com.javafst.State;
 import com.javafst.semiring.Semiring;
 import com.javafst.utils.Pair;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * Compose operation.
  * 
- * See: M. Mohri, "Weighted automata algorithms", Handbook of Weighted Automata.
+ * <p>See: M. Mohri, "Weighted automata algorithms", Handbook of Weighted Automata.
  * Springer, pp. 213-250, 2009.
  */
 
 public class Compose {
-  /**
-   * Default Constructor
-   */
-  private Compose() {
-  }
+
+  private Compose() { }
 
   /**
    * Computes the composition of two Fsts. Assuming no epsilon transitions.
    * 
-   * Input Fsts are not modified.
+   * <p>Input Fsts are not modified.
    * 
    * @param fst1 the first Fst
    * @param fst2 the second Fst
@@ -46,8 +43,8 @@ public class Compose {
 
     Fst res = new Fst(semiring);
 
-    HashMap<Pair<State, State>, State> stateMap = new HashMap<Pair<State, State>, State>();
-    Queue<Pair<State, State>> queue = new LinkedList<Pair<State, State>>();
+    final HashMap<Pair<State, State>, State> stateMap = new HashMap<Pair<State, State>, State>();
+    final Queue<Pair<State, State>> queue = new LinkedList<Pair<State, State>>();
 
     State s1 = fst1.getStart();
     State s2 = fst2.getStart();
@@ -77,8 +74,9 @@ public class Compose {
         Arc a1 = s1.getArc(i);
         for (int j = 0; j < numArcs2; j++) {
           Arc a2 = s2.getArc(j);
-          if (sorted && a1.getOlabel() < a2.getIlabel())
+          if (sorted && a1.getOlabel() < a2.getIlabel()) {
             break;
+          }
           if (a1.getOlabel() == a2.getIlabel()) {
             State nextState1 = a1.getNextState();
             State nextState2 = a2.getNextState();
@@ -110,7 +108,7 @@ public class Compose {
 
   /**
    * Computes the composition of two Fsts. The two Fsts are augmented in order
-   * to avoid multiple epsilon paths in the resulting Fst
+   * to avoid multiple epsilon paths in the resulting Fst.
    * 
    * @param fst1 the first Fst
    * @param fst2 the second Fst
@@ -142,9 +140,9 @@ public class Compose {
 
   /**
    * Get a filter to use for avoiding multiple epsilon paths in the resulting
-   * Fst
+   * Fst.
    * 
-   * See: M. Mohri, "Weighted automata algorithms", Handbook of Weighted
+   * <p>See: M. Mohri, "Weighted automata algorithms", Handbook of Weighted
    * Automata. Springer, pp. 213-250, 2009.
    * 
    * @param syms the gilter's input/output symbols
@@ -154,8 +152,8 @@ public class Compose {
   public static Fst getFilter(String[] syms, Semiring semiring) {
     Fst filter = new Fst(semiring);
 
-    int e1index = syms.length;
-    int e2index = syms.length + 1;
+    final int e1index = syms.length;
+    final int e2index = syms.length + 1;
 
     filter.setIsyms(syms);
     filter.setOsyms(syms);
@@ -195,11 +193,11 @@ public class Compose {
 
   /**
    * Augments the labels of an Fst in order to use it for composition avoiding
-   * multiple epsilon paths in the resulting Fst
+   * multiple epsilon paths in the resulting Fst.
    * 
-   * Augment can be applied to both {@link com.javafst.Fst} and
+   * <p>Augment can be applied to both {@link com.javafst.Fst} and
    * {@link com.javafst.ImmutableFst}, as immutable fsts hold an
-   * additional null arc for that operation
+   * additional null arc for that operation.
    * 
    * @param label constant denoting if the augment should take place on input
    *            or output labels For value equal to 0 augment will take place

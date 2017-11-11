@@ -1,26 +1,26 @@
 package com.javafst.operations;
 
-import java.util.Comparator;
-
 import com.javafst.Arc;
+
+import java.util.Comparator;
 
 /**
  * Comparator used in {@link com.javafst.operations.ArcSort} for sorting
- * based on input labels
+ * based on input labels.
  */
 public class ILabelCompare implements Comparator<Arc> {
 
-  /*
-   * (non-Javadoc)
+  /**
+   * Compare.
    * 
    * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
    */
   //@Override
   public int compare(Arc o1, Arc o2) {
-    if(o1 == null) {
+    if (o1 == null) {
       return 1;
     }
-    if(o2 == null) {
+    if (o2 == null) {
       return -1;
     }
 

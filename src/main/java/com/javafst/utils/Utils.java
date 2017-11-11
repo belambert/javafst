@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Several general use utility functions needed by the fst framework
+ * Several general use utility functions needed by the fst framework.
  */
 public class Utils {
 
   /**
    * Searches an ArrayList of Strings starting from a specific position for a
-   * pattern
+   * pattern.
    * 
-   * @param src the input ArrayList of Strings
-   * @param pattern the pattern to search for
-   * @param start the starting position
-   * @return the index of the first occurrence or -1 if no matches found
+   * @param src        the input ArrayList of Strings
+   * @param pattern    the pattern to search for
+   * @param start      the starting position
+   * @return           the index of the first occurrence or -1 if no matches found
    */
   public static int search(ArrayList<String> src, ArrayList<String> pattern,
       int start) {
@@ -57,7 +57,7 @@ public class Utils {
   /**
    * Get the position (index) of a particular string in a Strings array.
    * 
-   * The search is case insensitive.
+   * <p>The search is case insensitive.
    * 
    * @param strings the Strings array
    * @param string the string to search
@@ -73,7 +73,7 @@ public class Utils {
   }
 
   /**
-   * Convert a HashMap to string array
+   * Convert a HashMap to string array.
    * 
    * @param syms the input HashMap
    * @return the strings array
