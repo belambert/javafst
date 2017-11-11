@@ -32,10 +32,15 @@ public class ComposeTest {
     Fst fstA = importFst(path, new TropicalSemiring());
     path = new File(parent, "B").getPath();
     Fst fstB = importFst(path, new TropicalSemiring());
-    path = new File(parent, "fstcompose.fst.ser").getPath();
-    // Can't load the model because it's a serialized Java class with the wrong type
-    // Fst composed = Fst.loadModel(path);
-    // Fst fstComposed = Compose.get(fstA, fstB, new TropicalSemiring());
-    // assertThat(composed, equalTo(fstComposed));
+    
+    path = new File(parent, "fstcompose").getPath();
+    Fst composed = importFst(path, new TropicalSemiring());
+        
+    Fst fstComposed = Compose.get(fstA, fstB, new TropicalSemiring());
+    // comp
+    assertThat(fstComposed, equalTo(composed));
+    //assertThat(fstA, equalTo(fstA));
+    
+    
   }
 }

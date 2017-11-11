@@ -20,8 +20,8 @@ public class Import {
    * First argument is the java binary model filename, second
    * argument openfst's files basename
    *
-   * @param args              Arguments.
-   * @throws IOException      IO went wrong.
+   * @param args                     Arguments.
+   * @throws IOException             IO went wrong.
    * @throws NumberFormatException   Data has wrong input format.
    */
   public static void main(String[] args) throws NumberFormatException, IOException {

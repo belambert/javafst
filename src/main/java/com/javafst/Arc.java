@@ -4,6 +4,8 @@ package com.javafst;
  * The fst's arc implementation.
  */
 public class Arc {
+  
+  private static float EQUAL_TOLERANCE = 1e-7f;
 
   // Arc's weight
   private float weight;
@@ -132,11 +134,8 @@ public class Arc {
     if (outputLabel != other.outputLabel) {
       return false;
     }
-    if (!(weight == other.weight)) {
-      if (Float.floatToIntBits(weight) != Float
-          .floatToIntBits(other.weight)) {
-        return false;
-      }
+    if (weight != other.weight) {  
+      return (Math.abs(weight - other.weight) < EQUAL_TOLERANCE);
     }
     return true;
   }
