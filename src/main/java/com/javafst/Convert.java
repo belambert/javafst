@@ -19,24 +19,17 @@ import java.util.HashMap;
  */
 public class Convert {
 
-  /**
-   * Default private Constructor.
-   */
-  private Convert() {
-  }
+  private Convert() { }
 
   /**
-   * Exports an fst to the openfst text format Several files are created as
-   * follows: - basename.input.syms - basename.output.syms - basename.fst.txt
-   * See <a
-   * href="http://www.openfst.org/twiki/bin/view/FST/FstQuickTour">OpenFst
+   * Exports an fst to the OpenFST text format Several files are created as
+   * follows: - basename.input.syms - basename.output.syms - basename.fst.txt.
+   * 
+   * <p>See <a href="http://www.openfst.org/twiki/bin/view/FST/FstQuickTour">OpenFst
    * Quick Tour</a>
    * 
-   * @param fst
-   *            the fst to export
-   * @param basename
-   *            the files' base name
-   * @throws IOException IO went wrong
+   * @param fst               The fst to export.
+   * @param basename          The files' base name.
    */
   public static void export(final Fst fst, final String basename) throws IOException {
     exportSymbols(fst.getIsyms(), basename + ".input.syms");
@@ -45,13 +38,10 @@ public class Convert {
   }
 
   /**
-   * Exports an fst to the openfst text format
+   * Exports an fst to the openfst text format.
    * 
-   * @param fst
-   *            the fst to export
-   * @param filename
-   *            the openfst's fst.txt filename
-   * @throws IOException IO went wrong
+   * @param fst               The fst to export.
+   * @param filename          The openfst's fst.txt filename.
    */
   private static void exportFst(final Fst fst, final String filename) throws IOException {
     FileWriter file;
@@ -95,13 +85,10 @@ public class Convert {
   }
 
   /**
-   * Exports a symbols' map to the openfst text format.
+   * Exports a symbols' map to the OpenFST text format.
    * 
-   * @param syms
-   *            the symbols' map
-   * @param filename
-   *            the the openfst's symbols filename
-   * @throws IOException IO went wrong
+   * @param syms              The symbols' map.
+   * @param filename          The the openfst's symbols filename.
    */
   private static void exportSymbols(final String[] syms, final String filename)
       throws IOException {
@@ -122,13 +109,11 @@ public class Convert {
   }
 
   /**
-   * Imports an openfst's symbols file.
+   * Imports an OpenFST's symbols file.
    * 
-   * @param filename
-   *            the symbols' filename
-   * @return HashMap containing the imported string-to-id mapping
-   * @throws IOException IO went wrong
-   * @throws NumberFormatException import failed due to input data format
+   * @param filename                   The symbols' filename.
+   * @return HashMap                   Containing the imported string-to-id mapping.
+   * @throws NumberFormatException     Import failed due to input data format.
    */
   private static HashMap<String, Integer> importSymbols(final String filename)
       throws NumberFormatException, IOException {
@@ -157,16 +142,14 @@ public class Convert {
   }
 
   /**
-   * Imports an openfst text format Several files are imported as follows: -
-   * basename.input.syms - basename.output.syms - basename.fst.txt
+   * Imports an OpenFST text format Several files are imported as follows: -
+   * basename.input.syms - basename.output.syms - basename.fst.txt.
    * 
-   * @param basename
-   *            the files' base name
-   * @param semiring
-   *            the fst's semiring
-   * @return imported FST
-   * @throws IOException IO went wrong
-   * @throws NumberFormatException load failed due to data format issues
+   * @param basename                  The files' base name.
+   * @param semiring                  The fst's semiring.
+   * @return                          Imported FST.
+   * @throws IOException              IO went wrong.
+   * @throws NumberFormatException    Load failed due to data format issues.
    */
   public static Fst importFst(final String basename, final Semiring semiring)
       throws NumberFormatException, IOException {

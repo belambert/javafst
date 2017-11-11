@@ -32,9 +32,7 @@ public class ImmutableFst extends Fst {
    * 
    * @see com.javafst.ImmutableFst#loadModel(String)
    */
-  private ImmutableFst() {
-
-  }
+  private ImmutableFst() { }
 
   /**
    * Private Constructor specifying the capacity of the states array
@@ -43,8 +41,7 @@ public class ImmutableFst extends Fst {
    * 
    * @see com.javafst.ImmutableFst#loadModel(String)
    * 
-   * @param numStates
-   *            the number of fst's states
+   * @param numStates     The number of fst's states.
    */
   private ImmutableFst(int numStates) {
     super(0);
@@ -96,9 +93,9 @@ public class ImmutableFst extends Fst {
   /**
    * Deserializes an ImmutableFst from an ObjectInputStream
    * 
-   * @param in  the ObjectInputStream. It should be already be initialized by
+   * @param in  The ObjectInputStream. It should be already be initialized by
    *            the caller.
-   * @return Created FST
+   * @return    Created FST
    */
   private static ImmutableFst readImmutableFst(ObjectInputStream in)
       throws IOException, ClassNotFoundException {
@@ -143,14 +140,13 @@ public class ImmutableFst extends Fst {
   }
 
   /**
-   * Deserializes an ImmutableFst from an InputStream
+   * Deserializes an ImmutableFst from an InputStream.
    * 
-   * @param inputStream
-   *            the InputStream. It should be already be initialized by the
-   *            caller.
-   * @return Immutable FST structure
-   * @throws IOException IO went wrong
-   * @throws ClassNotFoundException serialization had issues
+   * @param inputStream               The InputStream. It should be already be initialized by the
+   *                                  caller.
+   * @return                          Immutable FST structure.
+   * @throws IOException              IO went wrong.
+   * @throws ClassNotFoundException   Serialization had issues.
    */
   public static ImmutableFst loadModel(InputStream inputStream)
       throws IOException, ClassNotFoundException {
@@ -171,8 +167,8 @@ public class ImmutableFst extends Fst {
   /**
    * Deserializes an ImmutableFst from disk.
    * 
-   * @param filename    the binary model filename
-   * @return loaded FST
+   * @param filename    The binary model filename.
+   * @return            Loaded FST.
    */
   public static ImmutableFst loadModel(String filename) {
     ImmutableFst obj;

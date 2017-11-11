@@ -8,7 +8,7 @@ import java.util.Comparator;
  * The fst's mutable state implementation.
  * 
  * <p>Holds its outgoing {@link com.javafst.Arc} objects in an ArrayList
- * allowing additions/deletions
+ * allowing additions/deletions.
  */
 public class State {
 
@@ -31,7 +31,7 @@ public class State {
   /**
    * Constructor specifying the state's final weight.
    * 
-   * @param fnlWeight final weight
+   * @param fnlWeight         Final weight.
    */
   public State(float fnlWeight) {
     this();
@@ -42,7 +42,7 @@ public class State {
    * Constructor specifying the initial capacity of the arc's ArrayList (this
    * is an optimization used in various operations).
    * 
-   * @param initialNumArcs number of arcs
+   * @param initialNumArcs    Number of arcs.
    */
   public State(int initialNumArcs) {
     this.initialNumArcs = initialNumArcs;
@@ -53,7 +53,7 @@ public class State {
 
   /**
    * Shorts the arc's ArrayList based on the provided Comparator.
-   * @param cmp comparator
+   * @param cmp               Comparator.
    */
   public void arcSort(Comparator<Arc> cmp) {
     Collections.sort(arcs, cmp);
@@ -61,7 +61,7 @@ public class State {
 
   /**
    * Get the state's final Weight.
-   * @return final weight
+   * @return                  Final weight.
    */
   public float getFinalWeight() {
     return fnlWeight;
@@ -70,7 +70,7 @@ public class State {
   /**
    * Set the state's arcs ArrayList.
    * 
-   * @param arcs the arcs ArrayList to set
+   * @param arcs              The arcs ArrayList to set.
    */
   public void setArcs(ArrayList<Arc> arcs) {
     this.arcs = arcs;
@@ -79,7 +79,7 @@ public class State {
   /**
    * Set the state's final weight.
    * 
-   * @param fnlfloat the final weight to set
+   * @param fnlfloat          The final weight to set.
    */
   public void setFinalWeight(float fnlfloat) {
     this.fnlWeight = fnlfloat;
@@ -87,7 +87,7 @@ public class State {
 
   /**
    * Get the state's id.
-   * @return state id
+   * @return                  The state id.
    */
   public int getId() {
     return id;
@@ -95,7 +95,7 @@ public class State {
 
   /**
    * Get the number of outgoing arcs.
-   * @return number of arcs
+   * @return                  Number of arcs.
    */
   public int getNumArcs() {
     return this.arcs.size();
@@ -104,7 +104,7 @@ public class State {
   /**
    * Add an outgoing arc to the state.
    * 
-   * @param arc the arc to add
+   * @param arc               The arc to add.
    */
   public void addArc(Arc arc) {
     this.arcs.add(arc);
@@ -113,8 +113,8 @@ public class State {
   /**
    * Get an arc based on it's index the arcs ArrayList.
    * 
-   * @param index the arc's index
-   * @return the arc
+   * @param index             The arc's index.
+   * @return                  The arc.
    */
   public Arc getArc(int index) {
     return this.arcs.get(index);
@@ -171,8 +171,8 @@ public class State {
   /**
    * Delete an arc based on its index.
    * 
-   * @param index the arc's index
-   * @return the deleted arc
+   * @param index             The arc's index.
+   * @return                  The deleted arc.
    */
   public Arc deleteArc(int index) {
     return this.arcs.remove(index);
@@ -191,8 +191,8 @@ public class State {
   /**
    * Set an arc at the specified position in the arcs' ArrayList.
    * 
-   * @param index the position to the arcs' array
-   * @param arc the arc value to set
+   * @param index             The position to the arcs' array.
+   * @param arc               The arc value to set.
    */
   public void setArc(int index, Arc arc) {
     arcs.set(index, arc);

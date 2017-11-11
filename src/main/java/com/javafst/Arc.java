@@ -23,10 +23,10 @@ public class Arc {
   /**
    * Arc Constructor.
    * 
-   * @param inputLabel the input label's id
-   * @param outputLabel the output label's id
-   * @param weight the arc's weight
-   * @param nextState the arc's next state
+   * @param inputLabel        The input label's id.
+   * @param outputLabel       The output label's id.
+   * @param weight            The arc's weight.
+   * @param nextState         The arc's next state.
    */
   public Arc(int inputLabel, int outputLabel, float weight, State nextState) {
     this.weight = weight;
@@ -37,7 +37,7 @@ public class Arc {
 
   /**
    * Get the arc's weight.
-   * @return arc weight
+   * @return                  Arc weight.
    */
   public float getWeight() {
     return weight;
@@ -45,7 +45,7 @@ public class Arc {
 
   /**
    * Set the arc's weight.
-   * @param weight arc weight
+   * @param weight            Arc weight.
    */
   public void setWeight(float weight) {
     this.weight = weight;
@@ -53,7 +53,7 @@ public class Arc {
 
   /**
    * Get the input label's id.
-   * @return label id
+   * @return                  Label id.
    */
   public int getIlabel() {
     return inputLabel;
@@ -62,7 +62,7 @@ public class Arc {
   /**
    * Set the input label's id.
    * 
-   * @param inputLabel the input label's id to set
+   * @param inputLabel        The input label's id to set.
    */
   public void setIlabel(int inputLabel) {
     this.inputLabel = inputLabel;
@@ -70,7 +70,7 @@ public class Arc {
 
   /**
    * Get the output label's id.
-   * @return output label id
+   * @return output           Label id.
    */
   public int getOlabel() {
     return outputLabel;
@@ -79,7 +79,7 @@ public class Arc {
   /**
    * Set the output label's id.
    * 
-   * @param outputLabel the output label's id to set
+   * @param outputLabel       The output label's id to set.
    */
   public void setOlabel(int outputLabel) {
     this.outputLabel = outputLabel;
@@ -87,7 +87,7 @@ public class Arc {
 
   /**
    * Get the next state.
-   * @return next state
+   * @return                  Next state.
    */
   public State getNextState() {
     return nextState;
@@ -96,7 +96,7 @@ public class Arc {
   /**
    * Set the next state.
    * 
-   * @param nextState the next state to set
+   * @param nextState         The next state to set.
    */
   public void setNextState(State nextState) {
     this.nextState = nextState;

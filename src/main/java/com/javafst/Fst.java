@@ -42,7 +42,7 @@ public class Fst {
    * Constructor specifying the initial capacity of the states ArrayList (this
    * is an optimization used in various operations).
    * 
-   * @param numStates     the initial capacity
+   * @param numStates     The initial capacity.
    */
   public Fst(int numStates) {
     if (numStates > 0) {
@@ -53,7 +53,7 @@ public class Fst {
   /**
    * Constructor specifying the fst's semiring.
    * 
-   * @param semiring   the fst's semiring
+   * @param semiring   The fst's semiring.
    */
   public Fst(Semiring semiring) {
     this();
@@ -62,7 +62,7 @@ public class Fst {
 
   /**
    * Get the initial states.
-   * @return the initial state
+   * @return The initial state.
    */
   public State getStart() {
     return start;
@@ -70,8 +70,7 @@ public class Fst {
 
   /**
    * Get the semiring.
-   * @return 
-   *           used semiring
+   * @return      Used semiring.
    */
   public Semiring getSemiring() {
     return semiring;
@@ -80,8 +79,7 @@ public class Fst {
   /**
    * Set the Semiring.
    * 
-   * @param semiring
-   *            the semiring to set
+   * @param semiring    The semiring to set.
    */
   public void setSemiring(Semiring semiring) {
     this.semiring = semiring;
@@ -90,8 +88,7 @@ public class Fst {
   /**
    * Set the initial state.
    * 
-   * @param start
-   *            the initial state
+   * @param start     The initial state.
    */
   public void setStart(State start) {
     this.start = start;
@@ -100,7 +97,7 @@ public class Fst {
   /**
    * Get the number of states in the fst.
    * 
-   * @return number of states
+   * @return     The number of states.
    */
   public int getNumStates() {
     return this.states.size();
@@ -113,8 +110,7 @@ public class Fst {
   /**
    * Adds a state to the fst.
    * 
-   * @param state
-   *            the state to be added
+   * @param state     The state to be added.
    */
   public void addState(State state) {
     this.states.add(state);
@@ -124,7 +120,7 @@ public class Fst {
   /**
    * Get the input symbols' array.
    * 
-   * @return array of input symbols
+   * @return     Array of input symbols.
    */
   public String[] getIsyms() {
     return isyms;
@@ -133,8 +129,7 @@ public class Fst {
   /**
    * Set the input symbols.
    * 
-   * @param isyms
-   *            the isyms to set
+   * @param isyms     The isyms to set.
    */
   public void setIsyms(String[] isyms) {
     this.isyms = isyms;
@@ -143,7 +138,7 @@ public class Fst {
   /**
    * Get the output symbols' array.
    * 
-   * @return array fo output symbols
+   * @return    An array of output symbols.
    */
   public String[] getOsyms() {
     return osyms;
@@ -152,8 +147,7 @@ public class Fst {
   /**
    * Set the output symbols.
    * 
-   * @param osyms
-   *            the osyms to set
+   * @param osyms     The osyms to set.
    */
   public void setOsyms(String[] osyms) {
     this.osyms = osyms;
@@ -177,7 +171,7 @@ public class Fst {
   /**
    * Serializes the current Fst instance to an ObjectOutputStream.
    * 
-   * @param out  the ObjectOutputStream. It should be already be initialized by
+   * @param out   The ObjectOutputStream. It should be already be initialized by
    *              the caller.
    */
   private void writeFst(ObjectOutputStream out) throws IOException {
@@ -215,8 +209,8 @@ public class Fst {
   /**
    * Saves binary model to disk.
    * 
-   * @param filename      the binary model filename
-   * @throws IOException  if IO went wrong
+   * @param filename      The binary model filename.
+   * @throws IOException  If IO went wrong.
    */
   public void saveModel(String filename) throws IOException {
     FileOutputStream fos = new FileOutputStream(filename);
@@ -232,11 +226,11 @@ public class Fst {
   /**
    * Deserializes a symbol map from an ObjectInputStream.
    * 
-   * @param in  the ObjectInputStream. It should be already be initialized by
-   *            the caller.
-   * @return the deserialized symbol map
-   * @throws IOException             if IO went wrong
-   * @throws ClassNotFoundException  if serialization went wrong
+   * @param in   The ObjectInputStream. It should be already be initialized by
+   *             the caller.
+   * @return     The deserialized symbol map
+   * @throws IOException               If IO went wrong.
+   * @throws ClassNotFoundException    If serialization went wrong.
    */
   protected static String[] readStringMap(ObjectInputStream in)
       throws IOException, ClassNotFoundException {
@@ -254,9 +248,9 @@ public class Fst {
   /**
    * Deserializes an Fst from an ObjectInputStream.
    * 
-   * @param in  the ObjectInputStream. It should be already be initialized by
+   * @param in  The ObjectInputStream. It should be already be initialized by
    *            the caller.
-   * @return Created FST
+   * @return Created FST.
    */
   private static Fst readFst(ObjectInputStream in) throws IOException,
   ClassNotFoundException {
@@ -303,10 +297,10 @@ public class Fst {
   /**
    * Deserializes an Fst from disk.
    * 
-   * @param filename   the binary model filename
-   * @return deserialized FST
-   * @throws IOException             io IO went wrong
-   * @throws ClassNotFoundException  if serialization went wrong
+   * @param filename                 The binary model filename.
+   * @return                         Deserialized FST.
+   * @throws IOException             IO went wrong.
+   * @throws ClassNotFoundException  If serialization went wrong.
    */
   public static Fst loadModel(String filename) throws IOException,
   ClassNotFoundException {
