@@ -1,19 +1,19 @@
 package com.javafst.operations;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-
 import com.javafst.Arc;
 import com.javafst.Fst;
 import com.javafst.State;
 import com.javafst.semiring.Semiring;
+
+import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * Connect operation.
  */
 public class Connect {
   /**
-   * Calculates the coaccessible states of an fst
+   * Calculates the coaccessible states of an fst.
    */
   private static void calcCoAccessible(Fst fst, State state,
       ArrayList<ArrayList<State>> paths, HashSet<State> coaccessible) {
@@ -41,7 +41,7 @@ public class Connect {
   }
 
   /**
-   * Copies a path
+   * Copies a path.
    */
   private static void duplicatePath(int lastPathIndex, State fromState,
       State toState, ArrayList<ArrayList<State>> paths) {
@@ -58,7 +58,7 @@ public class Connect {
   }
 
   /**
-   * The depth first search recursion
+   * The depth first search recursion.
    */
   private static State depthFirstSearchNext(Fst fst, State start,
       ArrayList<ArrayList<State>> paths, ArrayList<Arc>[] exploredArcs,
@@ -97,7 +97,7 @@ public class Connect {
   }
 
   /**
-   * Adds an arc top the explored arcs list
+   * Adds an arc top the explored arcs list.
    */
   private static void addExploredArc(int stateId, Arc arc,
       ArrayList<Arc>[] exploredArcs) {
@@ -109,7 +109,7 @@ public class Connect {
   }
 
   /**
-   * Initialization of a depth first search recursion
+   * Initialization of a depth first search recursion.
    */
   private static void depthFirstSearch(Fst fst, HashSet<State> accessible,
       ArrayList<ArrayList<State>> paths, ArrayList<Arc>[] exploredArcs,
@@ -124,9 +124,9 @@ public class Connect {
     } while (currentState.getId() != nextState.getId());
     int numStates = fst.getNumStates();
     for (int i = 0; i < numStates; i++) {
-      State s = fst.getState(i);
-      if (s.getFinalWeight() != fst.getSemiring().zero()) {
-        calcCoAccessible(fst, s, paths, coaccessible);
+      State state = fst.getState(i);
+      if (state.getFinalWeight() != fst.getSemiring().zero()) {
+        calcCoAccessible(fst, state, paths, coaccessible);
       }
     }
   }
@@ -156,9 +156,9 @@ public class Connect {
     HashSet<State> toDelete = new HashSet<State>();
 
     for (int i = 0; i < fst.getNumStates(); i++) {
-      State s = fst.getState(i);
-      if (!(accessible.contains(s) || coaccessible.contains(s))) {
-        toDelete.add(s);
+      State state = fst.getState(i);
+      if (!(accessible.contains(state) || coaccessible.contains(state))) {
+        toDelete.add(state);
       }
     }
 

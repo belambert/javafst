@@ -1,9 +1,11 @@
 package com.javafst.utils;
 
+// TODO - can replace this with actual tuples...?
+
 /**
- * Pairs two elements
+ * Pairs two elements.
  * 
- * Original code obtained by
+ * <p>Original code obtained by
  * http://stackoverflow.com/questions/521171/a-java-collection-of-value
  * -pairs-tuples
  * 

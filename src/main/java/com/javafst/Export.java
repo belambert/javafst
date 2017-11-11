@@ -5,12 +5,10 @@ import java.io.IOException;
 
 /**
  * Provides a command line utility to convert a java binary fst model to
- * openfst's text format
+ * openfst's text format.
  */
 public class Export {
-  /**
-   * Default Constructor
-   */
+
   private Export() {
   }
 

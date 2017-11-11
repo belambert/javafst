@@ -6,7 +6,7 @@ import java.util.Comparator;
 /**
  * The fst's immutable state implementation.
  * 
- * holds its outgoing {@link com.javafst.Arc} objects in a fixed size
+ * <p>holds its outgoing {@link com.javafst.Arc} objects in a fixed size
  * array not allowing additions/deletions.
  */
 public class ImmutableState extends State {
@@ -17,7 +17,7 @@ public class ImmutableState extends State {
   /**
    * Default protected constructor.
    * 
-   * An ImmutableState cannot be created directly. It needs to be deserialized
+   * <p>An ImmutableState cannot be created directly. It needs to be deserialized
    * as part of an ImmutableFst.
    * 
    * @see com.javafst.ImmutableFst#loadModel(String)
@@ -81,7 +81,7 @@ public class ImmutableState extends State {
   }
 
   /**
-   * Set the state's arcs array
+   * Set the state's arcs array.
    * 
    * @param arcs the arcs array to set
    */
@@ -129,15 +129,19 @@ public class ImmutableState extends State {
    */
   @Override
   public boolean equals(Object obj) {
-    if (this == obj)
+    if (this == obj) {
       return true;
-    if (getClass() != obj.getClass())
+    }
+    if (getClass() != obj.getClass()) {
       return false;
+    }
     ImmutableState other = (ImmutableState) obj;
-    if (!Arrays.equals(arcs, other.arcs))
+    if (!Arrays.equals(arcs, other.arcs)) {
       return false;
-    if (!super.equals(obj))
+    }
+    if (!super.equals(obj)) {
       return false;
+    }
     return true;
   }
 }

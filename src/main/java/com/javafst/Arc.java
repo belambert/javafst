@@ -17,14 +17,11 @@ public class Arc {
   // next state's id
   private State nextState;
 
-  /**
-   * Default Constructor
-   */
   public Arc() {
   }
 
   /**
-   * Arc Constructor
+   * Arc Constructor.
    * 
    * @param iLabel the input label's id
    * @param oLabel the output label's id
@@ -39,7 +36,7 @@ public class Arc {
   }
 
   /**
-   * Get the arc's weight
+   * Get the arc's weight.
    * @return arc weight
    */
   public float getWeight() {
@@ -47,7 +44,7 @@ public class Arc {
   }
 
   /**
-   * Set the arc's weight
+   * Set the arc's weight.
    * @param weight arc weight
    */
   public void setWeight(float weight) {
@@ -55,7 +52,7 @@ public class Arc {
   }
 
   /**
-   * Get the input label's id
+   * Get the input label's id.
    * @return label id
    */
   public int getIlabel() {
@@ -63,7 +60,7 @@ public class Arc {
   }
 
   /**
-   * Set the input label's id
+   * Set the input label's id.
    * 
    * @param iLabel the input label's id to set
    */
@@ -72,7 +69,7 @@ public class Arc {
   }
 
   /**
-   * Get the output label's id
+   * Get the output label's id.
    * @return output label id
    */
   public int getOlabel() {
@@ -80,7 +77,7 @@ public class Arc {
   }
 
   /**
-   * Set the output label's id
+   * Set the output label's id.
    * 
    * @param oLabel the output label's id to set
    */
@@ -89,7 +86,7 @@ public class Arc {
   }
 
   /**
-   * Get the next state
+   * Get the next state.
    * @return next state
    */
   public State getNextState() {
@@ -97,7 +94,7 @@ public class Arc {
   }
 
   /**
-   * Set the next state
+   * Set the next state.
    * 
    * @param nextState the next state to set
    */
@@ -112,35 +109,43 @@ public class Arc {
    */
   @Override
   public boolean equals(Object obj) {
-    if (this == obj)
+    if (this == obj) {
       return true;
-    if (obj == null)
+    }
+    if (obj == null) {
       return false;
-    if (getClass() != obj.getClass())
+    }
+    if (getClass() != obj.getClass()) {
       return false;
+    }
     Arc other = (Arc) obj;
-    if (iLabel != other.iLabel)
+    if (iLabel != other.iLabel) {
       return false;
+    }
     if (nextState == null) {
-      if (other.nextState != null)
+      if (other.nextState != null) {
         return false;
-    } else if (nextState.getId() != other.nextState.getId())
+      }
+    } else if (nextState.getId() != other.nextState.getId()) {
       return false;
-    if (oLabel != other.oLabel)
+    }
+    if (oLabel != other.oLabel) {
       return false;
+    }
     if (!(weight == other.weight)) {
       if (Float.floatToIntBits(weight) != Float
-          .floatToIntBits(other.weight))
+          .floatToIntBits(other.weight)) {
         return false;
+      }
     }
     return true;
   }
 
   @Override
   public int hashCode() {
-    return 31 * (iLabel + 
-        (31 * (oLabel + 
-            (31 * (nextState == null ? 0 : nextState.getId())
+    return 31 * (iLabel 
+       + (31 * (oLabel 
+           + (31 * (nextState == null ? 0 : nextState.getId())
                 + Float.floatToIntBits(weight)))));
   }
 

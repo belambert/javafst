@@ -1,12 +1,12 @@
 package com.javafst;
 
-import java.io.IOException;
-
 import com.javafst.semiring.TropicalSemiring;
+
+import java.io.IOException;
 
 /**
  * Provides a command line utility to convert an Fst in openfst's text format to
- * java binary fst model
+ * java binary fst model.
  */
 public class Import {
 

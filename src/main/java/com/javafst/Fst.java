@@ -1,5 +1,7 @@
 package com.javafst;
 
+import com.javafst.semiring.Semiring;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
@@ -13,44 +15,34 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
 
-import com.javafst.semiring.Semiring;
-
 /**
  * A mutable finite state transducer implementation.
  * 
- * Holds an ArrayList of {@link com.javafst.State} objects allowing
+ * <p>Holds an ArrayList of {@link com.javafst.State} objects allowing
  * additions/deletions.
  */
 public class Fst {
 
-  // fst states
   private ArrayList<State> states = null;
 
-  // initial state
+  // start state
   protected State start;
 
-  // input symbols map
   protected String[] isyms;
 
-  // output symbols map
   protected String[] osyms;
 
-  // semiring
   protected Semiring semiring;
 
-  /**
-   * Default Constructor
-   */
   public Fst() {
     states = new ArrayList<State>();
   }
 
   /**
    * Constructor specifying the initial capacity of the states ArrayList (this
-   * is an optimization used in various operations)
+   * is an optimization used in various operations).
    * 
-   * @param numStates
-   *            the initial capacity
+   * @param numStates     the initial capacity
    */
   public Fst(int numStates) {
     if (numStates > 0) {
@@ -59,18 +51,17 @@ public class Fst {
   }
 
   /**
-   * Constructor specifying the fst's semiring
+   * Constructor specifying the fst's semiring.
    * 
-   * @param s
-   *            the fst's semiring
+   * @param semiring   the fst's semiring
    */
-  public Fst(Semiring s) {
+  public Fst(Semiring semiring) {
     this();
-    this.semiring = s;
+    this.semiring = semiring;
   }
 
   /**
-   * Get the initial states
+   * Get the initial states.
    * @return the initial state
    */
   public State getStart() {
@@ -78,7 +69,7 @@ public class Fst {
   }
 
   /**
-   * Get the semiring
+   * Get the semiring.
    * @return 
    *           used semiring
    */
@@ -87,7 +78,7 @@ public class Fst {
   }
 
   /**
-   * Set the Semiring
+   * Set the Semiring.
    * 
    * @param semiring
    *            the semiring to set
@@ -97,7 +88,7 @@ public class Fst {
   }
 
   /**
-   * Set the initial state
+   * Set the initial state.
    * 
    * @param start
    *            the initial state
@@ -107,7 +98,8 @@ public class Fst {
   }
 
   /**
-   * Get the number of states in the fst
+   * Get the number of states in the fst.
+   * 
    * @return number of states
    */
   public int getNumStates() {
@@ -119,7 +111,7 @@ public class Fst {
   }
 
   /**
-   * Adds a state to the fst
+   * Adds a state to the fst.
    * 
    * @param state
    *            the state to be added
@@ -130,7 +122,8 @@ public class Fst {
   }
 
   /**
-   * Get the input symbols' array
+   * Get the input symbols' array.
+   * 
    * @return array of input symbols
    */
   public String[] getIsyms() {
@@ -138,7 +131,7 @@ public class Fst {
   }
 
   /**
-   * Set the input symbols
+   * Set the input symbols.
    * 
    * @param isyms
    *            the isyms to set
@@ -148,7 +141,8 @@ public class Fst {
   }
 
   /**
-   * Get the output symbols' array
+   * Get the output symbols' array.
+   * 
    * @return array fo output symbols
    */
   public String[] getOsyms() {
@@ -156,7 +150,7 @@ public class Fst {
   }
 
   /**
-   * Set the output symbols
+   * Set the output symbols.
    * 
    * @param osyms
    *            the osyms to set
@@ -166,14 +160,11 @@ public class Fst {
   }
 
   /**
-   * Serializes a symbol map to an ObjectOutputStream
+   * Serializes a symbol map to an ObjectOutputStream.
    * 
-   * @param out
-   *            the ObjectOutputStream. It should be already be initialized by
-   *            the caller.
-   * @param map
-   *            the symbol map to serialize
-   * @throws IOException
+   * @param out    the ObjectOutputStream. It should be already be initialized by
+   *               the caller.
+   * @param map    the symbol map to serialize
    */
   private void writeStringMap(ObjectOutputStream out, String[] map)
       throws IOException {
@@ -184,12 +175,10 @@ public class Fst {
   }
 
   /**
-   * Serializes the current Fst instance to an ObjectOutputStream
+   * Serializes the current Fst instance to an ObjectOutputStream.
    * 
-   * @param out
-   *            the ObjectOutputStream. It should be already be initialized by
-   *            the caller.
-   * @throws IOException
+   * @param out  the ObjectOutputStream. It should be already be initialized by
+   *              the caller.
    */
   private void writeFst(ObjectOutputStream out) throws IOException {
     writeStringMap(out, isyms);
@@ -202,33 +191,32 @@ public class Fst {
     HashMap<State, Integer> stateMap = new HashMap<State, Integer>(
         states.size(), 1.f);
     for (int i = 0; i < states.size(); i++) {
-      State s = states.get(i);
-      out.writeInt(s.getNumArcs());
-      out.writeFloat(s.getFinalWeight());
-      out.writeInt(s.getId());
-      stateMap.put(s, i);
+      State state = states.get(i);
+      out.writeInt(state.getNumArcs());
+      out.writeFloat(state.getFinalWeight());
+      out.writeInt(state.getId());
+      stateMap.put(state, i);
     }
 
     int numStates = states.size();
     for (int i = 0; i < numStates; i++) {
-      State s = states.get(i);
-      int numArcs = s.getNumArcs();
+      State state = states.get(i);
+      int numArcs = state.getNumArcs();
       for (int j = 0; j < numArcs; j++) {
-        Arc a = s.getArc(j);
-        out.writeInt(a.getIlabel());
-        out.writeInt(a.getOlabel());
-        out.writeFloat(a.getWeight());
-        out.writeInt(stateMap.get(a.getNextState()));
+        Arc arc = state.getArc(j);
+        out.writeInt(arc.getIlabel());
+        out.writeInt(arc.getOlabel());
+        out.writeFloat(arc.getWeight());
+        out.writeInt(stateMap.get(arc.getNextState()));
       }
     }
   }
 
   /**
-   * Saves binary model to disk
+   * Saves binary model to disk.
    * 
-   * @param filename
-   *            the binary model filename
-   * @throws IOException if IO went wrong
+   * @param filename      the binary model filename
+   * @throws IOException  if IO went wrong
    */
   public void saveModel(String filename) throws IOException {
     FileOutputStream fos = new FileOutputStream(filename);
@@ -242,14 +230,13 @@ public class Fst {
   }
 
   /**
-   * Deserializes a symbol map from an ObjectInputStream
+   * Deserializes a symbol map from an ObjectInputStream.
    * 
-   * @param in
-   *            the ObjectInputStream. It should be already be initialized by
+   * @param in  the ObjectInputStream. It should be already be initialized by
    *            the caller.
    * @return the deserialized symbol map
-   * @throws IOException if IO went wrong
-   * @throws ClassNotFoundException if serialization went wrong
+   * @throws IOException             if IO went wrong
+   * @throws ClassNotFoundException  if serialization went wrong
    */
   protected static String[] readStringMap(ObjectInputStream in)
       throws IOException, ClassNotFoundException {
@@ -265,20 +252,17 @@ public class Fst {
   }
 
   /**
-   * Deserializes an Fst from an ObjectInputStream
+   * Deserializes an Fst from an ObjectInputStream.
    * 
-   * @param in
-   *            the ObjectInputStream. It should be already be initialized by
+   * @param in  the ObjectInputStream. It should be already be initialized by
    *            the caller.
    * @return Created FST
-   * @throws IOException
-   * @throws ClassNotFoundException
    */
   private static Fst readFst(ObjectInputStream in) throws IOException,
   ClassNotFoundException {
     String[] is = readStringMap(in);
     String[] os = readStringMap(in);
-    int startid = in.readInt();
+    final int startid = in.readInt();
     Semiring semiring = (Semiring) in.readObject();
     int numStates = in.readInt();
     Fst res = new Fst(numStates);
@@ -287,16 +271,16 @@ public class Fst {
     res.semiring = semiring;
     for (int i = 0; i < numStates; i++) {
       int numArcs = in.readInt();
-      State s = new State(numArcs + 1);
-      float f = in.readFloat();
-      if (f == res.semiring.zero()) {
-        f = res.semiring.zero();
-      } else if (f == res.semiring.one()) {
-        f = res.semiring.one();
+      State state = new State(numArcs + 1);
+      float weight = in.readFloat();
+      if (weight == res.semiring.zero()) {
+        weight = res.semiring.zero();
+      } else if (weight == res.semiring.one()) {
+        weight = res.semiring.one();
       }
-      s.setFinalWeight(f);
-      s.id = in.readInt();
-      res.states.add(s);
+      state.setFinalWeight(weight);
+      state.id = in.readInt();
+      res.states.add(state);
     }
     res.setStart(res.states.get(startid));
 
@@ -304,12 +288,12 @@ public class Fst {
     for (int i = 0; i < numStates; i++) {
       State s1 = res.getState(i);
       for (int j = 0; j < s1.initialNumArcs - 1; j++) {
-        Arc a = new Arc();
-        a.setIlabel(in.readInt());
-        a.setOlabel(in.readInt());
-        a.setWeight(in.readFloat());
-        a.setNextState(res.states.get(in.readInt()));
-        s1.addArc(a);
+        Arc arc = new Arc();
+        arc.setIlabel(in.readInt());
+        arc.setOlabel(in.readInt());
+        arc.setWeight(in.readFloat());
+        arc.setNextState(res.states.get(in.readInt()));
+        s1.addArc(arc);
       }
     }
 
@@ -317,18 +301,17 @@ public class Fst {
   }
 
   /**
-   * Deserializes an Fst from disk
+   * Deserializes an Fst from disk.
    * 
-   * @param filename
-   *            the binary model filename
+   * @param filename   the binary model filename
    * @return deserialized FST
-   * @throws IOException io IO went wrong
-   * @throws ClassNotFoundException if serialization went wrong
+   * @throws IOException             io IO went wrong
+   * @throws ClassNotFoundException  if serialization went wrong
    */
   public static Fst loadModel(String filename) throws IOException,
   ClassNotFoundException {
-    long starttime = Calendar.getInstance().getTimeInMillis();
-    Fst obj;
+    final long starttime = Calendar.getInstance().getTimeInMillis();
+    final Fst obj;
 
     FileInputStream fis = null;
     BufferedInputStream bis = null;
@@ -354,42 +337,53 @@ public class Fst {
    */
   @Override
   public boolean equals(Object obj) {
-    if (this == obj)
+    if (this == obj) {
       return true;
-    if (obj == null)
+    }
+    if (obj == null) {
       return false;
-    if (getClass() != obj.getClass())
+    }
+    if (getClass() != obj.getClass()) {
       return false;
+    }
     Fst other = (Fst) obj;
-    if (!Arrays.equals(isyms, other.isyms))
+    if (!Arrays.equals(isyms, other.isyms)) {
       return false;
-    if (!Arrays.equals(osyms, other.osyms))
+    }
+    if (!Arrays.equals(osyms, other.osyms)) {
       return false;
+    }
     if (start == null) {
-      if (other.start != null)
+      if (other.start != null) {
         return false;
-    } else if (!start.equals(other.start))
+      }
+    } else if (!start.equals(other.start)) {
       return false;
+    }
     if (states == null) {
-      if (other.states != null)
+      if (other.states != null) {
         return false;
-    } else if (!states.equals(other.states))
+      }
+    } else if (!states.equals(other.states)) {
       return false;
+    }
     if (semiring == null) {
-      if (other.semiring != null)
+      if (other.semiring != null) {
         return false;
-    } else if (!semiring.equals(other.semiring))
+      }
+    } else if (!semiring.equals(other.semiring)) {
       return false;
+    }
     return true;
   }
 
   @Override
   public int hashCode() {
-    return 31 * (Arrays.hashCode(isyms) +
-        31 * (Arrays.hashCode(osyms) +
-            31 * ((start == null ? 0 : start.hashCode()) +
-                31 * ((states == null ? 0 : states.hashCode()) +
-                    31 * ((semiring == null ? 0 : semiring.hashCode()))))));
+    return 31 * (Arrays.hashCode(isyms)
+        + 31 * (Arrays.hashCode(osyms)
+            + 31 * ((start == null ? 0 : start.hashCode())
+               + 31 * ((states == null ? 0 : states.hashCode())
+                  +  31 * ((semiring == null ? 0 : semiring.hashCode()))))));
   }
 
   /*
@@ -404,12 +398,12 @@ public class Fst {
         + Arrays.toString(osyms) + ", semiring=" + semiring + ")\n");
     int numStates = states.size();
     for (int i = 0; i < numStates; i++) {
-      State s = states.get(i);
-      sb.append("  " + s + "\n");
-      int numArcs = s.getNumArcs();
+      State state = states.get(i);
+      sb.append("  " + state + "\n");
+      int numArcs = state.getNumArcs();
       for (int j = 0; j < numArcs; j++) {
-        Arc a = s.getArc(j);
-        sb.append("    " + a + "\n");
+        Arc arc = state.getArc(j);
+        sb.append("    " + arc + "\n");
       }
     }
 
@@ -417,10 +411,9 @@ public class Fst {
   }
 
   /**
-   * Deletes a state
+   * Deletes a state.
    * 
-   * @param state
-   *            the state to delete
+   * @param state    the state to delete
    */
   public void deleteState(State state) {
 
@@ -434,9 +427,9 @@ public class Fst {
     for (State s1 : states) {
       ArrayList<Arc> newArcs = new ArrayList<Arc>();
       for (int j = 0; j < s1.getNumArcs(); j++) {
-        Arc a = s1.getArc(j);
-        if (!a.getNextState().equals(state)) {
-          newArcs.add(a);
+        Arc arc = s1.getArc(j);
+        if (!arc.getNextState().equals(state)) {
+          newArcs.add(arc);
         }
       }
       s1.setArcs(newArcs);
@@ -446,7 +439,7 @@ public class Fst {
   /**
    * Remaps the states' ids.
    * 
-   * States' ids are renumbered starting from 0 up to @see
+   * <p>States' ids are renumbered starting from 0 up to @see
    * {@link com.javafst.Fst#getNumStates()}
    */
   public void remapStateIds() {
@@ -457,6 +450,9 @@ public class Fst {
 
   }
 
+  /**
+   * Delete the given Set of states.
+   */
   public void deleteStates(HashSet<State> toDelete) {
 
     if (toDelete.contains(start)) {
@@ -471,9 +467,9 @@ public class Fst {
         newStates.add(s1);
         ArrayList<Arc> newArcs = new ArrayList<Arc>();
         for (int j = 0; j < s1.getNumArcs(); j++) {
-          Arc a = s1.getArc(j);
-          if (!toDelete.contains(a.getNextState())) {
-            newArcs.add(a);
+          Arc arc = s1.getArc(j);
+          if (!toDelete.contains(arc.getNextState())) {
+            newArcs.add(arc);
           }
         }
         s1.setArcs(newArcs);

@@ -1,5 +1,8 @@
 package com.javafst;
 
+import com.javafst.semiring.Semiring;
+import com.javafst.utils.Utils;
+
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.File;
@@ -10,12 +13,9 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.HashMap;
 
-import com.javafst.semiring.Semiring;
-import com.javafst.utils.Utils;
-
 /**
  * Provides the required functionality in order to convert from/to openfst's
- * text format
+ * text format.
  */
 public class Convert {
 
@@ -95,7 +95,7 @@ public class Convert {
   }
 
   /**
-   * Exports a symbols' map to the openfst text format
+   * Exports a symbols' map to the openfst text format.
    * 
    * @param syms
    *            the symbols' map
@@ -105,8 +105,9 @@ public class Convert {
    */
   private static void exportSymbols(final String[] syms, final String filename)
       throws IOException {
-    if (syms == null)
+    if (syms == null) {
       return;
+    }
 
     final FileWriter file = new FileWriter(filename);
     final PrintWriter out = new PrintWriter(file);
@@ -121,7 +122,7 @@ public class Convert {
   }
 
   /**
-   * Imports an openfst's symbols file
+   * Imports an openfst's symbols file.
    * 
    * @param filename
    *            the symbols' filename

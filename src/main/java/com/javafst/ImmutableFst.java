@@ -1,5 +1,7 @@
 package com.javafst;
 
+import com.javafst.semiring.Semiring;
+
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -8,12 +10,11 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.util.Arrays;
 
-import com.javafst.semiring.Semiring;
 
 /**
  * An immutable finite state transducer implementation.
  * 
- * Holds a fixed size array of {@link com.javafst.ImmutableState} objects
+ * <p>Holds a fixed size array of {@link com.javafst.ImmutableState} objects
  * not allowing additions/deletions
  */
 public class ImmutableFst extends Fst {
@@ -27,7 +28,7 @@ public class ImmutableFst extends Fst {
   /**
    * Default private constructor.
    * 
-   * An ImmutableFst cannot be created directly. It needs to be deserialized.
+   * <p>An ImmutableFst cannot be created directly. It needs to be deserialized.
    * 
    * @see com.javafst.ImmutableFst#loadModel(String)
    */
@@ -38,7 +39,7 @@ public class ImmutableFst extends Fst {
   /**
    * Private Constructor specifying the capacity of the states array
    * 
-   * An ImmutableFst cannot be created directly. It needs to be deserialized.
+   * <p>An ImmutableFst cannot be created directly. It needs to be deserialized.
    * 
    * @see com.javafst.ImmutableFst#loadModel(String)
    * 
@@ -95,18 +96,15 @@ public class ImmutableFst extends Fst {
   /**
    * Deserializes an ImmutableFst from an ObjectInputStream
    * 
-   * @param in
-   *            the ObjectInputStream. It should be already be initialized by
+   * @param in  the ObjectInputStream. It should be already be initialized by
    *            the caller.
    * @return Created FST
-   * @throws IOException
-   * @throws ClassNotFoundException
    */
   private static ImmutableFst readImmutableFst(ObjectInputStream in)
       throws IOException, ClassNotFoundException {
-    String[] is = readStringMap(in);
-    String[] os = readStringMap(in);
-    int startid = in.readInt();
+    final String[] is = readStringMap(in);
+    final String[] os = readStringMap(in);
+    final int startid = in.readInt();
     Semiring semiring = (Semiring) in.readObject();
     int numStates = in.readInt();
     ImmutableFst res = new ImmutableFst(numStates);
@@ -171,10 +169,9 @@ public class ImmutableFst extends Fst {
   }
 
   /**
-   * Deserializes an ImmutableFst from disk
+   * Deserializes an ImmutableFst from disk.
    * 
-   * @param filename
-   *            the binary model filename
+   * @param filename    the binary model filename
    * @return loaded FST
    */
   public static ImmutableFst loadModel(String filename) {
@@ -246,15 +243,19 @@ public class ImmutableFst extends Fst {
    */
   @Override
   public boolean equals(Object obj) {
-    if (this == obj)
+    if (this == obj) {
       return true;
-    if (getClass() != obj.getClass())
+    }
+    if (getClass() != obj.getClass()) {
       return false;
+    }
     ImmutableFst other = (ImmutableFst) obj;
-    if (!Arrays.equals(states, other.states))
+    if (!Arrays.equals(states, other.states)) {
       return false;
-    if (!super.equals(obj))
+    }
+    if (!super.equals(obj)) {
       return false;
+    }
     return true;
   }
 
