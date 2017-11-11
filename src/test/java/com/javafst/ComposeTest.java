@@ -34,13 +34,8 @@ public class ComposeTest {
     Fst fstB = importFst(path, new TropicalSemiring());
     
     path = new File(parent, "fstcompose").getPath();
-    Fst composed = importFst(path, new TropicalSemiring());
-        
-    Fst fstComposed = Compose.get(fstA, fstB, new TropicalSemiring());
-    // comp
-    assertThat(fstComposed, equalTo(composed));
-    //assertThat(fstA, equalTo(fstA));
-    
-    
+    Fst expected = importFst(path, new TropicalSemiring());
+    Fst composed = Compose.get(fstA, fstB, new TropicalSemiring());
+    assertThat(composed, equalTo(expected));
   }
 }

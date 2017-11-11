@@ -25,11 +25,10 @@ public class ConnectTest {
 
     path = new File(parent, "A").getPath();
     Fst fst = importFst(path, new TropicalSemiring());
-    path = new File(parent, "fstconnect.fst.ser").getPath();
-    // Can't load the model because it's a serialized Java class with the wrong type
-    //        Fst connectSaved = Fst.loadModel(path);
-    //        apply(fst);
-    //        assertThat(connectSaved, equalTo(fst));
+    path = new File(parent, "fstconnect").getPath();
+    Fst connectSaved = importFst(path, new TropicalSemiring());
+    apply(fst);
+    assertThat(connectSaved, equalTo(fst));
   }
 
 }
