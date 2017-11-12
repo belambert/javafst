@@ -16,11 +16,10 @@ public class Arc {
   // output label
   private int outputLabel;
 
-  // next state's id
+  // next state
   private State nextState;
 
-  public Arc() {
-  }
+  public Arc() { }
 
   /**
    * Arc Constructor.
@@ -155,7 +154,6 @@ public class Arc {
    */
   @Override
   public String toString() {
-    return "(" + inputLabel + ", " + outputLabel + ", " + weight + ", " + nextState
-        + ")";
+    return "(" + inputLabel + ", " + outputLabel + ", " + weight + ", " + nextState + ")";
   }
 }

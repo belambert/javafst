@@ -1,4 +1,4 @@
-package com.javafst;
+package com.javafst.operations;
 
 import static com.javafst.Convert.importFst;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -11,6 +11,7 @@ import java.net.URL;
 
 import org.testng.annotations.Test;
 
+import com.javafst.Fst;
 import com.javafst.operations.Compose;
 import com.javafst.semiring.TropicalSemiring;
 
@@ -24,7 +25,7 @@ public class ComposeTest {
 
   @Test
   public void testCompose() throws NumberFormatException, IOException, ClassNotFoundException, URISyntaxException {
-    String path = "algorithms/compose/fstcompose.fst.ser";
+    String path = "algorithms/compose/fstcompose.fst.txt";
     URL url = getClass().getResource(path);
     File parent = new File(url.toURI()).getParentFile();
 

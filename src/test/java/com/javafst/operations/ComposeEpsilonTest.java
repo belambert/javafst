@@ -1,4 +1,4 @@
-package com.javafst;
+package com.javafst.operations;
 
 import static com.javafst.Convert.importFst;
 import static com.javafst.operations.Compose.get;
@@ -12,6 +12,7 @@ import java.net.URL;
 
 import org.testng.annotations.Test;
 
+import com.javafst.Fst;
 import com.javafst.semiring.TropicalSemiring;
 
 public class ComposeEpsilonTest {

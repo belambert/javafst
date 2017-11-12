@@ -13,11 +13,11 @@ import java.util.HashSet;
  */
 public class Connect {
   /**
-   * Calculates the coaccessible states of an fst.
+   * Calculates the co-accessible states of an fst.
    */
   private static void calcCoAccessible(Fst fst, State state,
       ArrayList<ArrayList<State>> paths, HashSet<State> coaccessible) {
-    // hold the coaccessible added in this loop
+    // hold the co-accessible added in this loop
     ArrayList<State> newCoAccessibles = new ArrayList<State>();
     for (ArrayList<State> path : paths) {
       int index = path.lastIndexOf(state);
@@ -34,7 +34,7 @@ public class Connect {
       }
     }
 
-    // run again for the new coaccessibles
+    // run again for the new co-accessibles
     for (State s : newCoAccessibles) {
       calcCoAccessible(fst, s, paths, coaccessible);
     }

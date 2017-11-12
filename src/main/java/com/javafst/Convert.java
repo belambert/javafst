@@ -14,8 +14,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 
 /**
- * Provides the required functionality in order to convert from/to openfst's
- * text format.
+ * OpenFST text format I/O.
  */
 public class Convert {
 
@@ -38,7 +37,7 @@ public class Convert {
   }
 
   /**
-   * Exports an fst to the openfst text format.
+   * Exports an fst to the OpenFST text format.
    * 
    * @param fst               The fst to export.
    * @param filename          The openfst's fst.txt filename.
@@ -79,9 +78,7 @@ public class Convert {
             + "\t" + isym + "\t" + osym + "\t" + arc.getWeight());
       }
     }
-
     out.close();
-
   }
 
   /**

@@ -1,4 +1,4 @@
-package com.javafst;
+package com.javafst.operations;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;

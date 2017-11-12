@@ -1,4 +1,4 @@
-package com.javafst;
+package com.javafst.operations;
 
 import static com.javafst.operations.ArcSort.apply;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -7,6 +7,9 @@ import static org.hamcrest.Matchers.not;
 
 import org.testng.annotations.Test;
 
+import com.javafst.Arc;
+import com.javafst.Fst;
+import com.javafst.State;
 import com.javafst.operations.ILabelCompare;
 import com.javafst.operations.OLabelCompare;
 import com.javafst.semiring.TropicalSemiring;

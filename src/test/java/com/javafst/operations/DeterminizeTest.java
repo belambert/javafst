@@ -1,4 +1,4 @@
-package com.javafst;
+package com.javafst.operations;
 
 import static com.javafst.Convert.importFst;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -11,6 +11,8 @@ import java.net.URL;
 
 import org.testng.annotations.Test;
 
+import com.javafst.Convert;
+import com.javafst.Fst;
 import com.javafst.operations.Determinize;
 import com.javafst.semiring.TropicalSemiring;
 
@@ -19,7 +21,7 @@ public class DeterminizeTest {
 
   @Test
   public void testDeterminize() throws NumberFormatException, IOException, ClassNotFoundException, URISyntaxException {
-    String path = "algorithms/determinize/fstdeterminize.fst.ser";
+    String path = "algorithms/determinize/fstdeterminize.fst.txt";
     URL url = getClass().getResource(path);
     File parent = new File(url.toURI()).getParentFile();
 

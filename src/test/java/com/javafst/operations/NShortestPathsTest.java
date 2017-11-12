@@ -1,7 +1,6 @@
-package com.javafst;
+package com.javafst.operations;
 
 import static com.javafst.Convert.importFst;
-import static com.javafst.operations.Connect.apply;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -12,24 +11,25 @@ import java.net.URL;
 
 import org.testng.annotations.Test;
 
+import com.javafst.Fst;
+import com.javafst.operations.NShortestPaths;
 import com.javafst.semiring.TropicalSemiring;
 
 
-public class ConnectTest {
+public class NShortestPathsTest {
 
   @Test
-  public void testConnect() throws NumberFormatException, IOException, ClassNotFoundException, URISyntaxException {
-    String path = "algorithms/connect/fstconnect.fst.ser";
+  public void testNShortestPaths() throws NumberFormatException, IOException, URISyntaxException {
+    String path = "algorithms/shortestpath/A.fst";
     URL url = getClass().getResource(path);
     File parent = new File(url.toURI()).getParentFile();
 
     path = new File(parent, "A").getPath();
     Fst fst = importFst(path, new TropicalSemiring());
-    path = new File(parent, "fstconnect").getPath();
-    Fst connectSaved = importFst(path, new TropicalSemiring());
-    apply(fst);
-    // This one is not passing...
-    //assertThat(fst, equalTo(connectSaved));
-  }
+    path = new File(parent, "nsp").getPath();
+    Fst nsp = importFst(path, new TropicalSemiring());
 
+    Fst fstNsp = NShortestPaths.get(fst, 6, true);
+    assertThat(nsp, equalTo(fstNsp));
+  }
 }

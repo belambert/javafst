@@ -1,4 +1,4 @@
-package com.javafst;
+package com.javafst.operations;
 
 import static com.javafst.Convert.importFst;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -11,6 +11,8 @@ import java.net.URL;
 
 import org.testng.annotations.Test;
 
+import com.javafst.Convert;
+import com.javafst.Fst;
 import com.javafst.operations.RmEpsilon;
 import com.javafst.semiring.ProbabilitySemiring;
 import com.javafst.semiring.TropicalSemiring;
