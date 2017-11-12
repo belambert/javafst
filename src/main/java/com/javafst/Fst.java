@@ -34,6 +34,15 @@ public class Fst {
 
   protected Semiring semiring;
 
+  
+  public Fst(State start, String[] isyms, String[] osyms, Semiring semiring) {
+    states = new ArrayList<State>();
+    this.start = start;
+    this.isyms = isyms;
+    this.osyms = osyms;
+    this.semiring = semiring;
+  }
+  
   public Fst() {
     states = new ArrayList<State>();
   }
