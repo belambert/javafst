@@ -10,11 +10,6 @@ import java.util.Comparator;
  */
 public class OLabelCompare implements Comparator<Arc> {
 
-  /**
-   * Compare.
-   * 
-   * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
-   */
   //@Override
   public int compare(Arc o1, Arc o2) {
     if (o1 == null) {

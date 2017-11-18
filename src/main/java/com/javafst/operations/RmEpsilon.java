@@ -169,12 +169,9 @@ public class RmEpsilon {
         }
       }
     }
-
     res.setIsyms(fst.getIsyms());
     res.setOsyms(fst.getOsyms());
-
     Connect.apply(res);
-
     return res;
   }
 }

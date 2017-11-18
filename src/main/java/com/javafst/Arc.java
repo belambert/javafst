@@ -5,6 +5,8 @@ package com.javafst;
  */
 public class Arc {
   
+  // How close does it have to be to be the same...
+  // added this for testing only.
   private static float EQUAL_TOLERANCE = 1e-3f;
 
   // Arc's weight
@@ -103,11 +105,6 @@ public class Arc {
     this.nextState = nextState;
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see java.lang.Object#equals(java.lang.Object)
-   */
   @Override
   public boolean equals(Object obj) {
     if (this == obj) {
@@ -147,11 +144,6 @@ public class Arc {
                 + Float.floatToIntBits(weight)))));
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see java.lang.Object#toString()
-   */
   @Override
   public String toString() {
     return "(" + inputLabel + ", " + outputLabel + ", " + weight + ", " + nextState + ")";

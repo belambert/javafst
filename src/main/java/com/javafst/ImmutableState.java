@@ -37,21 +37,11 @@ public class ImmutableState extends State {
     arcs = new Arc[numArcs];
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see com.javafst.State#arcSort(java.util.Comparator)
-   */
   @Override
   public void arcSort(Comparator<Arc> cmp) {
     Arrays.sort(arcs, cmp);
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see com.javafst.State#addArc(com.javafst.Arc)
-   */
   @Override
   public void addArc(Arc arc) {
     throw new IllegalArgumentException(
@@ -69,11 +59,6 @@ public class ImmutableState extends State {
     arcs[index] = arc;
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see com.javafst.State#deleteArc(int)
-   */
   @Override
   public Arc deleteArc(int index) {
     throw new IllegalArgumentException(
@@ -89,31 +74,16 @@ public class ImmutableState extends State {
     this.arcs = arcs;
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see com.javafst.State#getNumArcs()
-   */
   @Override
   public int getNumArcs() {
     return initialNumArcs;
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see com.javafst.State#getArc(int)
-   */
   @Override
   public Arc getArc(int index) {
     return this.arcs[index];
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see java.lang.Object#hashCode()
-   */
   @Override
   public int hashCode() {
     final int prime = 31;
@@ -122,11 +92,6 @@ public class ImmutableState extends State {
     return result;
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see java.lang.Object#equals(java.lang.Object)
-   */
   @Override
   public boolean equals(Object obj) {
     if (this == obj) {

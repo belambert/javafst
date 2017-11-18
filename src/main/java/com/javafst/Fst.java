@@ -387,11 +387,6 @@ public class Fst {
                   +  31 * ((semiring == null ? 0 : semiring.hashCode()))))));
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see java.lang.Object#toString()
-   */
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();

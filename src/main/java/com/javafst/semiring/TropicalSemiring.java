@@ -13,13 +13,6 @@ public class TropicalSemiring extends Semiring {
   // one value
   private static float one = 0.f;
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see
-   * com.javafst.weight.AbstractSemiring#Plus(com.javafst.weight
-   * .float, com.javafst.weight.float)
-   */
   @Override
   public float plus(float w1, float w2) {
     if (!isMember(w1) || !isMember(w2)) {
@@ -29,13 +22,6 @@ public class TropicalSemiring extends Semiring {
     return w1 < w2 ? w1 : w2;
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see
-   * com.javafst.weight.AbstractSemiring#Times(com.javafst.weight
-   * .float, com.javafst.weight.float)
-   */
   @Override
   public float times(float w1, float w2) {
     if (!isMember(w1) || !isMember(w2)) {
@@ -45,13 +31,6 @@ public class TropicalSemiring extends Semiring {
     return w1 + w2;
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see
-   * com.javafst.weight.AbstractSemiring#Divide(com.javafst.
-   * weight.float, com.javafst.weight.float)
-   */
   @Override
   public float divide(float w1, float w2) {
     if (!isMember(w1) || !isMember(w2)) {
@@ -67,44 +46,22 @@ public class TropicalSemiring extends Semiring {
     return w1 - w2;
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see com.javafst.weight.AbstractSemiring#zero()
-   */
   @Override
   public float zero() {
     return zero;
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see com.javafst.weight.AbstractSemiring#one()
-   */
   @Override
   public float one() {
     return one;
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see
-   * com.javafst.weight.AbstractSemiring#isMember(com.javafst
-   * .weight.float)
-   */
   @Override
   public boolean isMember(float w) {
     return (!Float.isNaN(w)) // not a NaN
         && (w != Float.NEGATIVE_INFINITY); // and different from -inf
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see com.javafst.semiring.Semiring#reverse(float)
-   */
   @Override
   public float reverse(float w1) {
     return w1;

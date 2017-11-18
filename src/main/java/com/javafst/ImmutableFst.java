@@ -49,41 +49,21 @@ public class ImmutableFst extends Fst {
     this.states = new ImmutableState[numStates];
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see com.javafst.Fst#getNumStates()
-   */
   @Override
   public int getNumStates() {
     return this.numStates;
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see com.javafst.Fst#getState(int)
-   */
   @Override
   public ImmutableState getState(int index) {
     return states[index];
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see com.javafst.Fst#addState(com.javafst.State)
-   */
   @Override
   public void addState(State state) {
     throw new IllegalArgumentException("You cannot modify an ImmutableFst.");
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see com.javafst.Fst#saveModel(java.lang.String)
-   */
   @Override
   public void saveModel(String filename) throws IOException {
     throw new IllegalArgumentException(
@@ -198,21 +178,11 @@ public class ImmutableFst extends Fst {
     return obj;
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see com.javafst.Fst#deleteState(com.javafst.State)
-   */
   @Override
   public void deleteState(State state) {
     throw new IllegalArgumentException("You cannot modify an ImmutableFst.");
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see com.javafst.Fst#toString()
-   */
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -228,15 +198,9 @@ public class ImmutableFst extends Fst {
         sb.append("    " + a + "\n");
       }
     }
-
     return sb.toString();
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see java.lang.Object#equals(java.lang.Object)
-   */
   @Override
   public boolean equals(Object obj) {
     if (this == obj) {

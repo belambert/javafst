@@ -26,11 +26,6 @@ public abstract class Semiring implements Serializable {
 
   public abstract boolean isMember(float w);
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see java.lang.Object#equals(java.lang.Object)
-   */
   @Override
   public boolean equals(Object obj) {
     if (this == obj) {
@@ -45,11 +40,6 @@ public abstract class Semiring implements Serializable {
     return true;
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see java.lang.Object#toString()
-   */
   @Override
   public String toString() {
     return this.getClass().toString();

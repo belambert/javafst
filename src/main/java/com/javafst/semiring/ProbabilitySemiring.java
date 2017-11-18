@@ -29,13 +29,6 @@ public class ProbabilitySemiring extends Semiring {
     return w1 + w2;
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see
-   * com.javafst.weight.AbstractSemiring#Times(com.javafst.weight
-   * .float, com.javafst.weight.float)
-   */
   @Override
   public float times(float w1, float w2) {
     if (!isMember(w1) || !isMember(w2)) {
@@ -45,57 +38,28 @@ public class ProbabilitySemiring extends Semiring {
     return w1 * w2;
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see
-   * com.javafst.weight.AbstractSemiring#Divide(com.javafst.
-   * weight.float, com.javafst.weight.float)
-   */
   @Override
   public float divide(float w1, float w2) {
     // TODO Auto-generated method stub
     return Float.NEGATIVE_INFINITY;
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see com.javafst.weight.AbstractSemiring#zero()
-   */
   @Override
   public float zero() {
     return zero;
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see com.javafst.weight.AbstractSemiring#one()
-   */
   @Override
   public float one() {
     return one;
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see
-   * com.javafst.weight.Semiring#isMember(com.javafst.weight
-   * .float)
-   */
   @Override
   public boolean isMember(float w) {
     return !Float.isNaN(w) // not a NaN,
         && (w >= 0); // and positive
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see com.javafst.semiring.Semiring#reverse(float)
-   */
   @Override
   public float reverse(float w1) {
     // TODO: ???
