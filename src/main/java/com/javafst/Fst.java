@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 
 /**
  * A mutable finite state transducer implementation.
@@ -23,6 +24,7 @@ import java.util.HashSet;
  */
 public class Fst {
 
+  // This is private, but not immutable.
   private ArrayList<State> states = null;
 
   // start state
@@ -115,7 +117,7 @@ public class Fst {
   public State getState(int index) {
     return states.get(index);
   }
-
+  
   /**
    * Adds a state to the fst.
    * 

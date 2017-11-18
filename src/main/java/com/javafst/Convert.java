@@ -11,7 +11,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.stream.Stream;
+
+// Lots of the IO here can be inlined.
+// Lots of finals.
+// regular "for" loops
+// Java8 IO "Files."
+
 
 /**
  * OpenFST text format I/O.
@@ -43,10 +52,7 @@ public class Convert {
    * @param filename          The openfst's fst.txt filename.
    */
   private static void exportFst(final Fst fst, final String filename) throws IOException {
-    FileWriter file;
-
-    file = new FileWriter(filename);
-    final PrintWriter out = new PrintWriter(file);
+    final PrintWriter out = new PrintWriter(new FileWriter(filename));
 
     // print start first
     final State start = fst.getStart();
@@ -93,16 +99,13 @@ public class Convert {
       return;
     }
 
-    final FileWriter file = new FileWriter(filename);
-    final PrintWriter out = new PrintWriter(file);
+    final PrintWriter out = new PrintWriter(new FileWriter(filename));
 
     for (int i = 0; i < syms.length; i++) {
       final String key = syms[i];
       out.println(key + "\t" + i);
     }
-
     out.close();
-
   }
 
   /**
@@ -115,26 +118,20 @@ public class Convert {
   private static HashMap<String, Integer> importSymbols(final String filename)
       throws NumberFormatException, IOException {
 
+    // This isn't a great way to signal the file isn't there...
     final File symfile = new File(filename);
     if (!(symfile.exists() && symfile.isFile())) {
       return null;
     }
 
-    final FileInputStream fis = new FileInputStream(filename); 
-    final DataInputStream dis = new DataInputStream(fis);
-    final BufferedReader br = new BufferedReader(new InputStreamReader(dis));
     final HashMap<String, Integer> syms = new HashMap<String, Integer>();
-    String strLine;
-
-    while ((strLine = br.readLine()) != null) {
-      final String[] tokens = strLine.split("\\t");
-      final String sym = tokens[0];
-      final Integer index = Integer.parseInt(tokens[1]);
-      syms.put(sym, index);
-
-    }
-    br.close();
-
+    
+    Stream<String> lines = Files.lines(Paths.get(filename));
+    lines.forEach(line -> {
+      final String[] tokens = line.split("\\t");
+      syms.put(tokens[0], Integer.parseInt(tokens[1]));
+    });
+    lines.close();
     return syms;
   }
 
@@ -152,14 +149,14 @@ public class Convert {
       throws NumberFormatException, IOException {
     final Fst fst = new Fst(semiring);
 
+    // Duplicated code here.
     HashMap<String, Integer> isyms = importSymbols(basename + ".input.syms");
     if (isyms == null) {
       isyms = new HashMap<String, Integer>();
       isyms.put("<eps>", 0);
     }
 
-    HashMap<String, Integer> osyms = importSymbols(basename
-        + ".output.syms");
+    HashMap<String, Integer> osyms = importSymbols(basename + ".output.syms");
     if (osyms == null) {
       osyms = new HashMap<String, Integer>();
       osyms.put("<eps>", 0);
@@ -170,7 +167,6 @@ public class Convert {
 
     // Parse input
     final FileInputStream fis = new FileInputStream(basename + ".fst.txt");
-
     final DataInputStream dis = new DataInputStream(fis);
     final BufferedReader br = new BufferedReader(new InputStreamReader(dis, "UTF-8"));
     boolean firstLine = true;
@@ -239,10 +235,8 @@ public class Convert {
       }
     }
     dis.close();
-
     fst.setIsyms(Utils.toStringArray(isyms));
     fst.setOsyms(Utils.toStringArray(osyms));
-
     return fst;
   }
 }
