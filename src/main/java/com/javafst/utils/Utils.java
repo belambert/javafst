@@ -12,10 +12,10 @@ public class Utils {
    * Searches an ArrayList of Strings starting from a specific position for a
    * pattern.
    * 
-   * @param src        the input ArrayList of Strings
-   * @param pattern    the pattern to search for
-   * @param start      the starting position
-   * @return           the index of the first occurrence or -1 if no matches found
+   * @param src        The input ArrayList of Strings.
+   * @param pattern    The pattern to search for.
+   * @param start      The starting position.
+   * @return           The index of the first occurrence or -1 if no matches found.
    */
   public static int search(ArrayList<String> src, ArrayList<String> pattern,
       int start) {
@@ -59,9 +59,9 @@ public class Utils {
    * 
    * <p>The search is case insensitive.
    * 
-   * @param strings the Strings array
-   * @param string the string to search
-   * @return the index of the first occurrence or -1 if no matches found
+   * @param strings      The Strings array.
+   * @param string       The string to search.
+   * @return             The index of the first occurrence or -1 if no matches found.
    */
   public static int getIndex(String[] strings, String string) {
     for (int i = 0; i < strings.length; i++) {
@@ -75,14 +75,10 @@ public class Utils {
   /**
    * Convert a HashMap to string array.
    * 
-   * @param syms the input HashMap
-   * @return the strings array
+   * @param syms             The input HashMap.
+   * @return                 The strings array.
    */
   public static String[] toStringArray(HashMap<String, Integer> syms) {
-    String[] res = new String[syms.size()];
-    for (String sym : syms.keySet()) {
-      res[syms.get(sym)] = sym;
-    }
-    return res;
+    return syms.keySet().toArray(new String[syms.size()]);
   }
 }

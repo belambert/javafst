@@ -1,6 +1,6 @@
 package com.javafst.utils;
 
-// TODO - can replace this with actual tuples...?
+// TODO - can replace this with actual Tuple class...
 
 /**
  * Pairs two elements.

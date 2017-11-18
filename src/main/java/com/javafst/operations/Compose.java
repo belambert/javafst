@@ -121,7 +121,7 @@ public class Compose {
     }
 
     if (!Arrays.equals(fst1.getOsyms(), fst2.getIsyms())) {
-      // symboltables do not match
+      // symbol tables do not match
       return null;
     }
 

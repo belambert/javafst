@@ -86,7 +86,7 @@ public class State {
   }
 
   /**
-   * Get the state's id.
+   * Get the state's integer id.
    * @return                  The state id.
    */
   public int getId() {

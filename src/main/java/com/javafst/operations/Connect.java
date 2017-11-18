@@ -92,7 +92,6 @@ public class Connect {
     }
     lastPathIndex = paths.size() - 1;
     accessible.add(start);
-
     return start;
   }
 
@@ -105,7 +104,6 @@ public class Connect {
       exploredArcs[stateId] = new ArrayList<Arc>();
     }
     exploredArcs[stateId].add(arc);
-
   }
 
   /**
@@ -147,21 +145,17 @@ public class Connect {
     HashSet<State> coaccessible = new HashSet<State>();
     @SuppressWarnings("unchecked")
     ArrayList<Arc>[] exploredArcs = new ArrayList[fst.getNumStates()];
-
     ArrayList<ArrayList<State>> paths = new ArrayList<ArrayList<State>>();
     paths.add(new ArrayList<State>());
-
     depthFirstSearch(fst, accessible, paths, exploredArcs, coaccessible);
 
     HashSet<State> toDelete = new HashSet<State>();
-
     for (int i = 0; i < fst.getNumStates(); i++) {
       State state = fst.getState(i);
       if (!(accessible.contains(state) || coaccessible.contains(state))) {
         toDelete.add(state);
       }
     }
-
     fst.deleteStates(toDelete);
   }
 }

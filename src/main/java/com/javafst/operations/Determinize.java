@@ -12,7 +12,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * Determize operation.
+ * Determinize operation.
  * 
  * <p>See: M. Mohri, "Finite-State Transducers in Language and Speech Processing",
  * Computational Linguistics, 23:2, 1997.
@@ -30,22 +30,17 @@ public class Determinize {
         break;
       }
     }
-
     if (res == null) {
       res = new Pair<State, Float>(state, zero);
       queue.add(res);
     }
-
     return res;
   }
 
-  private static ArrayList<Integer> getUniqueLabels(Fst fst,
-      ArrayList<Pair<State, Float>> pa) {
+  private static ArrayList<Integer> getUniqueLabels(Fst fst, ArrayList<Pair<State, Float>> pa) {
     ArrayList<Integer> res = new ArrayList<Integer>();
-
     for (Pair<State, Float> p : pa) {
       State state = p.getLeft();
-
       int numArcs = state.getNumArcs();
       for (int j = 0; j < numArcs; j++) {
         Arc arc = state.getArc(j);
@@ -60,7 +55,6 @@ public class Determinize {
   private static State getStateLabel(ArrayList<Pair<State, Float>> pa,
       HashMap<String, State> stateMapper) {
     StringBuilder sb = new StringBuilder();
-
     for (Pair<State, Float> p : pa) {
       if (sb.length() > 0) {
         sb.append(",");
@@ -79,12 +73,10 @@ public class Determinize {
    * @return the determinized fst
    */
   public static Fst get(Fst fst) {
-
     if (fst.getSemiring() == null) {
       // semiring not provided
       return null;
     }
-
     // initialize the queue and new fst
     Semiring semiring = fst.getSemiring();
     Fst res = new Fst(semiring);
@@ -124,7 +116,7 @@ public class Determinize {
           }
         }
 
-        // calc new states
+        // calculate new states
         // keep residual weights to variable forQueue
         ArrayList<Pair<State, Float>> forQueue = new ArrayList<Pair<State, Float>>();
         for (Pair<State, Float> ps : p) {
@@ -168,13 +160,11 @@ public class Determinize {
                 .getFinalWeight(), ps.getRight()));
           }
           qnew.setFinalWeight(fw);
-
           queue.add(forQueue);
         }
         pnew.addArc(new Arc(label, label, wnew, stateMapper.get(qnewid)));
       }
     }
-
     return res;
   }
 }

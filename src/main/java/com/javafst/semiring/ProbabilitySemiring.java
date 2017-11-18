@@ -2,7 +2,6 @@ package com.javafst.semiring;
 
 /**
  * Probability semiring implementation.
- * 
  */
 public class ProbabilitySemiring extends Semiring {
 
@@ -13,13 +12,6 @@ public class ProbabilitySemiring extends Semiring {
   // one value
   private static float one = 1.f;
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see
-   * com.javafst.weight.AbstractSemiring#Plus(com.javafst.weight
-   * .float, com.javafst.weight.float)
-   */
   @Override
   public float plus(float w1, float w2) {
     if (!isMember(w1) || !isMember(w2)) {

@@ -22,7 +22,7 @@ import java.util.PriorityQueue;
  * 
  * <p>See: M. Mohri,
  * "Semiring Framework and Algorithms for Shortest-Distance Problems", Journal
- * of Automata, Languages and Combinatorics, 7(3), pp. 321-350, 2002.
+ * of Automata, Languages and Combinatorics, 7(3), pages. 321-350, 2002.
  * 
  */
 public class NShortestPaths {
@@ -32,9 +32,8 @@ public class NShortestPaths {
   /**
    * Calculates the shortest distances from each state to the final.
    * 
-   * @param fst
-   *            the fst to calculate the shortest distances
-   * @return the array containing the shortest distances
+   * @param fst      The fst to calculate the shortest distances.
+   * @return         The array containing the shortest distances.
    */
   public static float[] shortestDistance(Fst fst) {
 
@@ -86,14 +85,11 @@ public class NShortestPaths {
   /**
    * Calculates the n-best shortest path from the initial to the final state.
    * 
-   * @param fst
-   *            the fst to calculate the nbest shortest paths
-   * @param n
-   *            number of best paths to return
-   * @param determinize
-   *            if true the input fst will bwe determinized prior the
-   *            operation
-   * @return an fst containing the n-best shortest paths
+   * @param fst          The fst to calculate the nbest shortest paths.
+   * @param n            Number of best paths to return.
+   * @param determinize  If true the input fst will be determinized prior the.
+   *                     operation.
+   * @return             An fst containing the n-best shortest paths.
    */
   public static Fst get(Fst fst, int n, boolean determinize) {
     if (fst == null) {
@@ -196,7 +192,6 @@ public class NShortestPaths {
         }
       }
     }
-
     return res;
   }
 }

@@ -10,3 +10,9 @@ with a small amount of clean-up, making it obey Google style checks, etc.
 - Lots of finals.
 - regular "for" loops
 - Java8 IO "Files."
+- Replace 'Pair' class with Tuple?
+- Use null less.
+
+Mutable/immutable distinction is a little weird.
+
+

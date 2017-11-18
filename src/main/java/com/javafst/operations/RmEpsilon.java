@@ -39,7 +39,6 @@ public class RmEpsilon {
     } else {
       put(fromState, toState, semiring.plus(weight, old), cl);
     }
-
   }
 
   /**
@@ -48,7 +47,6 @@ public class RmEpsilon {
   private static void calcClosure(Fst fst, State state,
       HashMap<State, Float>[] cl, Semiring semiring) {
     State s = state;
-
     float pathWeight;
     int numArcs = s.getNumArcs();
     for (int j = 0; j < numArcs; j++) {
@@ -79,7 +77,6 @@ public class RmEpsilon {
     if (cl[in.getId()] != null) {
       return cl[in.getId()].get(out);
     }
-
     return null;
   }
 
@@ -88,8 +85,8 @@ public class RmEpsilon {
    * 
    * <p>It return a new epsilon-free fst and does not modify the original fst
    * 
-   * @param fst the fst to remove epsilon transitions from
-   * @return the epsilon-free fst
+   * @param fst     The fst to remove epsilon transitions from.
+   * @return        The epsilon-free fst.
    */
   public static Fst get(Fst fst) {
     if (fst == null) {

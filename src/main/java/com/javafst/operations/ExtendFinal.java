@@ -12,13 +12,12 @@ import java.util.ArrayList;
  */
 public class ExtendFinal {
 
-  private ExtendFinal() {
-  }
+  private ExtendFinal() { }
 
   /**
    * Extends an Fst to a single final state.
    * 
-   * <p>It adds a new final state with a 0.0 (Semiring's 1) final wight and
+   * <p>It adds a new final state with a 0.0 (Semiring's 1) final weight and
    * connects the current final states to it using epsilon transitions with
    * weight equal to the original final state's weight.
    * 

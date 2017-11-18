@@ -10,30 +10,24 @@ import com.javafst.semiring.Semiring;
  */
 public class Reverse {
 
-  private Reverse() {
-  }
+  private Reverse() { }
 
   /**
    * Reverses an fst.
    * 
-   * @param fst the fst to reverse
-   * @return the reversed fst
+   * @param fst    The fst to reverse.
+   * @return       The reversed fst.
    */
   public static Fst get(Fst fst) {
     if (fst.getSemiring() == null) {
       return null;
     }
-
     ExtendFinal.apply(fst);
-
     Semiring semiring = fst.getSemiring();
-
     Fst res = new Fst(fst.getNumStates());
     res.setSemiring(semiring);
-
     res.setIsyms(fst.getOsyms());
     res.setOsyms(fst.getIsyms());
-
     State[] stateMap = new State[fst.getNumStates()];
     int numStates = fst.getNumStates();
     for (int i = 0; i < numStates; i++) {
