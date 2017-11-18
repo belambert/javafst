@@ -261,8 +261,7 @@ public class Fst {
    *            the caller.
    * @return Created FST.
    */
-  private static Fst readFst(ObjectInputStream in) throws IOException,
-  ClassNotFoundException {
+  private static Fst readFst(ObjectInputStream in) throws IOException, ClassNotFoundException {
     String[] is = readStringMap(in);
     String[] os = readStringMap(in);
     final int startid = in.readInt();
@@ -311,8 +310,7 @@ public class Fst {
    * @throws IOException             IO went wrong.
    * @throws ClassNotFoundException  If serialization went wrong.
    */
-  public static Fst loadModel(String filename) throws IOException,
-  ClassNotFoundException {
+  public static Fst loadModel(String filename) throws IOException, ClassNotFoundException {
     final long starttime = Calendar.getInstance().getTimeInMillis();
     final Fst obj;
 

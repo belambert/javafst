@@ -18,12 +18,12 @@ public class Project {
    * input label to its output label or vice versa.
    * 
    * @param fst fst to modify
-   * @param pType type of the projection
+   * @param projectType type of the projection
    */
-  public static void apply(Fst fst, ProjectType pType) {
-    if (pType == ProjectType.INPUT) {
+  public static void apply(Fst fst, ProjectType projectType) {
+    if (projectType == ProjectType.INPUT) {
       fst.setOsyms(fst.getIsyms());
-    } else if (pType == ProjectType.OUTPUT) {
+    } else if (projectType == ProjectType.OUTPUT) {
       fst.setIsyms(fst.getOsyms());
     }
 
@@ -35,9 +35,9 @@ public class Project {
           .getNumArcs();
       for (int j = 0; j < numArcs; j++) {
         Arc a = s.getArc(j);
-        if (pType == ProjectType.INPUT) {
+        if (projectType == ProjectType.INPUT) {
           a.setOlabel(a.getIlabel());
-        } else if (pType == ProjectType.OUTPUT) {
+        } else if (projectType == ProjectType.OUTPUT) {
           a.setIlabel(a.getOlabel());
         }
       }

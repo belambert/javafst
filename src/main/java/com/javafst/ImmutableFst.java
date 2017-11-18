@@ -91,7 +91,7 @@ public class ImmutableFst extends Fst {
   }
 
   /**
-   * Deserializes an ImmutableFst from an ObjectInputStream
+   * Deserializes an ImmutableFst from an ObjectInputStream.
    * 
    * @param in  The ObjectInputStream. It should be already be initialized by
    *            the caller.

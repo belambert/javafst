@@ -26,20 +26,20 @@ public class ExtendFinal {
    */
   public static void apply(Fst fst) {
     Semiring semiring = fst.getSemiring();
-    ArrayList<State> fStates = new ArrayList<State>();
+    ArrayList<State> finalStates = new ArrayList<State>();
 
     int numStates = fst.getNumStates();
     for (int i = 0; i < numStates; i++) {
       State s = fst.getState(i);
       if (s.getFinalWeight() != semiring.zero()) {
-        fStates.add(s);
+        finalStates.add(s);
       }
     }
 
     // Add a new single final
     State newFinal = new State(semiring.one());
     fst.addState(newFinal);
-    for (State s : fStates) {
+    for (State s : finalStates) {
       // add epsilon transition from the old final to the new one
       s.addArc(new Arc(0, 0, s.getFinalWeight(), newFinal));
       // set old state's weight to zero
