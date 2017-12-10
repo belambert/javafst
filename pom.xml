@@ -10,6 +10,7 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
+  <!-- Dependencies for testing -->
   <dependencies>
     <dependency>
       <groupId>org.hamcrest</groupId>
@@ -27,10 +28,8 @@
       <version>4.12</version>
     </dependency>
   </dependencies>
-
   <build>
     <plugins>
-
       <!-- Checkstyle -->
       <plugin>
 	<groupId>org.apache.maven.plugins</groupId>
@@ -52,7 +51,7 @@
           <linkXRef>false</linkXRef>
 	</configuration>
       </plugin>
-
+      <!-- Test coverage -->
       <plugin>
 	<groupId>org.jacoco</groupId>
 	<artifactId>jacoco-maven-plugin</artifactId>
@@ -72,10 +71,32 @@
 	  </execution>
 	</executions>
       </plugin>
- 
+      <!-- Javadoc -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.0.0</version>
+        <configuration>
+          <show>private</show>
+          <nohelp>true</nohelp>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
-  
+  <reporting>
+    <plugins>
+      <!-- Javadoc -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.0.0</version>
+        <configuration>
+          <show>public</show>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
+
 </project>
 
 
