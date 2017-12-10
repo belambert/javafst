@@ -13,8 +13,6 @@ import java.util.HashMap;
  */
 public class RmEpsilon {
 
-  private RmEpsilon() { }
-
   /**
    * Put a new state in the epsilon closure.
    */

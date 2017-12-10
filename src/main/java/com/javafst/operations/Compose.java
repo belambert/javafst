@@ -21,8 +21,6 @@ import java.util.Queue;
 
 public class Compose {
 
-  private Compose() { }
-
   /**
    * Computes the composition of two Fsts. Assuming no epsilon transitions.
    * 

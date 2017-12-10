@@ -26,8 +26,6 @@ import java.util.PriorityQueue;
  * 
  */
 public class NShortestPaths {
-  private NShortestPaths() {
-  }
 
   /**
    * Calculates the shortest distances from each state to the final.

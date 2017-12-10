@@ -10,8 +10,6 @@ import com.javafst.semiring.Semiring;
  */
 public class Reverse {
 
-  private Reverse() { }
-
   /**
    * Reverses an fst.
    * 

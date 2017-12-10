@@ -19,8 +19,6 @@ import java.util.Queue;
  */
 public class Determinize {
 
-  private Determinize() { }
-
   private static Pair<State, Float> getPair(
       ArrayList<Pair<State, Float>> queue, State state, Float zero) {
     Pair<State, Float> res = null;

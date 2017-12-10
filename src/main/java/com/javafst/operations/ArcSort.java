@@ -11,8 +11,6 @@ import java.util.Comparator;
  */
 public class ArcSort {
 
-  private ArcSort() { }
-
   /**
    * Applies the ArcSort on the provided fst. Sorting can be applied either on
    * input or output label based on the provided comparator.
