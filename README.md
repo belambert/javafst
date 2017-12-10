@@ -14,6 +14,59 @@ Automatically generated javadoc [here](https://belambert.github.io/javafst/).
 
 You might find [JOpenFst](https://github.com/steveash/jopenfst) to be useful too.
 
+
+Supported OpenFST operations
+============================
+
+<table border="0">
+<tr><td valign=top>
+
+| Operation | javafst |
+| ----------|---------|
+| ArcMap	|  |
+| ArcSort	| Y |
+| Closure	|  |
+| Compose	| Y |
+| Concat	|  |
+| Connect	| Y |
+| Decode	|  |
+| Determinize	| Y |
+| Difference	|  |
+| Disambiguate	|  |
+| Encode	|  |
+| EpsNormalize	|  |
+| Equal	|  |
+| Equivalent	|  |
+| Intersect	|  |
+| Invert	|  |
+| Isomorphic	|  |
+| Minimize	|  |
+
+</td><td valign=top>
+
+| Operation | javafst |
+| ----------|---------|
+| Project	| Y |
+| Prune	|  |
+| Push	|  |
+| RandEquivalent	|  |
+| RandGen	|  |
+| Relabel	|  |
+| Replace	|  |
+| Reverse	| Y |
+| Reweight	|  |
+| RmEpsilon	| Y |
+| ShortestDistance	|  |
+| ShortestPath	|  |
+| StateMap	|  |
+| Synchronize	|  |
+| TopSort	|  |
+| Union	|  |
+| Verify	|  |
+
+</td></tr> </table>
+
+
 TODO
 ====
 
