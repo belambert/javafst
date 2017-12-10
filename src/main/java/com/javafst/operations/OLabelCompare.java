@@ -10,7 +10,7 @@ import java.util.Comparator;
  */
 public class OLabelCompare implements Comparator<Arc> {
 
-  //@Override
+  @Override
   public int compare(Arc o1, Arc o2) {
     if (o1 == null) {
       return 1;
