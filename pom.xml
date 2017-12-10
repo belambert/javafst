@@ -7,6 +7,8 @@
   <description>Java implementation of OpenFST</description>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
   <dependencies>
     <dependency>
@@ -51,47 +53,26 @@
 	</configuration>
       </plugin>
 
-
-      <!-- Code test coverage -->
-      <!-- I'm not really sure how many of these I need or what they do -->
       <plugin>
 	<groupId>org.jacoco</groupId>
 	<artifactId>jacoco-maven-plugin</artifactId>
 	<version>0.7.9</version>
 	<executions>
-	  
 	  <execution>
-	    <id>default-prepare-agent</id>
 	    <goals>
 	      <goal>prepare-agent</goal>
 	    </goals>
 	  </execution>
-	  
 	  <execution>
-	    <id>default-report</id>
+	    <id>report</id>
+	    <phase>test</phase>
 	    <goals>
 	      <goal>report</goal>
 	    </goals>
 	  </execution>
-	  
-	  <execution>
-	    <id>default-check</id>
-	    <goals>
-	      <goal>check</goal>
-	    </goals>
-	  </execution>
-
-          <execution>
-            <id>report</id>
-            <phase>prepare-package</phase>
-            <goals>
-              <goal>report</goal>
-            </goals>
-          </execution>	  
-	  
 	</executions>
       </plugin>
-      
+ 
     </plugins>
   </build>
   
