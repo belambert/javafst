@@ -10,8 +10,9 @@ decided to finally give it another home here. I dont plan to make any major
 modifications, but I might hack on it a little here or there. Please feel free
 to make contributions.
 
-You might find [JOpenFst](https://github.com/steveash/jopenfst) to be even more
-useful.
+Automatically generated javadoc [here](https://belambert.github.io/javafst/).
+
+You might find [JOpenFst](https://github.com/steveash/jopenfst) to be useful too.
 
 TODO
 ====
