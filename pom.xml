@@ -72,12 +72,13 @@
 	</executions>
       </plugin>
       <!-- Javadoc -->
+      <!-- More options here: https://maven.apache.org/plugins/maven-javadoc-plugin/javadoc-mojo.html -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>3.0.0</version>
         <configuration>
-          <show>private</show>
+          <show>public</show>
           <nohelp>true</nohelp>
           <noqualifier>all</noqualifier>          
         </configuration>

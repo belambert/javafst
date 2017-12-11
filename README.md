@@ -81,3 +81,5 @@ could be done:
 - Replace 'Pair' class with Tuple?
 - Use null less.
 - The mutable/immutable distinction is a little weird.
+
+For reference you can find the C++ code [here](http://www.openfst.org/doxygen/fst/html).
