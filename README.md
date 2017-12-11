@@ -73,7 +73,6 @@ TODO
 The original code could be modernized in a number of ways, especially to take
 advantages of Java8 features.  Here is a short list of some of the things that
 could be done:
-
 - Lots of the IO statements can be inlined.
 - Lots of finals.
 - regular "for" loops
@@ -81,5 +80,10 @@ could be done:
 - Replace 'Pair' class with Tuple?
 - Use null less.
 - The mutable/immutable distinction is a little weird.
+
+Need tests, especially for:
+- Semirings
+- FST output
+- Immutable FSTs
 
 For reference you can find the C++ code [here](http://www.openfst.org/doxygen/fst/html).
