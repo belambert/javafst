@@ -10,9 +10,6 @@ import com.javafst.State;
  */
 public class Project {
 
-  private Project() {
-  }
-
   /**
    * Projects an fst onto its domain or range by either copying each arc's
    * input label to its output label or vice versa.

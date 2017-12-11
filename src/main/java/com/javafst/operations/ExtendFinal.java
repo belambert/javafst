@@ -12,8 +12,6 @@ import java.util.ArrayList;
  */
 public class ExtendFinal {
 
-  private ExtendFinal() { }
-
   /**
    * Extends an Fst to a single final state.
    * 
