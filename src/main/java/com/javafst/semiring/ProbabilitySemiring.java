@@ -32,8 +32,8 @@ public class ProbabilitySemiring extends Semiring {
 
   @Override
   public float divide(float w1, float w2) {
-    // TODO Auto-generated method stub
-    return Float.NEGATIVE_INFINITY;
+    // TODO Is this right?
+    return w1 / w2;
   }
 
   @Override
