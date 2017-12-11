@@ -1,6 +1,9 @@
 package com.javafst;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+
+import com.javafst.semiring.Semiring;
 
 // Probably don't need this as is anymore...?
 
@@ -40,6 +43,15 @@ public class ImmutableFst extends Fst {
     super(0);
     this.numStates = numStates;
     this.states = new ImmutableState[numStates];
+  }
+
+  public ImmutableFst(State start, String[] isyms, String[] osyms, Semiring semiring) {
+    //states = Arrays.toArray(new ArrayList<ImmutableState>());
+    this.states = new ImmutableState[0];
+    this.start = start;
+    this.isyms = isyms;
+    this.osyms = osyms;
+    this.semiring = semiring;
   }
 
   @Override
