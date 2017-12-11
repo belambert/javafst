@@ -121,14 +121,14 @@ public class ArcSortTest {
     Fst fst1 = createUnsorted();
     Fst fst2 = createIsorted();
     assertThat(fst1, not(equalTo(fst2)));
-    apply(fst1, new ILabelCompare());
+    ArcSort.apply(fst1, new ILabelCompare());
     assertThat(fst1, equalTo(fst2));
 
     // Output label sort test
     fst1 = createUnsorted();
     fst2 = createOsorted();
     assertThat(fst1, not(equalTo(fst2)));
-    apply(fst1, new OLabelCompare());
+    ArcSort.apply(fst1, new OLabelCompare());
     assertThat(fst1, equalTo(fst2));
   }
 
