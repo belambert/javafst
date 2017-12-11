@@ -44,6 +44,9 @@ public class ComposeTest {
     assertNull(Compose.get(fstA, null, sr));
     assertNull(Compose.get(null, fstB, sr));
 
+    fstB.setStart(null);
+    assertNull(Compose.get(fstA, fstB, sr));  // the other way around throws an exception
+
     // Mangle fstB:
     fstB.setIsyms(new String[]{"blah", "hey", "yo"});
     assertNull(Compose.get(fstA, fstB, sr));
