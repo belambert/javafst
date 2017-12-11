@@ -3,6 +3,7 @@ package com.javafst.operations;
 import static com.javafst.Convert.importFst;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,5 +33,8 @@ public class RmEpsilonTest {
     Fst rmEpsilon = RmEpsilon.get(fst);
     // Not quite working either...
     //assertThat(fstRmEps, equalTo(rmEpsilon));
+    assertNull(RmEpsilon.get(null));
+    fst.setSemiring(null);
+    assertNull(RmEpsilon.get(fst));
   }
 }

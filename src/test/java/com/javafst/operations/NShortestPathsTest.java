@@ -3,6 +3,7 @@ package com.javafst.operations;
 import static com.javafst.Convert.importFst;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,5 +32,12 @@ public class NShortestPathsTest {
 
     Fst fstNsp = NShortestPaths.get(fst, 6, true);
     assertThat(nsp, equalTo(fstNsp));
+
+    fstNsp = NShortestPaths.get(fst, 6, false);
+    assertThat(nsp, equalTo(fstNsp));
+    assertNull(NShortestPaths.get(null, 6, true));
+
+    fst.setSemiring(null);
+    assertNull(NShortestPaths.get(fst, 6, true));
   }
 }

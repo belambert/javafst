@@ -3,6 +3,7 @@ package com.javafst.operations;
 import static com.javafst.Convert.importFst;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,5 +33,8 @@ public class DeterminizeTest {
     Fst determinized = importFst(path, new TropicalSemiring());
     Fst fstDeterminized = Determinize.get(fstA);
     assertThat(fstDeterminized, equalTo(determinized));
+
+    fstA.setSemiring(null);
+    assertNull(Determinize.get(fstA));
   }
 }

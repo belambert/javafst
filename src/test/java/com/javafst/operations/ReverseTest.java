@@ -3,6 +3,7 @@ package com.javafst.operations;
 import static com.javafst.Convert.importFst;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,6 +33,9 @@ public class ReverseTest {
     Fst fstReversed = Reverse.get(fst);
     // TODO - this is failing
     //assertThat(fstB, equalTo(fstReversed));
+
+    fst.setSemiring(null);
+    assertNull(Reverse.get(fst));
   }
 
 }

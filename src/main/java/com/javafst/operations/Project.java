@@ -20,7 +20,8 @@ public class Project {
   public static void apply(Fst fst, ProjectType projectType) {
     if (projectType == ProjectType.INPUT) {
       fst.setOsyms(fst.getIsyms());
-    } else if (projectType == ProjectType.OUTPUT) {
+    } else {
+      assert(projectType == ProjectType.OUTPUT);
       fst.setIsyms(fst.getOsyms());
     }
 
@@ -34,7 +35,8 @@ public class Project {
         Arc a = s.getArc(j);
         if (projectType == ProjectType.INPUT) {
           a.setOlabel(a.getIlabel());
-        } else if (projectType == ProjectType.OUTPUT) {
+        } else {
+          assert(projectType == ProjectType.OUTPUT);
           a.setIlabel(a.getOlabel());
         }
       }
