@@ -16,11 +16,11 @@ public class Connect {
    * Calculates the co-accessible states of an fst.
    */
   private static void calcCoAccessible(final Fst fst, final State state,
-      ArrayList<ArrayList<State>> paths, HashSet<State> coaccessible) {
+      final ArrayList<ArrayList<State>> paths, final HashSet<State> coaccessible) {
     // hold the co-accessible added in this loop
-    ArrayList<State> newCoAccessibles = new ArrayList<State>();
+    final ArrayList<State> newCoAccessibles = new ArrayList<State>();
     for (ArrayList<State> path : paths) {
-      int index = path.lastIndexOf(state);
+      final int index = path.lastIndexOf(state);
       if (index != -1) {
         if (state.getFinalWeight() != fst.getSemiring().zero()
             || coaccessible.contains(state)) {
@@ -35,7 +35,7 @@ public class Connect {
     }
 
     // run again for the new co-accessibles
-    for (State s : newCoAccessibles) {
+    for (final State s : newCoAccessibles) {
       calcCoAccessible(fst, s, paths, coaccessible);
     }
   }
@@ -44,15 +44,15 @@ public class Connect {
    * Copies a path.
    */
   private static void duplicatePath(final int lastPathIndex, final State fromState,
-      State toState, ArrayList<ArrayList<State>> paths) {
-    ArrayList<State> lastPath = paths.get(lastPathIndex);
+      final State toState, final ArrayList<ArrayList<State>> paths) {
+    final ArrayList<State> lastPath = paths.get(lastPathIndex);
     // copy the last path to a new one, from start to current state
-    int fromIndex = lastPath.indexOf(fromState);
+    final int fromIndex = lastPath.indexOf(fromState);
     int toIndex = lastPath.indexOf(toState);
     if (toIndex == -1) {
       toIndex = lastPath.size() - 1;
     }
-    ArrayList<State> newPath = new ArrayList<State>(lastPath.subList(
+    final ArrayList<State> newPath = new ArrayList<State>(lastPath.subList(
         fromIndex, toIndex));
     paths.add(newPath);
   }
@@ -61,17 +61,16 @@ public class Connect {
    * The depth first search recursion.
    */
   private static State depthFirstSearchNext(final Fst fst, final State start,
-      ArrayList<ArrayList<State>> paths, ArrayList<Arc>[] exploredArcs,
-      HashSet<State> accessible) {
+      final ArrayList<ArrayList<State>> paths, final ArrayList<Arc>[] exploredArcs,
+      final HashSet<State> accessible) {
     int lastPathIndex = paths.size() - 1;
 
-    ArrayList<Arc> currentExploredArcs = exploredArcs[start.getId()];
+    final ArrayList<Arc> currentExploredArcs = exploredArcs[start.getId()];
     paths.get(lastPathIndex).add(start);
     if (start.getNumArcs() != 0) {
       int arcCount = 0;
-      int numArcs = start.getNumArcs();
-      for (int j = 0; j < numArcs; j++) {
-        Arc arc = start.getArc(j);
+      for (int j = 0; j < start.getNumArcs(); j++) {
+        final Arc arc = start.getArc(j);
         if ((currentExploredArcs == null)
             || !currentExploredArcs.contains(arc)) {
           lastPathIndex = paths.size() - 1;
@@ -81,7 +80,7 @@ public class Connect {
             lastPathIndex = paths.size() - 1;
             paths.get(lastPathIndex).add(start);
           }
-          State next = arc.getNextState();
+          final State next = arc.getNextState();
           addExploredArc(start.getId(), arc, exploredArcs);
           // detect self loops
           if (next.getId() != start.getId()) {
@@ -112,7 +111,7 @@ public class Connect {
   private static void depthFirstSearch(final Fst fst, final HashSet<State> accessible,
       final ArrayList<ArrayList<State>> paths, final ArrayList<Arc>[] exploredArcs,
       final HashSet<State> coaccessible) {
-    State currentState = fst.getStart();
+    final State currentState = fst.getStart();
     State nextState = currentState;
     do {
       if (!accessible.contains(currentState)) {
@@ -120,9 +119,8 @@ public class Connect {
             accessible);
       }
     } while (currentState.getId() != nextState.getId());
-    int numStates = fst.getNumStates();
-    for (int i = 0; i < numStates; i++) {
-      State state = fst.getState(i);
+    for (int i = 0; i < fst.getNumStates(); i++) {
+      final State state = fst.getState(i);
       if (state.getFinalWeight() != fst.getSemiring().zero()) {
         calcCoAccessible(fst, state, paths, coaccessible);
       }
@@ -135,23 +133,23 @@ public class Connect {
    * @param fst the fst to trim
    */
   public static void apply(final Fst fst) {
-    Semiring semiring = fst.getSemiring();
+    final Semiring semiring = fst.getSemiring();
     if (semiring == null) {
       System.out.println("Fst has no semiring.");
       return;
     }
 
-    HashSet<State> accessible = new HashSet<State>();
-    HashSet<State> coaccessible = new HashSet<State>();
+    final HashSet<State> accessible = new HashSet<State>();
+    final HashSet<State> coaccessible = new HashSet<State>();
     @SuppressWarnings("unchecked")
-    ArrayList<Arc>[] exploredArcs = new ArrayList[fst.getNumStates()];
-    ArrayList<ArrayList<State>> paths = new ArrayList<ArrayList<State>>();
+    final ArrayList<Arc>[] exploredArcs = new ArrayList[fst.getNumStates()];
+    final ArrayList<ArrayList<State>> paths = new ArrayList<ArrayList<State>>();
     paths.add(new ArrayList<State>());
     depthFirstSearch(fst, accessible, paths, exploredArcs, coaccessible);
 
-    HashSet<State> toDelete = new HashSet<State>();
+    final HashSet<State> toDelete = new HashSet<State>();
     for (int i = 0; i < fst.getNumStates(); i++) {
-      State state = fst.getState(i);
+      final State state = fst.getState(i);
       if (!(accessible.contains(state) || coaccessible.contains(state))) {
         toDelete.add(state);
       }

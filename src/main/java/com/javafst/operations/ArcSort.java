@@ -23,8 +23,7 @@ public class ArcSort {
    */
   public static void apply(final Fst fst, final Comparator<Arc> cmp) {
     for (int i = 0; i < fst.getNumStates(); i++) {
-      State s = fst.getState(i);
-      s.arcSort(cmp);
+      fst.getState(i).arcSort(cmp);
     }
   }
 }

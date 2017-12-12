@@ -22,7 +22,7 @@ public class Determinize {
   private static Pair<State, Float> getPair(
       final ArrayList<Pair<State, Float>> queue, final State state, final Float zero) {
     Pair<State, Float> res = null;
-    for (Pair<State, Float> tmp : queue) {
+    for (final Pair<State, Float> tmp : queue) {
       if (state.getId() == tmp.getLeft().getId()) {
         res = tmp;
         break;
@@ -36,12 +36,11 @@ public class Determinize {
   }
 
   private static ArrayList<Integer> getUniqueLabels(final Fst fst, final ArrayList<Pair<State, Float>> pa) {
-    ArrayList<Integer> res = new ArrayList<Integer>();
+    final ArrayList<Integer> res = new ArrayList<Integer>();
     for (Pair<State, Float> p : pa) {
-      State state = p.getLeft();
-      int numArcs = state.getNumArcs();
-      for (int j = 0; j < numArcs; j++) {
-        Arc arc = state.getArc(j);
+      final State state = p.getLeft();
+      for (int j = 0; j < state.getNumArcs(); j++) {
+        final Arc arc = state.getArc(j);
         if (!res.contains(arc.getIlabel())) {
           res.add(arc.getIlabel());
         }
@@ -52,8 +51,8 @@ public class Determinize {
 
   private static State getStateLabel(final ArrayList<Pair<State, Float>> pa,
       final HashMap<String, State> stateMapper) {
-    StringBuilder sb = new StringBuilder();
-    for (Pair<State, Float> p : pa) {
+    final StringBuilder sb = new StringBuilder();
+    for (final Pair<State, Float> p : pa) {
       if (sb.length() > 0) {
         sb.append(",");
       }
@@ -76,13 +75,13 @@ public class Determinize {
       return null;
     }
     // initialize the queue and new fst
-    Semiring semiring = fst.getSemiring();
-    Fst res = new Fst(semiring);
+    final Semiring semiring = fst.getSemiring();
+    final Fst res = new Fst(semiring);
     res.setIsyms(fst.getIsyms());
     res.setOsyms(fst.getOsyms());
 
     // stores the queue (item in index 0 is next)
-    Queue<ArrayList<Pair<State, Float>>> queue = new LinkedList<ArrayList<Pair<State, Float>>>();
+    final Queue<ArrayList<Pair<State, Float>>> queue = new LinkedList<ArrayList<Pair<State, Float>>>();
 
     final HashMap<String, State> stateMapper = new HashMap<String, State>();
 
@@ -95,18 +94,17 @@ public class Determinize {
     res.setStart(s);
 
     while (!queue.isEmpty()) {
-      ArrayList<Pair<State, Float>> p = queue.remove();
-      State pnew = getStateLabel(p, stateMapper);
-      ArrayList<Integer> labels = getUniqueLabels(fst, p);
-      for (int label : labels) {
+      final ArrayList<Pair<State, Float>> p = queue.remove();
+      final State pnew = getStateLabel(p, stateMapper);
+      final ArrayList<Integer> labels = getUniqueLabels(fst, p);
+      for (final int label : labels) {
         Float wnew = semiring.zero();
         // calc w'
-        for (Pair<State, Float> ps : p) {
-          State old = ps.getLeft();
-          Float u = ps.getRight();
-          int numArcs = old.getNumArcs();
-          for (int j = 0; j < numArcs; j++) {
-            Arc arc = old.getArc(j);
+        for (final Pair<State, Float> ps : p) {
+          final State old = ps.getLeft();
+          final Float u = ps.getRight();
+          for (int j = 0; j < old.getNumArcs(); j++) {
+            final Arc arc = old.getArc(j);
             if (label == arc.getIlabel()) {
               wnew = semiring.plus(wnew,
                   semiring.times(u, arc.getWeight()));
@@ -116,17 +114,16 @@ public class Determinize {
 
         // calculate new states
         // keep residual weights to variable forQueue
-        ArrayList<Pair<State, Float>> forQueue = new ArrayList<Pair<State, Float>>();
-        for (Pair<State, Float> ps : p) {
-          State old = ps.getLeft();
-          Float u = ps.getRight();
-          Float wnewRevert = semiring.divide(semiring.one(), wnew);
-          int numArcs = old.getNumArcs();
-          for (int j = 0; j < numArcs; j++) {
-            Arc arc = old.getArc(j);
+        final ArrayList<Pair<State, Float>> forQueue = new ArrayList<Pair<State, Float>>();
+        for (final Pair<State, Float> ps : p) {
+          final State old = ps.getLeft();
+          final Float u = ps.getRight();
+          final Float wnewRevert = semiring.divide(semiring.one(), wnew);
+          for (int j = 0; j < old.getNumArcs(); j++) {
+            final Arc arc = old.getArc(j);
             if (label == arc.getIlabel()) {
-              State oldstate = arc.getNextState();
-              Pair<State, Float> pair = getPair(forQueue,
+              final State oldstate = arc.getNextState();
+              final Pair<State, Float> pair = getPair(forQueue,
                   oldstate, semiring.zero());
               pair.setRight(semiring.plus(
                   pair.getRight(),
@@ -138,9 +135,9 @@ public class Determinize {
 
         // build new state's id and new elements for queue
         String qnewid = "";
-        for (Pair<State, Float> ps : forQueue) {
-          State old = ps.getLeft();
-          Float unew = ps.getRight();
+        for (final Pair<State, Float> ps : forQueue) {
+          final State old = ps.getLeft();
+          final Float unew = ps.getRight();
           if (!qnewid.equals("")) {
             qnewid = qnewid + ",";
           }

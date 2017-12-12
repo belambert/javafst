@@ -65,19 +65,18 @@ public class Compose {
       s1 = p.getLeft();
       s2 = p.getRight();
       s = stateMap.get(p);
-      int numArcs1 = s1.getNumArcs();
       int numArcs2 = s2.getNumArcs();
-      for (int i = 0; i < numArcs1; i++) {
-        Arc a1 = s1.getArc(i);
+      for (int i = 0; i < s1.getNumArcs(); i++) {
+        final Arc a1 = s1.getArc(i);
         for (int j = 0; j < numArcs2; j++) {
-          Arc a2 = s2.getArc(j);
+          final Arc a2 = s2.getArc(j);
           if (sorted && a1.getOlabel() < a2.getIlabel()) {
             break;
           }
           if (a1.getOlabel() == a2.getIlabel()) {
-            State nextState1 = a1.getNextState();
-            State nextState2 = a2.getNextState();
-            Pair<State, State> nextPair = new Pair<State, State>(
+            final State nextState1 = a1.getNextState();
+            final State nextState2 = a2.getNextState();
+            final Pair<State, State> nextPair = new Pair<State, State>(
                 nextState1, nextState2);
             State nextState = stateMap.get(nextPair);
             if (nextState == null) {
@@ -122,13 +121,12 @@ public class Compose {
       return null;
     }
 
-    Fst filter = getFilter(fst1.getOsyms(), semiring);
+    final Fst filter = getFilter(fst1.getOsyms(), semiring);
     augment(1, fst1, semiring);
     augment(0, fst2, semiring);
 
-    Fst tmp = Compose.compose(fst1, filter, semiring, false);
-
-    Fst res = Compose.compose(tmp, fst2, semiring, false);
+    final Fst tmp = Compose.compose(fst1, filter, semiring, false);
+    final Fst res = Compose.compose(tmp, fst2, semiring, false);
 
     // Why is/was this commented out?
     // It causes the Compose test to fail.
@@ -158,11 +156,11 @@ public class Compose {
     filter.setOsyms(syms);
 
     // State 0
-    State s0 = new State(syms.length + 3);
+    final State s0 = new State(syms.length + 3);
     s0.setFinalWeight(semiring.one());
-    State s1 = new State(syms.length);
+    final State s1 = new State(syms.length);
     s1.setFinalWeight(semiring.one());
-    State s2 = new State(syms.length);
+    final State s2 = new State(syms.length);
     s2.setFinalWeight(semiring.one());
     filter.addState(s0);
     s0.addArc(new Arc(e2index, e1index, semiring.one(), s0));
@@ -209,23 +207,22 @@ public class Compose {
     // label: 0->augment on ilabel
     // 1->augment on olabel
 
-    String[] isyms = fst.getIsyms();
-    String[] osyms = fst.getOsyms();
+    final String[] isyms = fst.getIsyms();
+    final String[] osyms = fst.getOsyms();
 
-    int e1inputIndex = isyms.length;
-    int e2inputIndex = isyms.length + 1;
+    final int e1inputIndex = isyms.length;
+    final int e2inputIndex = isyms.length + 1;
 
-    int e1outputIndex = osyms.length;
-    int e2outputIndex = osyms.length + 1;
+    final int e1outputIndex = osyms.length;
+    final int e2outputIndex = osyms.length + 1;
 
-    int numStates = fst.getNumStates();
-    for (int i = 0; i < numStates; i++) {
-      State s = fst.getState(i);
+    for (int i = 0; i < fst.getNumStates(); i++) {
+      final State s = fst.getState(i);
       // Immutable fsts hold an additional (null) arc for augmention
-      int numArcs = (fst instanceof ImmutableFst) ? s.getNumArcs() - 1
+      final int numArcs = (fst instanceof ImmutableFst) ? s.getNumArcs() - 1
           : s.getNumArcs();
       for (int j = 0; j < numArcs; j++) {
-        Arc a = s.getArc(j);
+        final Arc a = s.getArc(j);
         if ((label == 1) && (a.getOlabel() == 0)) {
           a.setOlabel(e2outputIndex);
         } else if ((label == 0) && (a.getIlabel() == 0)) {

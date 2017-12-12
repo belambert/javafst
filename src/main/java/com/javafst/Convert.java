@@ -16,9 +16,7 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.stream.Stream;
 
-// Lots of the IO here can be inlined.
-// Lots of finals.
-// regular "for" loops
+// regular "for" loops, for iterating over states.
 // Java8 IO "Files."
 
 
@@ -59,7 +57,7 @@ public class Convert {
     out.println(start.getId() + "\t" + start.getFinalWeight());
 
     // print all states
-    int numStates = fst.getNumStates();
+    final int numStates = fst.getNumStates();
     for (int i = 0; i < numStates; i++) {
       final State s = fst.getState(i);
       if (s.getId() != fst.getStart().getId()) {
@@ -69,7 +67,6 @@ public class Convert {
 
     final String[] isyms = fst.getIsyms();
     final String[] osyms = fst.getOsyms();
-    numStates = fst.getNumStates();
     for (int i = 0; i < numStates; i++) {
       final State s = fst.getState(i);
       final int numArcs = s.getNumArcs();
@@ -118,7 +115,7 @@ public class Convert {
   private static HashMap<String, Integer> importSymbols(final String filename)
       throws NumberFormatException, IOException {
 
-    // This isn't a great way to signal the file isn't there...
+    // TODO - This isn't a great way to signal the file isn't there...
     final File symfile = new File(filename);
     if (!(symfile.exists() && symfile.isFile())) {
       return null;
@@ -126,7 +123,7 @@ public class Convert {
 
     final HashMap<String, Integer> syms = new HashMap<String, Integer>();
     
-    Stream<String> lines = Files.lines(Paths.get(filename));
+    final Stream<String> lines = Files.lines(Paths.get(filename));
     lines.forEach(line -> {
       final String[] tokens = line.split("\\t");
       syms.put(tokens[0], Integer.parseInt(tokens[1]));
@@ -149,7 +146,7 @@ public class Convert {
       throws NumberFormatException, IOException {
     final Fst fst = new Fst(semiring);
 
-    // Duplicated code here.
+    // TODO - Duplicated code here.
     HashMap<String, Integer> isyms = importSymbols(basename + ".input.syms");
     if (isyms == null) {
       isyms = new HashMap<String, Integer>();
@@ -166,6 +163,7 @@ public class Convert {
         + ".states.syms");
 
     // Parse input
+    // TODO - Streamline this a little.
     final FileInputStream fis = new FileInputStream(basename + ".fst.txt");
     final DataInputStream dis = new DataInputStream(fis);
     final BufferedReader br = new BufferedReader(new InputStreamReader(dis, "UTF-8"));
@@ -175,7 +173,7 @@ public class Convert {
 
     while ((strLine = br.readLine()) != null) {
       final String[] tokens = strLine.split("\\t");
-      Integer inputStateId;
+      final Integer inputStateId;
       if (ssyms == null) {
         inputStateId = Integer.parseInt(tokens[0]);
       } else {
@@ -194,7 +192,7 @@ public class Convert {
       }
 
       if (tokens.length > 2) {
-        Integer nextStateId;
+        final Integer nextStateId;
         if (ssyms == null) {
           nextStateId = Integer.parseInt(tokens[1]);
         } else {
@@ -217,7 +215,7 @@ public class Convert {
         }
         final int oLabel = osyms.get(tokens[3]);
 
-        float arcWeight;
+        final float arcWeight;
         if (tokens.length > 4) {
           arcWeight = Float.parseFloat(tokens[4]);
         } else {

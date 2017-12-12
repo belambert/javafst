@@ -60,7 +60,7 @@ public class Pair<L, R> {
       return false;
     }
     @SuppressWarnings("unchecked")
-    Pair<L,R> other = (Pair<L,R>) obj;
+    final Pair<L,R> other = (Pair<L,R>) obj;
     if (!left.equals(other.left)) {
       return false;
     }

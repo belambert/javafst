@@ -25,14 +25,13 @@ public class Project {
       fst.setIsyms(fst.getOsyms());
     }
 
-    int numStates = fst.getNumStates();
-    for (int i = 0; i < numStates; i++) {
-      State s = fst.getState(i);
+    for (int i = 0; i < fst.getNumStates(); i++) {
+      final State s = fst.getState(i);
       // Immutable fsts hold an additional (null) arc
-      int numArcs = (fst instanceof ImmutableFst) ? s.getNumArcs() - 1 : s
+      final int numArcs = (fst instanceof ImmutableFst) ? s.getNumArcs() - 1 : s
           .getNumArcs();
       for (int j = 0; j < numArcs; j++) {
-        Arc a = s.getArc(j);
+        final Arc a = s.getArc(j);
         if (projectType == ProjectType.INPUT) {
           a.setOlabel(a.getIlabel());
         } else {

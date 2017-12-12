@@ -35,17 +35,17 @@ public class NShortestPaths {
    */
   public static float[] shortestDistance(final Fst fst) {
 
-    Fst reversed = Reverse.get(fst);
+    final Fst reversed = Reverse.get(fst);
 
-    float[] d = new float[reversed.getNumStates()];
-    float[] r = new float[reversed.getNumStates()];
+    final float[] d = new float[reversed.getNumStates()];
+    final float[] r = new float[reversed.getNumStates()];
 
-    Semiring semiring = reversed.getSemiring();
+    final Semiring semiring = reversed.getSemiring();
 
     Arrays.fill(d, semiring.zero());
     Arrays.fill(r, semiring.zero());
 
-    LinkedHashSet<State> queue = new LinkedHashSet<State>();
+    final LinkedHashSet<State> queue = new LinkedHashSet<State>();
 
     queue.add(reversed.getStart());
 
@@ -53,17 +53,17 @@ public class NShortestPaths {
     r[reversed.getStart().getId()] = semiring.one();
 
     while (!queue.isEmpty()) {
-      State q = queue.iterator().next();
+      final State q = queue.iterator().next();
       queue.remove(q);
 
-      float rnew = r[q.getId()];
+      final float rnew = r[q.getId()];
       r[q.getId()] = semiring.zero();
 
       for (int i = 0; i < q.getNumArcs(); i++) {
-        Arc a = q.getArc(i);
-        State nextState = a.getNextState();
-        float dnext = d[a.getNextState().getId()];
-        float dnextnew = semiring.plus(dnext,
+        final Arc a = q.getArc(i);
+        final State nextState = a.getNextState();
+        final float dnext = d[a.getNextState().getId()];
+        final float dnextnew = semiring.plus(dnext,
             semiring.times(rnew, a.getWeight()));
         if (dnext != dnextnew) {
           d[a.getNextState().getId()] = dnextnew;
@@ -102,7 +102,7 @@ public class NShortestPaths {
       fstdet = Determinize.get(fst);
     }
     final Semiring semiring = fstdet.getSemiring();
-    Fst res = new Fst(semiring);
+    final Fst res = new Fst(semiring);
     res.setIsyms(fstdet.getIsyms());
     res.setOsyms(fstdet.getOsyms());
 
@@ -110,22 +110,22 @@ public class NShortestPaths {
 
     ExtendFinal.apply(fstdet);
 
-    int[] r = new int[fstdet.getNumStates()];
+    final int[] r = new int[fstdet.getNumStates()];
 
-    PriorityQueue<Pair<State, Float>> queue = new PriorityQueue<Pair<State, Float>>(
+    final PriorityQueue<Pair<State, Float>> queue = new PriorityQueue<Pair<State, Float>>(
         10, new Comparator<Pair<State, Float>>() {
 
           @Override
           public int compare(Pair<State, Float> o1,
               Pair<State, Float> o2) {
-            float previous = o1.getRight();
-            float d1 = d[o1.getLeft().getId()];
+            final float previous = o1.getRight();
+            final float d1 = d[o1.getLeft().getId()];
 
-            float next = o2.getRight();
-            float d2 = d[o2.getLeft().getId()];
+            final float next = o2.getRight();
+            final float d2 = d[o2.getLeft().getId()];
 
-            float a1 = semiring.times(next, d2);
-            float a2 = semiring.times(previous, d1);
+            final float a1 = semiring.times(next, d2);
+            final float a2 = semiring.times(previous, d1);
 
             if (semiring.naturalLess(a1, a2)) {
               return 1;
@@ -138,22 +138,22 @@ public class NShortestPaths {
           }
         });
 
-    HashMap<Pair<State, Float>, Pair<State, Float>> previous = 
+    final HashMap<Pair<State, Float>, Pair<State, Float>> previous = 
         new HashMap<Pair<State, Float>, Pair<State, Float>>(fst.getNumStates());
-    HashMap<Pair<State, Float>, State> stateMap = new HashMap<Pair<State, Float>, State>(
+    final HashMap<Pair<State, Float>, State> stateMap = new HashMap<Pair<State, Float>, State>(
         fst.getNumStates());
 
-    State start = fstdet.getStart();
-    Pair<State, Float> item = new Pair<State, Float>(start, semiring.one());
+    final State start = fstdet.getStart();
+    final Pair<State, Float> item = new Pair<State, Float>(start, semiring.one());
     queue.add(item);
     previous.put(item, null);
 
     while (!queue.isEmpty()) {
-      Pair<State, Float> pair = queue.remove();
-      State p = pair.getLeft();
-      Float c = pair.getRight();
+      final Pair<State, Float> pair = queue.remove();
+      final State p = pair.getLeft();
+      final Float c = pair.getRight();
 
-      State s = new State(p.getFinalWeight());
+      final State s = new State(p.getFinalWeight());
       res.addState(s);
       stateMap.put(pair, s);
       if (previous.get(pair) == null) {
@@ -161,10 +161,10 @@ public class NShortestPaths {
         res.setStart(s);
       } else {
         // add the incoming arc from previous to current
-        State previouState = stateMap.get(previous.get(pair));
-        State previousOldState = previous.get(pair).getLeft();
+        final State previouState = stateMap.get(previous.get(pair));
+        final State previousOldState = previous.get(pair).getLeft();
         for (int j = 0; j < previousOldState.getNumArcs(); j++) {
-          Arc a = previousOldState.getArc(j);
+          final Arc a = previousOldState.getArc(j);
           if (a.getNextState().equals(p)) {
             previouState.addArc(new Arc(a.getIlabel(), a
                 .getOlabel(), a.getWeight(), s));
@@ -172,7 +172,7 @@ public class NShortestPaths {
         }
       }
 
-      Integer stateIndex = p.getId();
+      final Integer stateIndex = p.getId();
       r[stateIndex]++;
 
       if ((r[stateIndex] == n) && (p.getFinalWeight() != semiring.zero())) {
@@ -181,9 +181,9 @@ public class NShortestPaths {
 
       if (r[stateIndex] <= n) {
         for (int j = 0; j < p.getNumArcs(); j++) {
-          Arc a = p.getArc(j);
-          float cnew = semiring.times(c, a.getWeight());
-          Pair<State, Float> next = new Pair<State, Float>(
+          final Arc a = p.getArc(j);
+          final float cnew = semiring.times(c, a.getWeight());
+          final Pair<State, Float> next = new Pair<State, Float>(
               a.getNextState(), cnew);
           previous.put(next, pair);
           queue.add(next);

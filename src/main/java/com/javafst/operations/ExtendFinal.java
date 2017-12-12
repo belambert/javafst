@@ -22,21 +22,19 @@ public class ExtendFinal {
    * @param fst the Fst to extend
    */
   public static void apply(final Fst fst) {
-    Semiring semiring = fst.getSemiring();
-    ArrayList<State> finalStates = new ArrayList<State>();
-
-    int numStates = fst.getNumStates();
-    for (int i = 0; i < numStates; i++) {
-      State s = fst.getState(i);
+    final Semiring semiring = fst.getSemiring();
+    final ArrayList<State> finalStates = new ArrayList<State>();
+    for (int i = 0; i < fst.getNumStates(); i++) {
+      final State s = fst.getState(i);
       if (s.getFinalWeight() != semiring.zero()) {
         finalStates.add(s);
       }
     }
 
     // Add a new single final
-    State newFinal = new State(semiring.one());
+    final State newFinal = new State(semiring.one());
     fst.addState(newFinal);
-    for (State s : finalStates) {
+    for (final State s : finalStates) {
       // add epsilon transition from the old final to the new one
       s.addArc(new Arc(0, 0, s.getFinalWeight(), newFinal));
       // set old state's weight to zero
@@ -50,9 +48,9 @@ public class ExtendFinal {
    */
   public static void undo(final Fst fst) {
     State f = null;
-    int numStates = fst.getNumStates();
+    final int numStates = fst.getNumStates();
     for (int i = 0; i < numStates; i++) {
-      State s = fst.getState(i);
+      final State s = fst.getState(i);
       if (s.getFinalWeight() != fst.getSemiring().zero()) {
         f = s;
         break;
@@ -64,9 +62,9 @@ public class ExtendFinal {
       return;
     }
     for (int i = 0; i < numStates; i++) {
-      State s = fst.getState(i);
+      final State s = fst.getState(i);
       for (int j = 0; j < s.getNumArcs(); j++) {
-        Arc a = s.getArc(j);
+        final Arc a = s.getArc(j);
         if (a.getIlabel() == 0 && a.getOlabel() == 0
             && a.getNextState().getId() == f.getId()) {
           s.setFinalWeight(a.getWeight());

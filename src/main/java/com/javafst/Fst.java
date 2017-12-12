@@ -15,6 +15,8 @@ import java.util.HashSet;
 public class Fst {
 
   // This is private, but not immutable.
+  // TODO - I'd like to be able to return an iterator or something for
+  // users to loop over.
   private ArrayList<State> states = null;
 
   // start state
@@ -212,17 +214,14 @@ public class Fst {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
+    final StringBuilder sb = new StringBuilder();
     sb.append("Fst(start=" + start + ", isyms=" + Arrays.toString(isyms) + ", osyms="
         + Arrays.toString(osyms) + ", semiring=" + semiring + ")\n");
-    int numStates = states.size();
-    for (int i = 0; i < numStates; i++) {
-      State state = states.get(i);
+    for (int i = 0; i < states.size(); i++) {
+      final State state = states.get(i);
       sb.append("  " + state + "\n");
-      int numArcs = state.getNumArcs();
-      for (int j = 0; j < numArcs; j++) {
-        Arc arc = state.getArc(j);
-        sb.append("    " + arc + "\n");
+      for (int j = 0; j < state.getNumArcs(); j++) {
+        sb.append("    " + state.getArc(j) + "\n");
       }
     }
 
@@ -244,9 +243,9 @@ public class Fst {
     states.remove(state);
 
     for (State s1 : states) {
-      ArrayList<Arc> newArcs = new ArrayList<Arc>();
+      final ArrayList<Arc> newArcs = new ArrayList<Arc>();
       for (int j = 0; j < s1.getNumArcs(); j++) {
-        Arc arc = s1.getArc(j);
+        final Arc arc = s1.getArc(j);
         if (!arc.getNextState().equals(state)) {
           newArcs.add(arc);
         }
@@ -262,8 +261,7 @@ public class Fst {
    * {@link com.javafst.Fst#getNumStates()}
    */
   public void remapStateIds() {
-    int numStates = states.size();
-    for (int i = 0; i < numStates; i++) {
+    for (int i = 0; i < states.size(); i++) {
       states.get(i).id = i;
     }
 
@@ -279,12 +277,12 @@ public class Fst {
       return;
     }
 
-    ArrayList<State> newStates = new ArrayList<State>();
+    final ArrayList<State> newStates = new ArrayList<State>();
 
     for (State s1 : states) {
       if (!toDelete.contains(s1)) {
         newStates.add(s1);
-        ArrayList<Arc> newArcs = new ArrayList<Arc>();
+        final ArrayList<Arc> newArcs = new ArrayList<Arc>();
         for (int j = 0; j < s1.getNumArcs(); j++) {
           Arc arc = s1.getArc(j);
           if (!toDelete.contains(arc.getNextState())) {
