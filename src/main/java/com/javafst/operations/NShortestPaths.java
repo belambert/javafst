@@ -59,8 +59,7 @@ public class NShortestPaths {
       final float rnew = r[q.getId()];
       r[q.getId()] = semiring.zero();
 
-      for (int i = 0; i < q.getNumArcs(); i++) {
-        final Arc a = q.getArc(i);
+      for (final Arc a : q.arcs()) {
         final State nextState = a.getNextState();
         final float dnext = d[a.getNextState().getId()];
         final float dnextnew = semiring.plus(dnext,
@@ -163,8 +162,7 @@ public class NShortestPaths {
         // add the incoming arc from previous to current
         final State previouState = stateMap.get(previous.get(pair));
         final State previousOldState = previous.get(pair).getLeft();
-        for (int j = 0; j < previousOldState.getNumArcs(); j++) {
-          final Arc a = previousOldState.getArc(j);
+        for (final Arc a : previousOldState.arcs()) {
           if (a.getNextState().equals(p)) {
             previouState.addArc(new Arc(a.getIlabel(), a
                 .getOlabel(), a.getWeight(), s));
@@ -180,8 +178,7 @@ public class NShortestPaths {
       }
 
       if (r[stateIndex] <= n) {
-        for (int j = 0; j < p.getNumArcs(); j++) {
-          final Arc a = p.getArc(j);
+        for (final Arc a : p.arcs()) {
           final float cnew = semiring.times(c, a.getWeight());
           final Pair<State, Float> next = new Pair<State, Float>(
               a.getNextState(), cnew);

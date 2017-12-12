@@ -27,12 +27,12 @@ public class RmEpsilonTest {
     File parent = new File(url.toURI()).getParentFile();
 
     String path = new File(parent, "A").getPath();
-    Fst fst = Convert.importFst(path, new ProbabilitySemiring());
+    Fst fst = Convert.importFst(path, new TropicalSemiring());
     path = new File(parent, "fstrmepsilon").getPath();
     Fst fstRmEps = importFst(path, new TropicalSemiring());
     Fst rmEpsilon = RmEpsilon.get(fst);
-    // Not quite working either...
-    //assertThat(fstRmEps, equalTo(rmEpsilon));
+    // TODO Not quite working either...
+    // assertThat(fstRmEps, equalTo(rmEpsilon));
     assertNull(RmEpsilon.get(null));
     fst.setSemiring(null);
     assertNull(RmEpsilon.get(fst));

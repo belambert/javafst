@@ -3,6 +3,7 @@ package com.javafst;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  * The fst's mutable state implementation.
@@ -118,6 +119,11 @@ public class State {
    */
   public Arc getArc(final int index) {
     return this.arcs.get(index);
+  }
+  
+  // Or could use a stream
+  public List<Arc> arcs() {
+    return Collections.unmodifiableList(arcs);
   }
 
   @Override

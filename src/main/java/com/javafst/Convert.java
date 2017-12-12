@@ -57,9 +57,7 @@ public class Convert {
     out.println(start.getId() + "\t" + start.getFinalWeight());
 
     // print all states
-    final int numStates = fst.getNumStates();
-    for (int i = 0; i < numStates; i++) {
-      final State s = fst.getState(i);
+    for (final State s : fst.states()) {
       if (s.getId() != fst.getStart().getId()) {
         out.println(s.getId() + "\t" + s.getFinalWeight());
       }
@@ -67,11 +65,8 @@ public class Convert {
 
     final String[] isyms = fst.getIsyms();
     final String[] osyms = fst.getOsyms();
-    for (int i = 0; i < numStates; i++) {
-      final State s = fst.getState(i);
-      final int numArcs = s.getNumArcs();
-      for (int j = 0; j < numArcs; j++) {
-        final Arc arc = s.getArc(j);
+    for (final State s : fst.states()) {
+      for (final Arc arc : s.arcs()) {
         final String isym = (isyms != null) ? isyms[arc.getIlabel()]
             : Integer.toString(arc.getIlabel());
         final String osym = (osyms != null) ? osyms[arc.getOlabel()]
@@ -163,7 +158,7 @@ public class Convert {
         + ".states.syms");
 
     // Parse input
-    // TODO - Streamline this a little.
+    // TODO - Clean this up.
     final FileInputStream fis = new FileInputStream(basename + ".fst.txt");
     final DataInputStream dis = new DataInputStream(fis);
     final BufferedReader br = new BufferedReader(new InputStreamReader(dis, "UTF-8"));

@@ -25,8 +25,7 @@ public class Project {
       fst.setIsyms(fst.getOsyms());
     }
 
-    for (int i = 0; i < fst.getNumStates(); i++) {
-      final State s = fst.getState(i);
+    for (final State s : fst.states()) {
       // Immutable fsts hold an additional (null) arc
       final int numArcs = (fst instanceof ImmutableFst) ? s.getNumArcs() - 1 : s
           .getNumArcs();

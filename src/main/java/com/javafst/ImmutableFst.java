@@ -79,13 +79,9 @@ public class ImmutableFst extends Fst {
     StringBuilder sb = new StringBuilder();
     sb.append("Fst(start=" + start + ", isyms=" + Arrays.toString(isyms) + ", osyms="
         + Arrays.toString(osyms) + ", semiring=" + semiring + ")\n");
-    int numStates = states.length;
-    for (int i = 0; i < numStates; i++) {
-      State s = states[i];
+    for (final State s : states) {
       sb.append("  " + s + "\n");
-      int numArcs = s.getNumArcs();
-      for (int j = 0; j < numArcs; j++) {
-        Arc a = s.getArc(j);
+      for (final Arc a : s.arcs()) {
         sb.append("    " + a + "\n");
       }
     }

@@ -65,11 +65,8 @@ public class Compose {
       s1 = p.getLeft();
       s2 = p.getRight();
       s = stateMap.get(p);
-      int numArcs2 = s2.getNumArcs();
-      for (int i = 0; i < s1.getNumArcs(); i++) {
-        final Arc a1 = s1.getArc(i);
-        for (int j = 0; j < numArcs2; j++) {
-          final Arc a2 = s2.getArc(j);
+      for (final Arc a1 : s1.arcs()) {
+        for (final Arc a2 : s2.arcs()) {
           if (sorted && a1.getOlabel() < a2.getIlabel()) {
             break;
           }
@@ -216,8 +213,7 @@ public class Compose {
     final int e1outputIndex = osyms.length;
     final int e2outputIndex = osyms.length + 1;
 
-    for (int i = 0; i < fst.getNumStates(); i++) {
-      final State s = fst.getState(i);
+    for (final State s : fst.states()) {
       // Immutable fsts hold an additional (null) arc for augmention
       final int numArcs = (fst instanceof ImmutableFst) ? s.getNumArcs() - 1
           : s.getNumArcs();

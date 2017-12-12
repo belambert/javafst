@@ -27,9 +27,7 @@ public class Reverse {
     res.setIsyms(fst.getOsyms());
     res.setOsyms(fst.getIsyms());
     final State[] stateMap = new State[fst.getNumStates()];
-    final int numStates = fst.getNumStates();
-    for (int i = 0; i < numStates; i++) {
-      final State is = fst.getState(i);
+    for (final State is : fst.states()) {
       final State s = new State(semiring.zero());
       res.addState(s);
       stateMap[is.getId()] = s;
@@ -40,11 +38,9 @@ public class Reverse {
 
     stateMap[fst.getStart().getId()].setFinalWeight(semiring.one());
 
-    for (int i = 0; i < numStates; i++) {
-      final State olds = fst.getState(i);
+    for (final State olds : fst.states()) {
       final State news = stateMap[olds.getId()];
-      for (int j = 0; j < olds.getNumArcs(); j++) {
-        final Arc olda = olds.getArc(j);
+      for (final Arc olda : olds.arcs()) {
         final State next = stateMap[olda.getNextState().getId()];
         final Arc newa = new Arc(olda.getIlabel(), olda.getOlabel(),
             semiring.reverse(olda.getWeight()), news);

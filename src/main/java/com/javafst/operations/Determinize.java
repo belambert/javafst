@@ -39,8 +39,7 @@ public class Determinize {
     final ArrayList<Integer> res = new ArrayList<Integer>();
     for (Pair<State, Float> p : pa) {
       final State state = p.getLeft();
-      for (int j = 0; j < state.getNumArcs(); j++) {
-        final Arc arc = state.getArc(j);
+      for (final Arc arc : state.arcs()) {
         if (!res.contains(arc.getIlabel())) {
           res.add(arc.getIlabel());
         }
@@ -103,8 +102,7 @@ public class Determinize {
         for (final Pair<State, Float> ps : p) {
           final State old = ps.getLeft();
           final Float u = ps.getRight();
-          for (int j = 0; j < old.getNumArcs(); j++) {
-            final Arc arc = old.getArc(j);
+          for (final Arc arc : old.arcs()) {
             if (label == arc.getIlabel()) {
               wnew = semiring.plus(wnew,
                   semiring.times(u, arc.getWeight()));
@@ -119,8 +117,7 @@ public class Determinize {
           final State old = ps.getLeft();
           final Float u = ps.getRight();
           final Float wnewRevert = semiring.divide(semiring.one(), wnew);
-          for (int j = 0; j < old.getNumArcs(); j++) {
-            final Arc arc = old.getArc(j);
+          for (final Arc arc : old.arcs()) {
             if (label == arc.getIlabel()) {
               final State oldstate = arc.getNextState();
               final Pair<State, Float> pair = getPair(forQueue,

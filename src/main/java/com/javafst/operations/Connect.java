@@ -69,8 +69,7 @@ public class Connect {
     paths.get(lastPathIndex).add(start);
     if (start.getNumArcs() != 0) {
       int arcCount = 0;
-      for (int j = 0; j < start.getNumArcs(); j++) {
-        final Arc arc = start.getArc(j);
+      for (final Arc arc : start.arcs()) {
         if ((currentExploredArcs == null)
             || !currentExploredArcs.contains(arc)) {
           lastPathIndex = paths.size() - 1;
@@ -119,8 +118,7 @@ public class Connect {
             accessible);
       }
     } while (currentState.getId() != nextState.getId());
-    for (int i = 0; i < fst.getNumStates(); i++) {
-      final State state = fst.getState(i);
+    for (final State state : fst.states()) {
       if (state.getFinalWeight() != fst.getSemiring().zero()) {
         calcCoAccessible(fst, state, paths, coaccessible);
       }
@@ -148,8 +146,7 @@ public class Connect {
     depthFirstSearch(fst, accessible, paths, exploredArcs, coaccessible);
 
     final HashSet<State> toDelete = new HashSet<State>();
-    for (int i = 0; i < fst.getNumStates(); i++) {
-      final State state = fst.getState(i);
+    for (final State state : fst.states()) {
       if (!(accessible.contains(state) || coaccessible.contains(state))) {
         toDelete.add(state);
       }

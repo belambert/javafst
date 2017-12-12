@@ -4,7 +4,9 @@ import com.javafst.semiring.Semiring;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 
 /**
  * A mutable finite state transducer implementation.
@@ -109,6 +111,12 @@ public class Fst {
   public State getState(final int index) {
     return states.get(index);
   }
+
+  // Or could use a stream
+  public List<State> states() {
+    return Collections.unmodifiableList(states);
+  }
+
   
   /**
    * Adds a state to the fst.

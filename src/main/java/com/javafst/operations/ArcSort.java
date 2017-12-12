@@ -22,8 +22,8 @@ public class ArcSort {
    * @param cmp the provided Comparator
    */
   public static void apply(final Fst fst, final Comparator<Arc> cmp) {
-    for (int i = 0; i < fst.getNumStates(); i++) {
-      fst.getState(i).arcSort(cmp);
+    for (final State s : fst.states()) {
+      s.arcSort(cmp);
     }
   }
 }

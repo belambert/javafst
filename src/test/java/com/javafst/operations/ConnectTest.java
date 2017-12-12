@@ -29,7 +29,7 @@ public class ConnectTest {
     path = new File(parent, "fstconnect").getPath();
     Fst connectSaved = importFst(path, new TropicalSemiring());
     apply(fst);
-    // This one is not passing...
+    // TODO - This one is not passing...
     //assertThat(fst, equalTo(connectSaved));
   }
 

@@ -3,7 +3,7 @@ package com.javafst.utils;
 import java.util.HashMap;
 
 /**
- * Several general use utility functions needed by the fst framework.
+ * One general use utility function needed by the fst framework.
  */
 public class Utils {
 
