@@ -76,8 +76,7 @@ TODO
 The original code could be modernized in a number of ways, especially to take
 advantages of Java8 features.  Here is a short list of some of the things that
 could be done:
-- regular "for" loops
-- Replace 'Pair' class with Tuple?
+- Collection iteration over an Fst's states?
 - Use null less.
 - The mutable/immutable distinction is a little weird.
 
