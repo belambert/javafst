@@ -13,7 +13,7 @@ public class Utils {
    * @param syms             The input HashMap.
    * @return                 The strings array.
    */
-  public static String[] toStringArray(HashMap<String, Integer> syms) {
+  public static String[] toStringArray(final HashMap<String, Integer> syms) {
     return syms.keySet().toArray(new String[syms.size()]);
   }
 }

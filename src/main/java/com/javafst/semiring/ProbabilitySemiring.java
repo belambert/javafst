@@ -13,7 +13,7 @@ public class ProbabilitySemiring extends Semiring {
   private static float one = 1.f;
 
   @Override
-  public float plus(float w1, float w2) {
+  public float plus(final float w1, final float w2) {
     if (!isMember(w1) || !isMember(w2)) {
       return Float.NEGATIVE_INFINITY;
     }
@@ -22,7 +22,7 @@ public class ProbabilitySemiring extends Semiring {
   }
 
   @Override
-  public float times(float w1, float w2) {
+  public float times(final float w1, final float w2) {
     if (!isMember(w1) || !isMember(w2)) {
       return Float.NEGATIVE_INFINITY;
     }
@@ -31,7 +31,7 @@ public class ProbabilitySemiring extends Semiring {
   }
 
   @Override
-  public float divide(float w1, float w2) {
+  public float divide(final float w1, final float w2) {
     // TODO Is this right?
     return w1 / w2;
   }
@@ -47,13 +47,13 @@ public class ProbabilitySemiring extends Semiring {
   }
 
   @Override
-  public boolean isMember(float w) {
+  public boolean isMember(final float w) {
     return !Float.isNaN(w) // not a NaN,
         && (w >= 0); // and positive
   }
 
   @Override
-  public float reverse(float w1) {
+  public float reverse(final float w1) {
     // TODO: ???
     System.out.println("Not Implemented");
     return Float.NEGATIVE_INFINITY;

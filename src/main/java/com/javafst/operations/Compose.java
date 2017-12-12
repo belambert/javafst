@@ -32,13 +32,13 @@ public class Compose {
    * @param sorted sort result
    * @return the composed Fst
    */
-  public static Fst compose(Fst fst1, Fst fst2, Semiring semiring, boolean sorted) {
+  public static Fst compose(final Fst fst1, final Fst fst2, final Semiring semiring, final boolean sorted) {
     if (!Arrays.equals(fst1.getOsyms(), fst2.getIsyms())) {
       // symbol tables do not match
       return null;
     }
 
-    Fst res = new Fst(semiring);
+    final Fst res = new Fst(semiring);
 
     final HashMap<Pair<State, State>, State> stateMap = new HashMap<Pair<State, State>, State>();
     final Queue<Pair<State, State>> queue = new LinkedList<Pair<State, State>>();
@@ -112,7 +112,7 @@ public class Compose {
    * @param semiring the semiring to use in the operation
    * @return the composed Fst
    */
-  public static Fst get(Fst fst1, Fst fst2, Semiring semiring) {
+  public static Fst get(final Fst fst1, final Fst fst2, final Semiring semiring) {
     if ((fst1 == null) || (fst2 == null)) {
       return null;
     }
@@ -130,7 +130,9 @@ public class Compose {
 
     Fst res = Compose.compose(tmp, fst2, semiring, false);
 
-    // Connect.apply(res);
+    // Why is/was this commented out?
+    // It causes the Compose test to fail.
+    //Connect.apply(res);
 
     return res;
   }
@@ -146,8 +148,8 @@ public class Compose {
    * @param semiring the semiring to use in the operation
    * @return the filter
    */
-  public static Fst getFilter(String[] syms, Semiring semiring) {
-    Fst filter = new Fst(semiring);
+  public static Fst getFilter(final String[] syms, final Semiring semiring) {
+    final Fst filter = new Fst(semiring);
 
     final int e1index = syms.length;
     final int e2index = syms.length + 1;
@@ -203,7 +205,7 @@ public class Compose {
    * @param fst the fst to augment
    * @param semiring the semiring to use in the operation
    */
-  public static void augment(int label, Fst fst, Semiring semiring) {
+  public static void augment(final int label, final Fst fst, final Semiring semiring) {
     // label: 0->augment on ilabel
     // 1->augment on olabel
 

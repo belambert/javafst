@@ -31,7 +31,7 @@ public class Arc {
    * @param weight            The arc's weight.
    * @param nextState         The arc's next state.
    */
-  public Arc(int inputLabel, int outputLabel, float weight, State nextState) {
+  public Arc(final int inputLabel, final int outputLabel, final float weight, final State nextState) {
     this.weight = weight;
     this.inputLabel = inputLabel;
     this.outputLabel = outputLabel;
@@ -50,7 +50,7 @@ public class Arc {
    * Set the arc's weight.
    * @param weight            Arc weight.
    */
-  public void setWeight(float weight) {
+  public void setWeight(final float weight) {
     this.weight = weight;
   }
 
@@ -67,7 +67,7 @@ public class Arc {
    * 
    * @param inputLabel        The input label's id to set.
    */
-  public void setIlabel(int inputLabel) {
+  public void setIlabel(final int inputLabel) {
     this.inputLabel = inputLabel;
   }
 
@@ -84,7 +84,7 @@ public class Arc {
    * 
    * @param outputLabel       The output label's id to set.
    */
-  public void setOlabel(int outputLabel) {
+  public void setOlabel(final int outputLabel) {
     this.outputLabel = outputLabel;
   }
 
@@ -101,12 +101,12 @@ public class Arc {
    * 
    * @param nextState         The next state to set.
    */
-  public void setNextState(State nextState) {
+  public void setNextState(final State nextState) {
     this.nextState = nextState;
   }
 
   @Override
-  public boolean equals(Object obj) {
+  public boolean equals(final Object obj) {
     if (this == obj) {
       return true;
     }

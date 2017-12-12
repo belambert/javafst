@@ -20,7 +20,7 @@ import java.util.Queue;
 public class Determinize {
 
   private static Pair<State, Float> getPair(
-      ArrayList<Pair<State, Float>> queue, State state, Float zero) {
+      final ArrayList<Pair<State, Float>> queue, final State state, final Float zero) {
     Pair<State, Float> res = null;
     for (Pair<State, Float> tmp : queue) {
       if (state.getId() == tmp.getLeft().getId()) {
@@ -35,7 +35,7 @@ public class Determinize {
     return res;
   }
 
-  private static ArrayList<Integer> getUniqueLabels(Fst fst, ArrayList<Pair<State, Float>> pa) {
+  private static ArrayList<Integer> getUniqueLabels(final Fst fst, final ArrayList<Pair<State, Float>> pa) {
     ArrayList<Integer> res = new ArrayList<Integer>();
     for (Pair<State, Float> p : pa) {
       State state = p.getLeft();
@@ -50,8 +50,8 @@ public class Determinize {
     return res;
   }
 
-  private static State getStateLabel(ArrayList<Pair<State, Float>> pa,
-      HashMap<String, State> stateMapper) {
+  private static State getStateLabel(final ArrayList<Pair<State, Float>> pa,
+      final HashMap<String, State> stateMapper) {
     StringBuilder sb = new StringBuilder();
     for (Pair<State, Float> p : pa) {
       if (sb.length() > 0) {
@@ -70,7 +70,7 @@ public class Determinize {
    * @param fst the fst to determinize
    * @return the determinized fst
    */
-  public static Fst get(Fst fst) {
+  public static Fst get(final Fst fst) {
     if (fst.getSemiring() == null) {
       // semiring not provided
       return null;

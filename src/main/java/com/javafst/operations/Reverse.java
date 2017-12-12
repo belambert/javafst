@@ -16,7 +16,7 @@ public class Reverse {
    * @param fst    The fst to reverse.
    * @return       The reversed fst.
    */
-  public static Fst get(Fst fst) {
+  public static Fst get(final Fst fst) {
     if (fst.getSemiring() == null) {
       return null;
     }

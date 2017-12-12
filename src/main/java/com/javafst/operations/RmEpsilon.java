@@ -16,7 +16,7 @@ public class RmEpsilon {
   /**
    * Put a new state in the epsilon closure.
    */
-  private static void put(State fromState, State toState, float weight,
+  private static void put(final State fromState, final State toState, final float weight,
       HashMap<State, Float>[] cl) {
     HashMap<State, Float> tmp = cl[fromState.getId()];
     if (tmp == null) {
@@ -29,8 +29,8 @@ public class RmEpsilon {
   /**
    * Add a state in the epsilon closure.
    */
-  private static void add(State fromState, State toState, float weight,
-      HashMap<State, Float>[] cl, Semiring semiring) {
+  private static void add(final State fromState, final State toState, final float weight,
+      final HashMap<State, Float>[] cl, final Semiring semiring) {
     Float old = getPathWeight(fromState, toState, cl);
     if (old == null) {
       put(fromState, toState, weight, cl);
@@ -42,8 +42,8 @@ public class RmEpsilon {
   /**
    * Calculate the epsilon closure.
    */
-  private static void calcClosure(Fst fst, State state,
-      HashMap<State, Float>[] cl, Semiring semiring) {
+  private static void calcClosure(final Fst fst, final State state,
+      final HashMap<State, Float>[] cl, final Semiring semiring) {
     State s = state;
     float pathWeight;
     int numArcs = s.getNumArcs();
@@ -70,8 +70,8 @@ public class RmEpsilon {
   /**
    * Get an epsilon path's cost in epsilon closure.
    */
-  private static Float getPathWeight(State in, State out,
-      HashMap<State, Float>[] cl) {
+  private static Float getPathWeight(final State in, final State out,
+      final HashMap<State, Float>[] cl) {
     if (cl[in.getId()] != null) {
       return cl[in.getId()].get(out);
     }
@@ -86,7 +86,7 @@ public class RmEpsilon {
    * @param fst     The fst to remove epsilon transitions from.
    * @return        The epsilon-free fst.
    */
-  public static Fst get(Fst fst) {
+  public static Fst get(final Fst fst) {
     if (fst == null) {
       return null;
     }

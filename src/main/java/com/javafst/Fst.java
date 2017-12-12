@@ -27,7 +27,7 @@ public class Fst {
   protected Semiring semiring;
 
   
-  public Fst(State start, String[] isyms, String[] osyms, Semiring semiring) {
+  public Fst(final State start, final String[] isyms, final String[] osyms, final Semiring semiring) {
     states = new ArrayList<State>();
     this.start = start;
     this.isyms = isyms;
@@ -45,7 +45,7 @@ public class Fst {
    * 
    * @param numStates     The initial capacity.
    */
-  public Fst(int numStates) {
+  public Fst(final int numStates) {
     if (numStates > 0) {
       states = new ArrayList<State>(numStates);
     }
@@ -56,7 +56,7 @@ public class Fst {
    * 
    * @param semiring   The fst's semiring.
    */
-  public Fst(Semiring semiring) {
+  public Fst(final Semiring semiring) {
     this();
     this.semiring = semiring;
   }
@@ -82,7 +82,7 @@ public class Fst {
    * 
    * @param semiring    The semiring to set.
    */
-  public void setSemiring(Semiring semiring) {
+  public void setSemiring(final Semiring semiring) {
     this.semiring = semiring;
   }
 
@@ -91,7 +91,7 @@ public class Fst {
    * 
    * @param start     The initial state.
    */
-  public void setStart(State start) {
+  public void setStart(final State start) {
     this.start = start;
   }
 
@@ -104,7 +104,7 @@ public class Fst {
     return this.states.size();
   }
 
-  public State getState(int index) {
+  public State getState(final int index) {
     return states.get(index);
   }
   
@@ -113,7 +113,7 @@ public class Fst {
    * 
    * @param state     The state to be added.
    */
-  public void addState(State state) {
+  public void addState(final State state) {
     this.states.add(state);
     state.id = states.size() - 1;
   }
@@ -132,7 +132,7 @@ public class Fst {
    * 
    * @param isyms     The isyms to set.
    */
-  public void setIsyms(String[] isyms) {
+  public void setIsyms(final String[] isyms) {
     this.isyms = isyms;
   }
 
@@ -150,7 +150,7 @@ public class Fst {
    * 
    * @param osyms     The osyms to set.
    */
-  public void setOsyms(String[] osyms) {
+  public void setOsyms(final String[] osyms) {
     this.osyms = osyms;
   }
 
@@ -160,7 +160,7 @@ public class Fst {
    * @see java.lang.Object#equals(java.lang.Object)
    */
   @Override
-  public boolean equals(Object obj) {
+  public boolean equals(final Object obj) {
     if (this == obj) {
       return true;
     }
@@ -234,7 +234,7 @@ public class Fst {
    * 
    * @param state    the state to delete
    */
-  public void deleteState(State state) {
+  public void deleteState(final State state) {
 
     if (state == start) {
       System.err.println("Cannot delete start state.");
@@ -272,7 +272,7 @@ public class Fst {
   /**
    * Delete the given Set of states.
    */
-  public void deleteStates(HashSet<State> toDelete) {
+  public void deleteStates(final HashSet<State> toDelete) {
 
     if (toDelete.contains(start)) {
       System.err.println("Cannot delete start state.");

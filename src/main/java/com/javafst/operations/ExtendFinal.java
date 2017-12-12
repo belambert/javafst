@@ -21,7 +21,7 @@ public class ExtendFinal {
    * 
    * @param fst the Fst to extend
    */
-  public static void apply(Fst fst) {
+  public static void apply(final Fst fst) {
     Semiring semiring = fst.getSemiring();
     ArrayList<State> finalStates = new ArrayList<State>();
 
@@ -48,7 +48,7 @@ public class ExtendFinal {
    * Undo of the extend operation.
    * @param fst fst to work with
    */
-  public static void undo(Fst fst) {
+  public static void undo(final Fst fst) {
     State f = null;
     int numStates = fst.getNumStates();
     for (int i = 0; i < numStates; i++) {

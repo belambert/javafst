@@ -21,16 +21,16 @@ public class Pair<L, R> {
   /*
    * Constructor specifying the left and right elements of the Pair.
    */
-  public Pair(L left, R right) {
+  public Pair(final L left, final R right) {
     this.left = left;
     this.right = right;
   }
 
-  public void setLeft(L left) {
+  public void setLeft(final L left) {
     this.left = left;
   }
 
-  public void setRight(R right) {
+  public void setRight(final R right) {
     this.right = right;
   }
 
@@ -52,7 +52,7 @@ public class Pair<L, R> {
   }
 
   @Override
-  public boolean equals(Object obj) {
+  public boolean equals(final Object obj) {
     if (this == obj) {
       return true;
     }

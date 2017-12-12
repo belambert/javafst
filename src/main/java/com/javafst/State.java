@@ -33,7 +33,7 @@ public class State {
    * 
    * @param fnlWeight         Final weight.
    */
-  public State(float fnlWeight) {
+  public State(final float fnlWeight) {
     this();
     this.fnlWeight = fnlWeight;
   }
@@ -44,7 +44,7 @@ public class State {
    * 
    * @param initialNumArcs    Number of arcs.
    */
-  public State(int initialNumArcs) {
+  public State(final int initialNumArcs) {
     this.initialNumArcs = initialNumArcs;
     if (initialNumArcs > 0) {
       arcs = new ArrayList<Arc>(initialNumArcs);
@@ -55,7 +55,7 @@ public class State {
    * Shorts the arc's ArrayList based on the provided Comparator.
    * @param cmp               Comparator.
    */
-  public void arcSort(Comparator<Arc> cmp) {
+  public void arcSort(final Comparator<Arc> cmp) {
     Collections.sort(arcs, cmp);
   }
 
@@ -72,7 +72,7 @@ public class State {
    * 
    * @param arcs              The arcs ArrayList to set.
    */
-  public void setArcs(ArrayList<Arc> arcs) {
+  public void setArcs(final ArrayList<Arc> arcs) {
     this.arcs = arcs;
   }
 
@@ -81,7 +81,7 @@ public class State {
    * 
    * @param fnlfloat          The final weight to set.
    */
-  public void setFinalWeight(float fnlfloat) {
+  public void setFinalWeight(final float fnlfloat) {
     this.fnlWeight = fnlfloat;
   }
 
@@ -106,7 +106,7 @@ public class State {
    * 
    * @param arc               The arc to add.
    */
-  public void addArc(Arc arc) {
+  public void addArc(final Arc arc) {
     this.arcs.add(arc);
   }
 
@@ -116,12 +116,12 @@ public class State {
    * @param index             The arc's index.
    * @return                  The arc.
    */
-  public Arc getArc(int index) {
+  public Arc getArc(final int index) {
     return this.arcs.get(index);
   }
 
   @Override
-  public boolean equals(Object obj) {
+  public boolean equals(final Object obj) {
     if (this == obj) {
       return true;
     }
@@ -164,7 +164,7 @@ public class State {
    * @param index             The arc's index.
    * @return                  The deleted arc.
    */
-  public Arc deleteArc(int index) {
+  public Arc deleteArc(final int index) {
     return this.arcs.remove(index);
   }
 
@@ -179,7 +179,7 @@ public class State {
    * @param index             The position to the arcs' array.
    * @param arc               The arc value to set.
    */
-  public void setArc(int index, Arc arc) {
+  public void setArc(final int index, final Arc arc) {
     arcs.set(index, arc);
   }
 

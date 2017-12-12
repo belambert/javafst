@@ -15,7 +15,7 @@ public class Connect {
   /**
    * Calculates the co-accessible states of an fst.
    */
-  private static void calcCoAccessible(Fst fst, State state,
+  private static void calcCoAccessible(final Fst fst, final State state,
       ArrayList<ArrayList<State>> paths, HashSet<State> coaccessible) {
     // hold the co-accessible added in this loop
     ArrayList<State> newCoAccessibles = new ArrayList<State>();
@@ -43,7 +43,7 @@ public class Connect {
   /**
    * Copies a path.
    */
-  private static void duplicatePath(int lastPathIndex, State fromState,
+  private static void duplicatePath(final int lastPathIndex, final State fromState,
       State toState, ArrayList<ArrayList<State>> paths) {
     ArrayList<State> lastPath = paths.get(lastPathIndex);
     // copy the last path to a new one, from start to current state
@@ -60,7 +60,7 @@ public class Connect {
   /**
    * The depth first search recursion.
    */
-  private static State depthFirstSearchNext(Fst fst, State start,
+  private static State depthFirstSearchNext(final Fst fst, final State start,
       ArrayList<ArrayList<State>> paths, ArrayList<Arc>[] exploredArcs,
       HashSet<State> accessible) {
     int lastPathIndex = paths.size() - 1;
@@ -98,8 +98,8 @@ public class Connect {
   /**
    * Adds an arc top the explored arcs list.
    */
-  private static void addExploredArc(int stateId, Arc arc,
-      ArrayList<Arc>[] exploredArcs) {
+  private static void addExploredArc(final int stateId, final Arc arc,
+      final ArrayList<Arc>[] exploredArcs) {
     if (exploredArcs[stateId] == null) {
       exploredArcs[stateId] = new ArrayList<Arc>();
     }
@@ -109,9 +109,9 @@ public class Connect {
   /**
    * Initialization of a depth first search recursion.
    */
-  private static void depthFirstSearch(Fst fst, HashSet<State> accessible,
-      ArrayList<ArrayList<State>> paths, ArrayList<Arc>[] exploredArcs,
-      HashSet<State> coaccessible) {
+  private static void depthFirstSearch(final Fst fst, final HashSet<State> accessible,
+      final ArrayList<ArrayList<State>> paths, final ArrayList<Arc>[] exploredArcs,
+      final HashSet<State> coaccessible) {
     State currentState = fst.getStart();
     State nextState = currentState;
     do {
@@ -134,7 +134,7 @@ public class Connect {
    * 
    * @param fst the fst to trim
    */
-  public static void apply(Fst fst) {
+  public static void apply(final Fst fst) {
     Semiring semiring = fst.getSemiring();
     if (semiring == null) {
       System.out.println("Fst has no semiring.");

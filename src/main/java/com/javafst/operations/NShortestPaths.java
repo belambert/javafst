@@ -33,7 +33,7 @@ public class NShortestPaths {
    * @param fst      The fst to calculate the shortest distances.
    * @return         The array containing the shortest distances.
    */
-  public static float[] shortestDistance(Fst fst) {
+  public static float[] shortestDistance(final Fst fst) {
 
     Fst reversed = Reverse.get(fst);
 
@@ -89,7 +89,7 @@ public class NShortestPaths {
    *                     operation.
    * @return             An fst containing the n-best shortest paths.
    */
-  public static Fst get(Fst fst, int n, boolean determinize) {
+  public static Fst get(final Fst fst, final int n, final boolean determinize) {
     if (fst == null) {
       return null;
     }

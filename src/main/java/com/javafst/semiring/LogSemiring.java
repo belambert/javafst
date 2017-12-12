@@ -14,7 +14,7 @@ public class LogSemiring extends Semiring {
   private static float one = 0.f;
 
   @Override
-  public float plus(float w1, float w2) {
+  public float plus(final float w1, final float w2) {
     if (!isMember(w1) || !isMember(w2)) {
       return Float.NEGATIVE_INFINITY;
     }
@@ -27,7 +27,7 @@ public class LogSemiring extends Semiring {
   }
 
   @Override
-  public float times(float w1, float w2) {
+  public float times(final float w1, final float w2) {
     if (!isMember(w1) || !isMember(w2)) {
       return Float.NEGATIVE_INFINITY;
     }
@@ -36,7 +36,7 @@ public class LogSemiring extends Semiring {
   }
 
   @Override
-  public float divide(float w1, float w2) {
+  public float divide(final float w1, final float w2) {
     if (!isMember(w1) || !isMember(w2)) {
       return Float.NEGATIVE_INFINITY;
     }
@@ -61,13 +61,13 @@ public class LogSemiring extends Semiring {
   }
 
   @Override
-  public boolean isMember(float w) {
+  public boolean isMember(final float w) {
     return (!Float.isNaN(w)) // not a NaN
         && (w != Float.NEGATIVE_INFINITY); // and different from -inf
   }
 
   @Override
-  public float reverse(float w1) {
+  public float reverse(final float w1) {
     // TODO: ???
     System.out.println("Not Implemented");
     return Float.NEGATIVE_INFINITY;

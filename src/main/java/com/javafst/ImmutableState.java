@@ -31,19 +31,19 @@ public class ImmutableState extends State {
    * 
    * @param numArcs number of arcs
    */
-  protected ImmutableState(int numArcs) {
+  protected ImmutableState(final int numArcs) {
     super(0);
     this.initialNumArcs = numArcs;
     arcs = new Arc[numArcs];
   }
 
   @Override
-  public void arcSort(Comparator<Arc> cmp) {
+  public void arcSort(final Comparator<Arc> cmp) {
     Arrays.sort(arcs, cmp);
   }
 
   @Override
-  public void addArc(Arc arc) {
+  public void addArc(final Arc arc) {
     throw new IllegalArgumentException(
         "You cannot modify an ImmutableState.");
   }
@@ -55,12 +55,12 @@ public class ImmutableState extends State {
    * @param arc the arc value to set
    */
   @Override
-  public void setArc(int index, Arc arc) {
+  public void setArc(final int index, final Arc arc) {
     arcs[index] = arc;
   }
 
   @Override
-  public Arc deleteArc(int index) {
+  public Arc deleteArc(final int index) {
     throw new IllegalArgumentException(
         "You cannot modify an ImmutableState.");
   }
@@ -70,7 +70,7 @@ public class ImmutableState extends State {
    * 
    * @param arcs the arcs array to set
    */
-  public void setArcs(Arc[] arcs) {
+  public void setArcs(final Arc[] arcs) {
     this.arcs = arcs;
   }
 
@@ -80,7 +80,7 @@ public class ImmutableState extends State {
   }
 
   @Override
-  public Arc getArc(int index) {
+  public Arc getArc(final int index) {
     return this.arcs[index];
   }
 
@@ -93,7 +93,7 @@ public class ImmutableState extends State {
   }
 
   @Override
-  public boolean equals(Object obj) {
+  public boolean equals(final Object obj) {
     if (this == obj) {
       return true;
     }

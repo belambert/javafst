@@ -39,13 +39,13 @@ public class ImmutableFst extends Fst {
    * 
    * @param numStates     The number of fst's states.
    */
-  private ImmutableFst(int numStates) {
+  private ImmutableFst(final int numStates) {
     super(0);
     this.numStates = numStates;
     this.states = new ImmutableState[numStates];
   }
 
-  public ImmutableFst(State start, String[] isyms, String[] osyms, Semiring semiring) {
+  public ImmutableFst(final State start, final String[] isyms, final String[] osyms, final Semiring semiring) {
     //states = Arrays.toArray(new ArrayList<ImmutableState>());
     this.states = new ImmutableState[0];
     this.start = start;
@@ -60,17 +60,17 @@ public class ImmutableFst extends Fst {
   }
 
   @Override
-  public ImmutableState getState(int index) {
+  public ImmutableState getState(final int index) {
     return states[index];
   }
 
   @Override
-  public void addState(State state) {
+  public void addState(final State state) {
     throw new IllegalArgumentException("You cannot modify an ImmutableFst.");
   }
 
   @Override
-  public void deleteState(State state) {
+  public void deleteState(final State state) {
     throw new IllegalArgumentException("You cannot modify an ImmutableFst.");
   }
 
@@ -93,7 +93,7 @@ public class ImmutableFst extends Fst {
   }
 
   @Override
-  public boolean equals(Object obj) {
+  public boolean equals(final Object obj) {
     if (this == obj) {
       return true;
     }

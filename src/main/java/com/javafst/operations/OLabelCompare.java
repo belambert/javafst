@@ -11,7 +11,7 @@ import java.util.Comparator;
 public class OLabelCompare implements Comparator<Arc> {
 
   @Override
-  public int compare(Arc o1, Arc o2) {
+  public int compare(final Arc o1, final Arc o2) {
     if (o1 == null) {
       return 1;
     }

@@ -27,7 +27,7 @@ public abstract class Semiring implements Serializable {
   public abstract boolean isMember(float w);
 
   @Override
-  public boolean equals(Object obj) {
+  public boolean equals(final Object obj) {
     if (this == obj) {
       return true;
     }
@@ -65,7 +65,7 @@ public abstract class Semiring implements Serializable {
    * @param w2 second operand
    * @return less or more
    */
-  public boolean naturalLess(float w1, float w2) {
+  public boolean naturalLess(final float w1, final float w2) {
     return (plus(w1, w2) == w1) && (w1 != w2);
   }
 

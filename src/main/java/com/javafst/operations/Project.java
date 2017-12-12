@@ -17,7 +17,7 @@ public class Project {
    * @param fst fst to modify
    * @param projectType type of the projection
    */
-  public static void apply(Fst fst, ProjectType projectType) {
+  public static void apply(final Fst fst, final ProjectType projectType) {
     if (projectType == ProjectType.INPUT) {
       fst.setOsyms(fst.getIsyms());
     } else {
