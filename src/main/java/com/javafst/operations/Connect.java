@@ -12,6 +12,93 @@ import java.util.HashSet;
  * Connect operation.
  */
 public class Connect {
+
+  /**
+   * Trims an Fst, removing states and arcs that are not on successful paths.
+   * 
+   * @param fst the fst to trim
+   */
+  public static void apply(final Fst fst) {
+    final Semiring semiring = fst.getSemiring();
+    if (semiring == null) {
+      System.out.println("Fst has no semiring.");
+      return;
+    }
+
+    final HashSet<State> accessible = new HashSet<State>();
+    final HashSet<State> coaccessible = new HashSet<State>();
+    @SuppressWarnings("unchecked")
+    final ArrayList<Arc>[] exploredArcs = new ArrayList[fst.getNumStates()];
+    final ArrayList<ArrayList<State>> paths = new ArrayList<ArrayList<State>>();
+    paths.add(new ArrayList<State>());
+    depthFirstSearch(fst, accessible, paths, exploredArcs, coaccessible);  //dfs
+
+    final HashSet<State> toDelete = new HashSet<State>();
+    for (final State state : fst.states()) {
+      if (!(accessible.contains(state) || coaccessible.contains(state))) {
+        toDelete.add(state);
+      }
+    }
+    fst.deleteStates(toDelete);
+  }
+
+  /**
+   * Initialization of a depth first search recursion.
+   */
+  private static void depthFirstSearch(final Fst fst, final HashSet<State> accessible,
+      final ArrayList<ArrayList<State>> paths, final ArrayList<Arc>[] exploredArcs,
+      final HashSet<State> coaccessible) {
+    final State currentState = fst.getStart();
+    State nextState = currentState;
+    do {
+      if (!accessible.contains(currentState)) {
+        nextState = depthFirstSearchNext(fst, currentState, paths, exploredArcs,
+            accessible);
+      }
+    } while (currentState.getId() != nextState.getId());
+    for (final State state : fst.states()) {
+      if (state.getFinalWeight() != fst.getSemiring().zero()) {
+        calcCoAccessible(fst, state, paths, coaccessible);
+      }
+    }
+  }
+
+  /**
+   * The depth first search recursion.
+   */
+  private static State depthFirstSearchNext(final Fst fst, final State start,
+      final ArrayList<ArrayList<State>> paths, final ArrayList<Arc>[] exploredArcs,
+      final HashSet<State> accessible) {
+    int lastPathIndex = paths.size() - 1;
+
+    final ArrayList<Arc> currentExploredArcs = exploredArcs[start.getId()];
+    paths.get(lastPathIndex).add(start);
+    if (start.getNumArcs() != 0) {
+      int arcCount = 0;
+      for (final Arc arc : start.arcs()) {
+        if ((currentExploredArcs == null)
+            || !currentExploredArcs.contains(arc)) {
+          lastPathIndex = paths.size() - 1;
+          if (arcCount++ > 0) {
+            duplicatePath(lastPathIndex, fst.getStart(), start,
+                paths);
+            lastPathIndex = paths.size() - 1;
+            paths.get(lastPathIndex).add(start);
+          }
+          final State next = arc.getNextState();
+          addExploredArc(start.getId(), arc, exploredArcs);
+          // detect self loops
+          if (next.getId() != start.getId()) {
+            depthFirstSearchNext(fst, next, paths, exploredArcs, accessible);
+          }
+        }
+      }
+    }
+    lastPathIndex = paths.size() - 1;
+    accessible.add(start);
+    return start;
+  }
+
   /**
    * Calculates the co-accessible states of an fst.
    */
@@ -58,43 +145,7 @@ public class Connect {
   }
 
   /**
-   * The depth first search recursion.
-   */
-  private static State depthFirstSearchNext(final Fst fst, final State start,
-      final ArrayList<ArrayList<State>> paths, final ArrayList<Arc>[] exploredArcs,
-      final HashSet<State> accessible) {
-    int lastPathIndex = paths.size() - 1;
-
-    final ArrayList<Arc> currentExploredArcs = exploredArcs[start.getId()];
-    paths.get(lastPathIndex).add(start);
-    if (start.getNumArcs() != 0) {
-      int arcCount = 0;
-      for (final Arc arc : start.arcs()) {
-        if ((currentExploredArcs == null)
-            || !currentExploredArcs.contains(arc)) {
-          lastPathIndex = paths.size() - 1;
-          if (arcCount++ > 0) {
-            duplicatePath(lastPathIndex, fst.getStart(), start,
-                paths);
-            lastPathIndex = paths.size() - 1;
-            paths.get(lastPathIndex).add(start);
-          }
-          final State next = arc.getNextState();
-          addExploredArc(start.getId(), arc, exploredArcs);
-          // detect self loops
-          if (next.getId() != start.getId()) {
-            depthFirstSearchNext(fst, next, paths, exploredArcs, accessible);
-          }
-        }
-      }
-    }
-    lastPathIndex = paths.size() - 1;
-    accessible.add(start);
-    return start;
-  }
-
-  /**
-   * Adds an arc top the explored arcs list.
+   * Adds an arc to the explored arcs list.
    */
   private static void addExploredArc(final int stateId, final Arc arc,
       final ArrayList<Arc>[] exploredArcs) {
@@ -104,53 +155,4 @@ public class Connect {
     exploredArcs[stateId].add(arc);
   }
 
-  /**
-   * Initialization of a depth first search recursion.
-   */
-  private static void depthFirstSearch(final Fst fst, final HashSet<State> accessible,
-      final ArrayList<ArrayList<State>> paths, final ArrayList<Arc>[] exploredArcs,
-      final HashSet<State> coaccessible) {
-    final State currentState = fst.getStart();
-    State nextState = currentState;
-    do {
-      if (!accessible.contains(currentState)) {
-        nextState = depthFirstSearchNext(fst, currentState, paths, exploredArcs,
-            accessible);
-      }
-    } while (currentState.getId() != nextState.getId());
-    for (final State state : fst.states()) {
-      if (state.getFinalWeight() != fst.getSemiring().zero()) {
-        calcCoAccessible(fst, state, paths, coaccessible);
-      }
-    }
-  }
-
-  /**
-   * Trims an Fst, removing states and arcs that are not on successful paths.
-   * 
-   * @param fst the fst to trim
-   */
-  public static void apply(final Fst fst) {
-    final Semiring semiring = fst.getSemiring();
-    if (semiring == null) {
-      System.out.println("Fst has no semiring.");
-      return;
-    }
-
-    final HashSet<State> accessible = new HashSet<State>();
-    final HashSet<State> coaccessible = new HashSet<State>();
-    @SuppressWarnings("unchecked")
-    final ArrayList<Arc>[] exploredArcs = new ArrayList[fst.getNumStates()];
-    final ArrayList<ArrayList<State>> paths = new ArrayList<ArrayList<State>>();
-    paths.add(new ArrayList<State>());
-    depthFirstSearch(fst, accessible, paths, exploredArcs, coaccessible);
-
-    final HashSet<State> toDelete = new HashSet<State>();
-    for (final State state : fst.states()) {
-      if (!(accessible.contains(state) || coaccessible.contains(state))) {
-        toDelete.add(state);
-      }
-    }
-    fst.deleteStates(toDelete);
-  }
 }
