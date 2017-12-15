@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * A mutable finite state transducer implementation.
@@ -117,6 +118,12 @@ public class Fst {
     return Collections.unmodifiableList(states);
   }
 
+
+  public Stream<State> finalStates() {
+    return states.stream().filter(x -> x.getFinalWeight() != Float.POSITIVE_INFINITY && x.getFinalWeight() != Float.NEGATIVE_INFINITY);
+  }
+
+  
   
   /**
    * Adds a state to the fst.

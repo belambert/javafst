@@ -43,7 +43,7 @@ public class Reverse {
       for (final Arc olda : olds.arcs()) {
         final State next = stateMap[olda.getNextState().getId()];
         final Arc newa = new Arc(olda.getIlabel(), olda.getOlabel(),
-            semiring.reverse(olda.getWeight()), news);
+            semiring.reverse(olda.getWeight()), news);  // Reverse weight!
         next.addArc(newa);
       }
     }

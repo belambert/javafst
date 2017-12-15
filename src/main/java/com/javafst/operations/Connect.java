@@ -1,18 +1,28 @@
 package com.javafst.operations;
 
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
 import com.javafst.Arc;
 import com.javafst.Fst;
 import com.javafst.State;
 import com.javafst.semiring.Semiring;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Connect operation.
  */
 public class Connect {
 
+  
+//  A state q ∈ Q is said to be non-accessible (non-coaccessible) when there is no path from I to q (resp. from q to F ). Non-accessible and non-coaccessible states are called useless states. They can be removed using a connection (or trimming) algorithm in linear time without affecting the weight T associates to any pair. A transducer with no useless state is said to be trim.
+  
+  
   /**
    * Trims an Fst, removing states and arcs that are not on successful paths.
    * 
@@ -24,135 +34,55 @@ public class Connect {
       System.out.println("Fst has no semiring.");
       return;
     }
-
     final HashSet<State> accessible = new HashSet<State>();
     final HashSet<State> coaccessible = new HashSet<State>();
-    @SuppressWarnings("unchecked")
-    final ArrayList<Arc>[] exploredArcs = new ArrayList[fst.getNumStates()];
-    final ArrayList<ArrayList<State>> paths = new ArrayList<ArrayList<State>>();
-    paths.add(new ArrayList<State>());
-    depthFirstSearch(fst, accessible, paths, exploredArcs, coaccessible);  //dfs
-
+    getAccessibleStates(fst.getStart(), fst, accessible);
+    getCoAccessibleStates(fst, coaccessible);
+    // Delete all the non-accessible states
     final HashSet<State> toDelete = new HashSet<State>();
     for (final State state : fst.states()) {
-      if (!(accessible.contains(state) || coaccessible.contains(state))) {
+      if (!(accessible.contains(state) && coaccessible.contains(state))) {
         toDelete.add(state);
       }
     }
     fst.deleteStates(toDelete);
   }
 
-  /**
-   * Initialization of a depth first search recursion.
-   */
-  private static void depthFirstSearch(final Fst fst, final HashSet<State> accessible,
-      final ArrayList<ArrayList<State>> paths, final ArrayList<Arc>[] exploredArcs,
-      final HashSet<State> coaccessible) {
-    final State currentState = fst.getStart();
-    State nextState = currentState;
-    do {
-      if (!accessible.contains(currentState)) {
-        nextState = depthFirstSearchNext(fst, currentState, paths, exploredArcs,
-            accessible);
-      }
-    } while (currentState.getId() != nextState.getId());
-    for (final State state : fst.states()) {
-      if (state.getFinalWeight() != fst.getSemiring().zero()) {
-        calcCoAccessible(fst, state, paths, coaccessible);
-      }
+  private static HashSet<State> getAccessibleStates(final State state, final Fst fst, HashSet<State> accessible) {
+    if (accessible.contains(state)) {
+      return accessible;
     }
+    accessible.add(state);
+    state.arcs().stream().forEach(x -> getAccessibleStates(x.getNextState(), fst, accessible));
+    return accessible;
   }
-
-  /**
-   * The depth first search recursion.
-   */
-  private static State depthFirstSearchNext(final Fst fst, final State start,
-      final ArrayList<ArrayList<State>> paths, final ArrayList<Arc>[] exploredArcs,
-      final HashSet<State> accessible) {
-    int lastPathIndex = paths.size() - 1;
-
-    final ArrayList<Arc> currentExploredArcs = exploredArcs[start.getId()];
-    paths.get(lastPathIndex).add(start);
-    if (start.getNumArcs() != 0) {
-      int arcCount = 0;
-      for (final Arc arc : start.arcs()) {
-        if ((currentExploredArcs == null)
-            || !currentExploredArcs.contains(arc)) {
-          lastPathIndex = paths.size() - 1;
-          if (arcCount++ > 0) {
-            duplicatePath(lastPathIndex, fst.getStart(), start,
-                paths);
-            lastPathIndex = paths.size() - 1;
-            paths.get(lastPathIndex).add(start);
-          }
-          final State next = arc.getNextState();
-          addExploredArc(start.getId(), arc, exploredArcs);
-          // detect self loops
-          if (next.getId() != start.getId()) {
-            depthFirstSearchNext(fst, next, paths, exploredArcs, accessible);
-          }
-        }
-      }
-    }
-    lastPathIndex = paths.size() - 1;
-    accessible.add(start);
-    return start;
+  
+  private static Set<State> getCoAccessibleStates(final Fst fst, HashSet<State> coAccessible) {
+    Multimap<State, State> map = HashMultimap.create();
+    HashSet<State> exploredStates = new HashSet<State>();
+    getReverseArcs(fst.getStart(), fst, map, exploredStates);
+    System.out.println("# final states: " + fst.finalStates().count());
+    fst.finalStates().forEach(x -> getCoAccessibleRecursive(x, map, coAccessible));
+    return coAccessible;
   }
-
-  /**
-   * Calculates the co-accessible states of an fst.
-   */
-  private static void calcCoAccessible(final Fst fst, final State state,
-      final ArrayList<ArrayList<State>> paths, final HashSet<State> coaccessible) {
-    // hold the co-accessible added in this loop
-    final ArrayList<State> newCoAccessibles = new ArrayList<State>();
-    for (ArrayList<State> path : paths) {
-      final int index = path.lastIndexOf(state);
-      if (index != -1) {
-        if (state.getFinalWeight() != fst.getSemiring().zero()
-            || coaccessible.contains(state)) {
-          for (int j = index; j > -1; j--) {
-            if (!coaccessible.contains(path.get(j))) {
-              newCoAccessibles.add(path.get(j));
-              coaccessible.add(path.get(j));
-            }
-          }
-        }
-      }
+  
+  /** Build a table of reverse pointing arcs. */
+  private static void getReverseArcs(State state, Fst fst, final Multimap<State, State> map, HashSet<State> exploredStates) {
+    if (exploredStates.contains(state)) {
+      return;
     }
-
-    // run again for the new co-accessibles
-    for (final State s : newCoAccessibles) {
-      calcCoAccessible(fst, s, paths, coaccessible);
-    }
+    state.arcs().stream().forEach(x -> map.put(x.getNextState(), state));
+    exploredStates.add(state);
+    state.arcs().stream().forEach(x -> getReverseArcs(x.getNextState(), fst, map, exploredStates));
   }
-
-  /**
-   * Copies a path.
-   */
-  private static void duplicatePath(final int lastPathIndex, final State fromState,
-      final State toState, final ArrayList<ArrayList<State>> paths) {
-    final ArrayList<State> lastPath = paths.get(lastPathIndex);
-    // copy the last path to a new one, from start to current state
-    final int fromIndex = lastPath.indexOf(fromState);
-    int toIndex = lastPath.indexOf(toState);
-    if (toIndex == -1) {
-      toIndex = lastPath.size() - 1;
-    }
-    final ArrayList<State> newPath = new ArrayList<State>(lastPath.subList(
-        fromIndex, toIndex));
-    paths.add(newPath);
+  
+  private static void getCoAccessibleRecursive(State state,
+      final Multimap<State, State> map,
+      final HashSet<State> coAccessible) {
+    coAccessible.add(state);
+    System.out.println("# coaccessible... " + coAccessible.size());
+    Collection<State> previousStates = map.get(state);
+    previousStates.stream().filter(s -> ! coAccessible.contains(s))
+                           .forEach(s -> getCoAccessibleRecursive(s, map, coAccessible));
   }
-
-  /**
-   * Adds an arc to the explored arcs list.
-   */
-  private static void addExploredArc(final int stateId, final Arc arc,
-      final ArrayList<Arc>[] exploredArcs) {
-    if (exploredArcs[stateId] == null) {
-      exploredArcs[stateId] = new ArrayList<Arc>();
-    }
-    exploredArcs[stateId].add(arc);
-  }
-
 }
