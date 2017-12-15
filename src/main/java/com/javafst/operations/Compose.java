@@ -32,7 +32,8 @@ public class Compose {
    * @param sorted sort result
    * @return the composed Fst
    */
-  public static Fst compose(final Fst fst1, final Fst fst2, final Semiring semiring, final boolean sorted) {
+  public static Fst compose(final Fst fst1, final Fst fst2,
+                            final Semiring semiring, final boolean sorted) {
     if (!Arrays.equals(fst1.getOsyms(), fst2.getIsyms())) {
       // symbol tables do not match
       return null;

@@ -31,7 +31,8 @@ public class Arc {
    * @param weight            The arc's weight.
    * @param nextState         The arc's next state.
    */
-  public Arc(final int inputLabel, final int outputLabel, final float weight, final State nextState) {
+  public Arc(final int inputLabel, final int outputLabel,
+             final float weight, final State nextState) {
     this.weight = weight;
     this.inputLabel = inputLabel;
     this.outputLabel = outputLabel;

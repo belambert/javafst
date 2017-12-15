@@ -12,6 +12,7 @@ import java.net.URL;
 
 import org.testng.annotations.Test;
 
+import com.javafst.Convert;
 import com.javafst.Fst;
 import com.javafst.semiring.TropicalSemiring;
 
@@ -29,8 +30,9 @@ public class ConnectTest {
     path = new File(parent, "fstconnect").getPath();
     Fst connectSaved = importFst(path, new TropicalSemiring());
     apply(fst);
+    Convert.export(fst, "fstconnect.test");
     // TODO - This one is not passing...
-    //assertThat(fst, equalTo(connectSaved));
+    assertThat(fst, equalTo(connectSaved));
   }
 
 }

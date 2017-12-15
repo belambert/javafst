@@ -35,7 +35,8 @@ public class Determinize {
     return res;
   }
 
-  private static ArrayList<Integer> getUniqueLabels(final Fst fst, final ArrayList<Pair<State, Float>> pa) {
+  private static ArrayList<Integer> getUniqueLabels(final Fst fst,
+                                                    final ArrayList<Pair<State, Float>> pa) {
     final ArrayList<Integer> res = new ArrayList<Integer>();
     for (Pair<State, Float> p : pa) {
       final State state = p.getLeft();
@@ -80,7 +81,8 @@ public class Determinize {
     res.setOsyms(fst.getOsyms());
 
     // stores the queue (item in index 0 is next)
-    final Queue<ArrayList<Pair<State, Float>>> queue = new LinkedList<ArrayList<Pair<State, Float>>>();
+    final Queue<ArrayList<Pair<State, Float>>> queue = 
+        new LinkedList<ArrayList<Pair<State, Float>>>();
 
     final HashMap<String, State> stateMapper = new HashMap<String, State>();
 

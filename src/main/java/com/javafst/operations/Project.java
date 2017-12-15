@@ -21,7 +21,7 @@ public class Project {
     if (projectType == ProjectType.INPUT) {
       fst.setOsyms(fst.getIsyms());
     } else {
-      assert(projectType == ProjectType.OUTPUT);
+      assert projectType == ProjectType.OUTPUT;
       fst.setIsyms(fst.getOsyms());
     }
 
@@ -34,7 +34,7 @@ public class Project {
         if (projectType == ProjectType.INPUT) {
           a.setOlabel(a.getIlabel());
         } else {
-          assert(projectType == ProjectType.OUTPUT);
+          assert projectType == ProjectType.OUTPUT;
           a.setIlabel(a.getOlabel());
         }
       }
