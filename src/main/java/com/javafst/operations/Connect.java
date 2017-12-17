@@ -2,23 +2,18 @@ package com.javafst.operations;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import com.javafst.Arc;
 import com.javafst.Fst;
 import com.javafst.State;
 import com.javafst.semiring.Semiring;
-
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
  * Connect operation.
  * 
  * <p>A state q ∈ Q is said to be non-accessible (non-coaccessible) when there is
- * no path from I to q (resp. from q to F ). Non-accessible and non-coaccessible
+ * no path from I to q (respectively from q to F ). Non-accessible and non-coaccessible
  * states are called useless states. They can be removed using a connection (or
  * trimming) algorithm in linear time without affecting the weight T associates
  * to any pair. A transducer with no useless state is said to be trim.
