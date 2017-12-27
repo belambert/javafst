@@ -1,8 +1,15 @@
 language: java
+jdk:
+  - oraclejdk8
+  - oraclejdk9
+  - openjdk8
+
 script: mvn clean verify
+
 after_success:
 - bash <(curl -s https://codecov.io/bash)
 - .scripts/push-jsdoc-to-gh-pages.sh
+
 env:
   global:
     secure: QYyEonVNbjV2rtabdZXNL/e9yPnZoFeHiFwPUZZZINgk0OcmVa8jznwQ5dpyYFg0cof0tMp/RDfegylgovQ3CoeE4s9A0KqufzeW9MHBVeOvbH8tJFSsefHaY+GwLwde01Mp2KJAHMUCq32YGAIOj9Ds9HEhhIOka912ONfGtEZPf5+c9hY1wfN/OIsoidxF5eN8kJ79TI3/hnMl9ybNiZWx6EnxmrUFVYbsvn+61wmfR5y6LHHRB/h0zBZuu3XaEe6NgXWaWhQjZ4O9Az3OiC3y6Z8G2gWy6D0YTZoZgLL20L6/UpXOtSij6Tsf3ERlL5UlUr+XqEICMSWHvcXPLaXKNLUJB4YZcILMeBW40vKmVSVDi7wpFIaw4FmsUQ4+kbELndj2PfgGM1mCAJAt0DUuI5iykSMwH6KrNy1tJtf8myQKGaRVDPI7MOQRb21OQbevVqge7SM2EKmRrG0E80Vb3oR9Z5E8686YLBZ7zRrC8NwFjBCbPc4Ik9f6A/n9PiCpB2LymO7lHna8GRekLP8fw0RnWBgnBu2a21Ej8R1QnZfbvJ1bCHWvkmGx5XS+8BxkletnwR03xaCwxOO/QybgXeIOAstkMLNtYTo8a4nPO+TsWzh7NzGcEpvTyiMfW0SwpazIDhWkS7Y8HvmOZc9AbAvsOtXD2wvHfKPnlvc=
