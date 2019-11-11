@@ -13,7 +13,7 @@ decided to finally give it another home here. I dont plan to make any major
 modifications, but I might hack on it a little here or there. Please feel free
 to make contributions.
 
-Automatically generated javadoc [here](https://belambert.github.io/javafst/).
+Automatically generated javadoc [here](https://belambert.github.io/javafst/apidocs).
 
 You might find [JOpenFst](https://github.com/steveash/jopenfst) to be useful too.
 
