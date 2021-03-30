@@ -1,8 +1,8 @@
 javafst
 =======
 
-[![Build Status](https://travis-ci.org/belambert/asr-tools.svg?branch=master)](https://travis-ci.org/belambert/asr-tools)
-[![codecov](https://codecov.io/gh/belambert/javafst/branch/master/graph/badge.svg)](https://codecov.io/gh/belambert/javafst)
+[![Build Status](https://travis-ci.org/belambert/asr-tools.svg?branch=main)](https://travis-ci.org/belambert/asr-tools)
+[![codecov](https://codecov.io/gh/belambert/javafst/branch/main/graph/badge.svg)](https://codecov.io/gh/belambert/javafst)
 
 This is mostly taken from
 [Sphinx](https://github.com/cmusphinx/sphinx4/tree/master/sphinx4-core/src/main/java/edu/cmu/sphinx/fst)
